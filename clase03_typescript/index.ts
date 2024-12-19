@@ -95,6 +95,12 @@ const superheroe_1: Superheroe = {
 /* Si tengo que definir muchos objetos del mismo tipo, es mejor usar una Clase  */
 
 
+
+
+
+
+
+
 class Producto {
     precio: number;
     marca: string;
@@ -147,15 +153,48 @@ class Persona2 {
     ) { }
 }
 
+const personaA = new Persona2(" Leandro", "Rinetti")
+// personaA.apellido // no puedo acceder
+
+
+/* -------------------- */
+// Para poder acceder a los metodos de una clase desde la terminal, tiene que estar exportada por defecto la clase
+/* -------------------- */
 
 /* Las clases y las interfaces puede trabajar en conjunto  */
-
+/* Las clases pueden implementar interfaces */
 interface Animal {
     cantidadPatas: number;
     tienePelo: boolean;
 }
 
 class Perro implements Animal {
-
+    cantidadPatas: number;
+    tienePelo: boolean;
+    constructor(cantidadPatas: number, tienePelo: boolean) {
+        this.cantidadPatas = cantidadPatas
+        this.tienePelo = tienePelo
+    }
 }
+
+const firulais = new Perro(4, true)
+
+/* HERENCIA */
+class Humano {
+    constructor(estatura: number, colorOjos: string) { }
+    respirar(): void {
+        console.log("");
+    }
+}
+
+class Usuario extends Humano {
+    constructor(contrasena: string, email: string, estatura: number, colorOjos: string) {
+        super(estatura, colorOjos)
+    }
+}
+
+const user = new Usuario("123abc", "fulano@gmail.com", 170, "marron")
+// Lo hereda de la Clase Padre 
+user.respirar()
+
 
