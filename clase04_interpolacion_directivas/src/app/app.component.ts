@@ -11,9 +11,9 @@ export class AppComponent {
   estadoEnvio: 'pendiente' | 'entregado' | 'rechazado' = 'pendiente'
   /* estadoEnvio: 'pendiente' | 'entregado' | 'rechazado' = 'jhgfhjf' da error porque tiene que ser de alguno de esos tipos */
 
-  constructor() {
+/*   constructor() {
     setInterval(() => {
       this.hayError = !this.hayError
     }, 1000)
-  }
+  } */
 }

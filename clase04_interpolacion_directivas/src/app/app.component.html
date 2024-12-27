@@ -7,9 +7,14 @@
   Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
 </p> -->
 
+<!-- TERNARIO -->
+<p [ngClass]="hayError ? 'error' : 'success' ">
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+</p>
+
 <!-- sin corchetes [], el contenido dentro de las comillas es un texto plano -->
-<p ngClass="1+2" >
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+<p ngClass="1+2">
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
 </p>
 
 <p [ngClass]="{
@@ -20,6 +25,16 @@
   estadoEnvio
 </p>
 
-<p [class.error]="hayError" [class.success]="!hayError" >
-  Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-</p> 
+<p [class.error]="hayError" [class.success]="!hayError">
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+</p>
+
+<p [ngStyle]="{
+  fontSize: hayError ? 'x-large' : 'small'
+}">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur tempora facere qui, obcaecati sed eos, praesentium
+</p>
+
+<p [style.text-decoration]="hayError ? 'underline' : 'unset' " >
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur tempora facere qui, obcaecati sed eos, praesentium
+</p>
