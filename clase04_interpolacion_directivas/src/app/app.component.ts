@@ -4,16 +4,23 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+
 export class AppComponent {
   title = 'clase04_interpolacion_directivas';
   hayError: boolean = true;
-
   estadoEnvio: 'pendiente' | 'entregado' | 'rechazado' = 'pendiente'
+  estudiantes: string[] = ['Estudiante', 'Estudiante', 'Estudiante']
+  loading: boolean = true
   /* estadoEnvio: 'pendiente' | 'entregado' | 'rechazado' = 'jhgfhjf' da error porque tiene que ser de alguno de esos tipos */
 
-/*   constructor() {
+  // /* 
+  constructor() {
+    // setInterval(() => {
+    //   this.hayError = !this.hayError
+    // }, 1000)
     setInterval(() => {
-      this.hayError = !this.hayError
-    }, 1000)
-  } */
+      this.loading = !this.loading
+    }, 2000)
+  }
+  // */
 }

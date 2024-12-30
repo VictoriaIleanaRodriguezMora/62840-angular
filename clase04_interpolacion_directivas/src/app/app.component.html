@@ -64,3 +64,31 @@ con la propiedad selector invoco a la Directiva/Componente
 Permiten renderizar multiples contenidos.
 Van siempre con un * adelante
 -->
+<!-- *ngFor -->
+<tr *ngFor="let estudiante of estudiantes; let i = index">
+  <td>{{i +1}}</td>
+  <td>{{estudiante}}</td>
+</tr>
+
+<br>
+
+<!-- *ngIf -->
+<p *ngIf="loading; else contentTemplate">Cargando, porfavor espere...</p>
+<!-- ELSE -->
+<!-- Sirve para envolver contenido HTML, que se va a mostrar eventualmente. A primera no se muestra. Yo le tengo que decir a angular cuando mostrarse. Para eso le tengo que poner unIS al ng-template -->
+<ng-template #contentTemplate>
+  Este contenido se muestra cuando entra al ELSE.
+</ng-template>
+
+<!-- *ngSwitchCase -->
+<div [ngSwitch]="estadoEnvio" >
+  <p *ngSwitchCase="'pendiente'" >Su envío está pendiente</p>
+  <p *ngSwitchCase="'entregado'" >Su envío ha sido entregado </p>
+  <p *ngSwitchCase="'rechazado'" >Su envío ha sido rechazado </p>
+  <p *ngSwitchDefault>Estado desconocido del paquete</p>
+</div>
+
+
+<br>
+<br>
+<br>
