@@ -1,0 +1,132 @@
+<!-- 
+ dentro de las comillas, entiende JS
+<p [ngClass]="">
+-->
+
+<!-- <p [ngClass]="1+2" >
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+</p> -->
+
+<!-- TERNARIO -->
+<p [ngClass]="hayError ? 'error' : 'success' ">
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+</p>
+
+<!-- sin corchetes [], el contenido dentro de las comillas es un texto plano -->
+<p ngClass="1+2">
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+</p>
+
+<p [ngClass]="{
+  success: estadoEnvio === 'entregado',
+  error: estadoEnvio === 'rechazado',
+  pending: estadoEnvio === 'pendiente'
+}">
+  estadoEnvio
+</p>
+
+<p [class.error]="hayError" [class.success]="!hayError">
+  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+</p>
+
+<p [ngStyle]="{
+  fontSize: hayError ? 'x-large' : 'small'
+}">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur tempora facere qui, obcaecati sed eos, praesentium
+</p>
+
+<p [style.text-decoration]="hayError ? 'underline' : 'unset' ">
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur tempora facere qui, obcaecati sed eos, praesentium
+</p>
+
+<!-- DIRECTIVAS PERSONALIZADAS -->
+
+<!-- 
+ng g d directives/resaltado
+con la propiedad selector invoco a la Directiva/Componente
+
+¿Cómo hago para recibir un elemento, o una referencia al elemento que quiero modificar aplicando una directiva?
+*Inyeccion de dependencias usando el constructor de la clasede la directiva*
+
+
+-->
+<!-- Todo a lo que yo le ponga 'appResaltado' va a tener lo que defino en la Directiva -->
+<p appResaltado>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet dolores fuga libero est eius. Tenetur
+  blanditiis voluptate laudantium. Accusantium ullam aperiam veniam est impedit facilis nemo quia ccusamus quod
+  aspernatur
+</p>
+
+<h3 appResaltado>hola</h3>
+
+
+<!-- DIRECTIVAS ESTRUCTURALES -->
+<!-- 
+Permiten renderizar multiples contenidos.
+Van siempre con un * adelante
+-->
+<!-- *ngFor -->
+<tr *ngFor="let estudiante of estudiantes; let i = index">
+  <td>{{i +1}}</td>
+  <td>{{estudiante}}</td>
+</tr>
+
+<br>
+
+<!-- *ngIf -->
+<p *ngIf="loading; else contentTemplate">Cargando, porfavor espere...</p>
+<!-- ELSE -->
+<!-- Sirve para envolver contenido HTML, que se va a mostrar eventualmente. A primera no se muestra. Yo le tengo que decir a angular cuando mostrarse. Para eso le tengo que poner unIS al ng-template -->
+<ng-template #contentTemplate>
+  Este contenido se muestra cuando entra al ELSE.
+</ng-template>
+
+<!-- *ngSwitchCase -->
+<div [ngSwitch]="estadoEnvio">
+  <p *ngSwitchCase="'pendiente'">Su envío está pendiente</p>
+  <p *ngSwitchCase="'entregado'">Su envío ha sido entregado </p>
+  <p *ngSwitchCase="'rechazado'">Su envío ha sido rechazado </p>
+  <p *ngSwitchDefault>Estado desconocido del paquete</p>
+</div>
+
+<!-- 
+BINDING. Proceso de vincular un componente, con la vista HTML
+Directivas binding: 
+Template expression - Interpolacion de propiedad en el .ts con su uso en HTML
+Template statements - Permiten relacionar un evento generado por la vista, con una funcion del componente.
+Property binding - Permite relacionar una propiedad de un objeto del DOM con el componente. Esta puede ser one-way o two-way binding
+  -->
+
+<!-- escuchar un evento -->
+<!-- 
+Defino el método en la clase, y lo escribo acá. Debe ir asi (evento)="metodo()", con los ().
+Todo lo definido en el metodo, solo se ejecuta cuando ocurre el evento definido
+ -->
+<!-- Template Statements -->
+<button (click)="onClick($event)">Guardar</button>
+<button (mouseenter)="hayError = true" (mouseleave)="hayError = false">
+  Guardar
+</button>
+<!-- 
+Hay 2 tipos de BINDING-ENLAZAMIENTO 
+one-way y two-way binding
+ONE-WAY BINDING:
+De una propiedad del componente, a una propidad de un objeto del DOM
+TWO-WAY BINDING:
+Se comparten datos entre el componente y su vista. Se actualiza el modelo a medida que se interactua con la vista
+ -->
+
+<form>
+  <!-- 
+  [ngModel]="nombreUser" Esta es la propiedad que quiero que este input enlace 
+  Cuando se trabaja con ngModel, debe tener una propiedad name
+  -->
+  <!-- No estoy atrapando el cambio de este input, solo le estoy enviando un valor. En este caso, la Clase, está modificando el input, pero cuando el input quiere modificar la clase, no puede hacerlo, porque asi es en un sólo sentido,  -->
+   <!-- Para activar el enlazamiento en doble sentido, [()] -->
+  <input name="nombreUser" [(ngModel)]="nombreUser" type="text" />
+</form>
+<p>El valor de nombreUser es: {{nombreUser}} </p>
+
+
+<br>
+<br>
+<br>
