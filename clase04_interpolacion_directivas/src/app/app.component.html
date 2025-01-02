@@ -81,12 +81,50 @@ Van siempre con un * adelante
 </ng-template>
 
 <!-- *ngSwitchCase -->
-<div [ngSwitch]="estadoEnvio" >
-  <p *ngSwitchCase="'pendiente'" >Su envío está pendiente</p>
-  <p *ngSwitchCase="'entregado'" >Su envío ha sido entregado </p>
-  <p *ngSwitchCase="'rechazado'" >Su envío ha sido rechazado </p>
+<div [ngSwitch]="estadoEnvio">
+  <p *ngSwitchCase="'pendiente'">Su envío está pendiente</p>
+  <p *ngSwitchCase="'entregado'">Su envío ha sido entregado </p>
+  <p *ngSwitchCase="'rechazado'">Su envío ha sido rechazado </p>
   <p *ngSwitchDefault>Estado desconocido del paquete</p>
 </div>
+
+<!-- 
+BINDING. Proceso de vincular un componente, con la vista HTML
+Directivas binding: 
+Template expression - Interpolacion de propiedad en el .ts con su uso en HTML
+Template statements - Permiten relacionar un evento generado por la vista, con una funcion del componente.
+Property binding - Permite relacionar una propiedad de un objeto del DOM con el componente. Esta puede ser one-way o two-way binding
+  -->
+
+<!-- escuchar un evento -->
+<!-- 
+Defino el método en la clase, y lo escribo acá. Debe ir asi (evento)="metodo()", con los ().
+Todo lo definido en el metodo, solo se ejecuta cuando ocurre el evento definido
+ -->
+<!-- Template Statements -->
+<button (click)="onClick($event)">Guardar</button>
+<button (mouseenter)="hayError = true" (mouseleave)="hayError = false">
+  Guardar
+</button>
+<!-- 
+Hay 2 tipos de BINDING-ENLAZAMIENTO 
+one-way y two-way binding
+ONE-WAY BINDING:
+De una propiedad del componente, a una propidad de un objeto del DOM
+TWO-WAY BINDING:
+Se comparten datos entre el componente y su vista. Se actualiza el modelo a medida que se interactua con la vista
+ -->
+
+<form>
+  <!-- 
+  [ngModel]="nombreUser" Esta es la propiedad que quiero que este input enlace 
+  Cuando se trabaja con ngModel, debe tener una propiedad name
+  -->
+  <!-- No estoy atrapando el cambio de este input, solo le estoy enviando un valor. En este caso, la Clase, está modificando el input, pero cuando el input quiere modificar la clase, no puede hacerlo, porque asi es en un sólo sentido,  -->
+   <!-- Para activar el enlazamiento en doble sentido, [()] -->
+  <input name="nombreUser" [(ngModel)]="nombreUser" type="text" />
+</form>
+<p>El valor de nombreUser es: {{nombreUser}} </p>
 
 
 <br>
