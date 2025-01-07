@@ -20,5 +20,9 @@ export class StudentPageComponent {
     { id: 6, name: "Estudiante C" },
   ]
 
+  onRemove(idDelEstudianteAEliminar: any, from: 'studentApproved' | 'studentDisapproved'): void {
+    console.log("Debo eliminar el id: ", idDelEstudianteAEliminar, " de ", from);
+    this[from] = this[from].filter((elId) => elId.id !== idDelEstudianteAEliminar)
+  }
 
 }

@@ -3,9 +3,10 @@
     () -> de eventos o salida de datos
     [()] ->  en doble sentido
 -->
+<!-- (remove), le digo que escuche el evento remove. Y si lo escucha, que ejecute la funcion onRemove() -->
 <div class="p-5">
     <h2>Aprobados:</h2>
-    <app-students-list [students]="studentApproved" />
+    <app-students-list (remove)="onRemove($event, 'studentApproved')" [students]="studentApproved" />
     <h2>Desaprobados:</h2>
-    <app-students-list [students]="studentDisapproved" />
+    <app-students-list (remove)="onRemove($event, 'studentDisapproved')" [students]="studentDisapproved" />
 </div>

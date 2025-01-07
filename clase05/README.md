@@ -20,3 +20,7 @@ app -> student page -> student list
 
 La página de estudiantes renderiza las listas
 
+Que pasaria si students list quiere avisarle a students page que algo ha ocurrido, un evento o lo que sea?
+
+Decorador @Output, tambien se usa en el componente hijo. Porque es este el que indica que info va a recibir, y que eventos QUIERE EMITIR. 
+

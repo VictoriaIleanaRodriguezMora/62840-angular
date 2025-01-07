@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Student } from '../../models';
 
 @Component({
@@ -13,4 +13,7 @@ export class StudentsListComponent {
   @Input({ required: true }) students!: Student[]; // el ! le indica a ts que estoy segura que voy a recibir la propiedad estudiante. Pero al marcarlo como requerido, me da error en donde estoy usando este componente HIjo, porque indica, que es necesario indicar la propiedad students
 
   // @Input() students!: Student[]; // El require es opcional, si lo quito, no da error en el componente padre
+
+  // Generar un evento output, le dice el profe. 
+  @Output() remove = new EventEmitter()
 }
