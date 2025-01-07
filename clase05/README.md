@@ -24,3 +24,16 @@ Que pasaria si students list quiere avisarle a students page que algo ha ocurrid
 
 Decorador @Output, tambien se usa en el componente hijo. Porque es este el que indica que info va a recibir, y que eventos QUIERE EMITIR. 
 
+El decorador viewChild, permite acceder desde el .ts a cualquier elemento o componente que esté erenderizado en el html de ese componente donde usé view child. Está pensado para usarse en los componentes padre. @ViewChild recibe un selector
+
+Ciclos de vida de un componente de Angular 
+![alt text](image.png)
+
+El primer metodo que se dispara de todo componente es su constructor, porque los componentes de Angular son Clases, y pasa siempre antes de inicializarse por su metodo constructor.
+
+Ahora, el que vamos a usar es afterViewInit, este se dispra, despues que la vista se ha inicializado. 
+
+Estoy recibiendo un undefined, porque estoy haciendo un console log, de un elemento de la vista, antes de que se inicialize, en el constructor lo estoy haciendo. Y no existe ahi esa referencia. Entonces ¿Como utilizo el ciclo de vida?
+
+Hay una Interfaz que puedo aplicar a la clase, 
+
