@@ -1,1 +1,11 @@
-<p>student-page works!</p>
+<!-- 
+    []  -> de entrada
+    () -> de eventos o salida de datos
+    [()] ->  en doble sentido
+-->
+<div class="p-5">
+    <h2>Aprobados:</h2>
+    <app-students-list [students]="studentApproved" />
+    <h2>Desaprobados:</h2>
+    <app-students-list [students]="studentDisapproved" />
+</div>
