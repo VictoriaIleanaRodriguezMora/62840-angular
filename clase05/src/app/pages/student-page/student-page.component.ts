@@ -9,6 +9,8 @@ import { StudentsListComponent } from '../../components/students-list/students-l
 })
 export class StudentPageComponent implements AfterViewInit {
 
+  mostrarModal: boolean = false;
+
   studentApproved: Student[] = [
     { id: 1, name: "Fulano" },
     { id: 2, name: "Mengano" },
@@ -24,15 +26,15 @@ export class StudentPageComponent implements AfterViewInit {
   // ElementRef<HTMLElement> esto esta diciendo que va a recibir la referencia a un elemento, a un elemento de tipo HTML
   @ViewChild("titleApproveds") titleApproveds?: ElementRef<HTMLElement> // Le puedo pasar el Id de un elemento o
   @ViewChild(StudentsListComponent) studentsListComponent?: ElementRef<HTMLElement> // El nombre de la clase de un Componente
-// Hay algunas librerias, angular material que si usan el ViewChild 
-  
+  // Hay algunas librerias, angular material que si usan el ViewChild 
+
   constructor() {
     console.log(this.titleApproveds);
   }
   ngAfterViewInit(): void {
     console.log(this.titleApproveds);
     console.log(this.studentsListComponent);
-    
+
   }
   onRemove(idDelEstudianteAEliminar: any, from: 'studentApproved' | 'studentDisapproved'): void {
     console.log("Debo eliminar el id: ", idDelEstudianteAEliminar, " de ", from);

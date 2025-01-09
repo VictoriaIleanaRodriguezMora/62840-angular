@@ -38,3 +38,8 @@ Estoy recibiendo un undefined, porque estoy haciendo un console log, de un eleme
 Hay una Interfaz que puedo aplicar a la clase, 
 
 ng g interface models/nombreInterface
+
+ng g c components/my-modal
+
+¿Como hago para saber cuando tiene que mostrarse o no el modal?
+

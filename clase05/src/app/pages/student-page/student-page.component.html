@@ -10,3 +10,7 @@
     <h2>Desaprobados:</h2>
     <app-students-list (remove)="onRemove($event, 'studentDisapproved')" [students]="studentDisapproved" />
 </div>
+
+<button (click)="mostrarModal = true" class="btn btn-primary" >Abrir modal</button>
+
+<app-my-modal (close)="mostrarModal = false" [visible]="mostrarModal" />

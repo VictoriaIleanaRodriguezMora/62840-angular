@@ -1,0 +1,13 @@
+<div *ngIf="visible" class="background d-flex justify-content-center align-items-center py-3">
+    <div class="card w-50">
+        <h3>Hola mundo</h3>
+        <p class="card-body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae tenetur quibusdam
+            quia, iusto expedita temporibus incidunt esse, similique perspiciatis vero aperiam saepe, magni iure quas.
+            Ducimus ullam laborum aperiam eveniet.
+        </p>
+        <div class="d-flex justify-content-end">
+            <!-- este boton le tiene que avisar al padre que se hizo click para que se cierre -->
+            <button (click)="close.emit()" class="btn btn-danger">Cerrar</button>
+        </div>
+    </div>
+</div>
