@@ -1,16 +1,25 @@
-<!-- 
-    []  -> de entrada
-    () -> de eventos o salida de datos
-    [()] ->  en doble sentido
--->
-<!-- (remove), le digo que escuche el evento remove. Y si lo escucha, que ejecute la funcion onRemove() -->
 <div class="p-5">
-    <h2 #titleApproveds>Aprobados:</h2>
+    <p>Valor del padre: {{ mostrarModal}}</p>
+
+    <app-my-modal [(visible)]="mostrarModal" />
+
+    <button class="btn btn-primary" (click)="mostrarModal= true">
+        Abrir modal
+    </button>
+
+    <!--
+      [] -> de entrada
+      () -> eventos o salida datos
+      [()] -> enlazamiento en doble sentido (entrada y salida)
+    -->
+
+    <h2 #tituloAprobados>Aprobados:</h2>
     <app-students-list (remove)="onRemove($event, 'studentApproved')" [students]="studentApproved" />
+
+    <div class="my-5">
+        <hr />
+    </div>
+
     <h2>Desaprobados:</h2>
     <app-students-list (remove)="onRemove($event, 'studentDisapproved')" [students]="studentDisapproved" />
 </div>
-
-<button (click)="mostrarModal = true" class="btn btn-primary" >Abrir modal</button>
-
-<app-my-modal (close)="mostrarModal = false" [visible]="mostrarModal" />

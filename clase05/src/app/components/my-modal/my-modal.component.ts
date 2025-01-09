@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-my-modal',
+  standalone: false,
+
   templateUrl: './my-modal.component.html',
-  styleUrl: './my-modal.component.scss'
+  styleUrl: './my-modal.component.scss',
 })
 export class MyModalComponent {
-@Input() visible: boolean = false; 
-
-@Output() close = new EventEmitter()
+  @Input() visible = false;
+  @Output() visibleChange = new EventEmitter();
 }
