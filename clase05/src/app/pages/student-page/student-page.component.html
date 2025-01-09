@@ -5,7 +5,7 @@
 -->
 <!-- (remove), le digo que escuche el evento remove. Y si lo escucha, que ejecute la funcion onRemove() -->
 <div class="p-5">
-    <h2 id="titleApproveds" >Aprobados:</h2>
+    <h2 #titleApproveds>Aprobados:</h2>
     <app-students-list (remove)="onRemove($event, 'studentApproved')" [students]="studentApproved" />
     <h2>Desaprobados:</h2>
     <app-students-list (remove)="onRemove($event, 'studentDisapproved')" [students]="studentDisapproved" />

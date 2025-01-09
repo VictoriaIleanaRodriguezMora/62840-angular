@@ -6,7 +6,7 @@ ng g c components/students-list
 
 ng g c pages/student-page
 
-// Dentro de la página de estudiante, muestro la student list, quiero mostrar el array de estudiantes de student-page.ts 
+// Dentro de la student page, muestro la student list, quiero mostrar el array de estudiantes de student-page.ts 
 
 @Input decorador que le indica a Angular que ese componente va a recibir los datos de un componente Padre. Permite crear componentes reutilizables.
 
@@ -37,3 +37,4 @@ Estoy recibiendo un undefined, porque estoy haciendo un console log, de un eleme
 
 Hay una Interfaz que puedo aplicar a la clase, 
 
+ng g interface models/nombreInterface
