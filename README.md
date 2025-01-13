@@ -24,10 +24,10 @@ Que pasaria si students list quiere avisarle a students page que algo ha ocurrid
 
 Decorador @Output, tambien se usa en el componente hijo. Porque es este el que indica que info va a recibir, y que eventos QUIERE EMITIR. 
 
-El decorador viewChild, permite acceder desde el .ts a cualquier elemento o componente que esté erenderizado en el html de ese componente donde usé view child. Está pensado para usarse en los componentes padre. @ViewChild recibe un selector
+El decorador viewChild, permite acceder desde el .ts a cualquier elemento o componente que esté renderizado en el html de ese componente donde usé view child. Está pensado para usarse en los componentes padre. @ViewChild recibe un selector
 
 Ciclos de vida de un componente de Angular 
-![alt text](image.png)
+![alt text](./clase05/src/assets/image.png)
 
 El primer metodo que se dispara de todo componente es su constructor, porque los componentes de Angular son Clases, y pasa siempre antes de inicializarse por su metodo constructor.
 
