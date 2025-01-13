@@ -22,5 +22,9 @@ El modelo de formulario se define en el .ts
 
 Se define casi todo en el .ts
 
+Los formularios deben estar validados, es una mala practica que no lo esten
+
+
+
 
 
