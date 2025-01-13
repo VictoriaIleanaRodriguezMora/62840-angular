@@ -21,5 +21,36 @@ export class ReactiveFormsComponent {
       rememberMeFB: []
     })
   }
+  /* GETTER */
+  myControl(ctrl: string) {
+    return this.loginForm.get(ctrl)
+  }
+
+  // Funcion explayada
+  myControlIsValidOrInvalid(myControl: string): boolean {
+    const control = this.myControl(myControl);
+    // Verificar si el control existe
+    if (!control) {
+      return false;
+    }
+    // Verificar si el control fue tocado
+    if (!control.touched) {
+      return false;
+    }
+    // Verificar si el control es válido o inválido
+    if (control.valid || control.invalid) {
+      return true;
+    }
+    return false;
+  }
+
+  /* --------  FUNCION RESUMIDA -------- --------  FUNCION RESUMIDA --------
+  myControlIsValidOrInvalid(myControl: string): boolean {
+      const control = this.myControl(myControl);
+      return !!control && control.touched && (control.valid || control.invalid);
+    } 
+      */
+  /* return control?.touched && (control.valid || control.invalid); esto me da error porque el ? permite que sea undefined */
+  /* !!control: Esto asegura que el control existe y no es null o undefined. */
 
 }

@@ -16,10 +16,31 @@
                   formControlName="emailFB"
                   type="email"
                   class="form-control"
+                  [ngClass]="{
+                    'is-invalid': !myControlIsValidOrInvalid('email'),
+                    'is-valid': myControlIsValidOrInvalid('email')
+                  }"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="Email"
                 />
+                <!-- 1# loginForm.get('emailFB')?.valid ? 'is-valid' : 'is-invalid'  -->
+                <!-- #2 "
+                    loginForm.get('emailFB')?.touched
+                      ? loginForm.get('emailFB')?.valid
+                        ? 'is-valid'
+                        : 'is-invalid'
+                      : ''
+                  " -->
+                <!-- #3 "{
+                    'is-invalid':
+                      (loginForm.get('emailFB')?.touched &&
+                      loginForm.get('emailFB')?.invalid), 
+                      'is-valid':
+                      (loginForm.get('emailFB')?.touched &&
+                      loginForm.get('emailFB')?.valid), 
+                  }" -->
+
                 <!-- 
                 Este es el operador de acceso opcional (o safe navigation operator). Se utiliza para evitar errores si el control "emailFB" no existe o es null. En lugar de lanzar un error, simplemente devolverá undefined.
 
