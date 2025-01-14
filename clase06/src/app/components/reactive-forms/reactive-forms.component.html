@@ -52,9 +52,30 @@
                 @see — AbstractControl.status
                 True if the control has passed all of its validation tests, false otherwise.
                 -->
+
                 <div id="emailHelp" class="form-text">
                   El campo es valido: {{ loginForm.get("emailFB")?.valid }}
                 </div>
+
+                <div id="emailHelp" class="form-text">
+                  Los errores del campo email son:
+                  {{ controllerErrors("emailFB") | json }}
+                </div>
+
+                <div *ngIf="myControl('emailFB')?.touched">
+                  <p *ngIf="hasErrors('emailFB', 'required')">
+                    Este campo es requerido
+                  </p>
+                  <p *ngIf="hasErrors('emailFB', 'email')">Email no válido</p>
+                </div>
+
+                <!-- <divngIf="myControl('emailFB')?.touched" class="form-text">
+                  @if(hasErrors('emailFB','required')){
+                  <p>Este campo es requerido</p>
+                  } @else if (hasErrors('emailFB','emailFB')) {
+                  <p>Email no valido</p>
+                  }
+                </div> -->
               </div>
               <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label"

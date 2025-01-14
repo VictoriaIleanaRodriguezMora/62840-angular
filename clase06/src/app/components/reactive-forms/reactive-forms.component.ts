@@ -53,13 +53,18 @@ export class ReactiveFormsComponent {
          (nameClass === 'invalid' && control.invalid && control.touched))
      );
    }*/
-
-
-
-
-
-
   /* return control?.touched && (control.valid || control.invalid); esto me da error porque el ? permite que sea undefined */
   /* !!control: Esto asegura que el control existe y no es null o undefined. */
+
+
+  controllerErrors(controller: string) {
+    const control = this.myControl(controller);
+    return control?.errors || null;
+  }
+
+  hasErrors(controller: string, error: string) {
+    const control = this.myControl(controller);
+    return control?.touched && control?.hasError(error);
+  }
 
 }
