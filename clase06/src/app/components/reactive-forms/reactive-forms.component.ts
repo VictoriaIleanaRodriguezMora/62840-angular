@@ -25,31 +25,59 @@ export class ReactiveFormsComponent {
   myControl(ctrl: string) {
     return this.loginForm.get(ctrl)
   }
-
   // Funcion explayada
-  myControlIsValidOrInvalid(myControl: string): boolean {
-    const control = this.myControl(myControl);
-    // Verificar si el control existe
+  /* myControlIsValidOrInvalid(myControl: string): boolean {
+     const control = this.myControl(myControl);
+     // Verificar si el control existe
+     if (!control) {
+       console.log("!control");
+       return false;
+     }
+     // Verificar si el control fue tocado
+     if (!control.touched) {
+       console.log("!control.touched");
+       return false;
+     }
+     // Verificar si el control es válido 
+     if (control.valid) {
+       console.log("control.valid");
+       return true;
+     }
+ 
+     if (control.invalid) {
+       console.log("control.invalid");
+       return false;
+     }
+ 
+     return false;
+   }*/
+  /* --------  FUNCION RESUMIDA -------- --------  FUNCION RESUMIDA --------*/
+
+  // myControlIsValidOrInvalid(myControl: string): boolean {
+  //   const control = this.myControl(myControl);
+  //   return !!control && control.touched && (control.valid || control.invalid);
+  // }
+
+  myControlIsValidOrInvalid(controlName: string, nameClass: 'valid' | 'invalid'): boolean {
+    const control = this.myControl(controlName);
+
     if (!control) {
+      // Si el control no existe, siempre devolvemos false
       return false;
     }
-    // Verificar si el control fue tocado
-    if (!control.touched) {
-      return false;
+
+    if (nameClass === 'valid') {
+      return control.valid && control.touched;
     }
-    // Verificar si el control es válido o inválido
-    if (control.valid || control.invalid) {
-      return true;
+
+    if (nameClass === 'invalid') {
+      return control.invalid && control.touched;
     }
+
     return false;
   }
 
-  /* --------  FUNCION RESUMIDA -------- --------  FUNCION RESUMIDA --------
-  myControlIsValidOrInvalid(myControl: string): boolean {
-      const control = this.myControl(myControl);
-      return !!control && control.touched && (control.valid || control.invalid);
-    } 
-      */
+
   /* return control?.touched && (control.valid || control.invalid); esto me da error porque el ? permite que sea undefined */
   /* !!control: Esto asegura que el control existe y no es null o undefined. */
 

@@ -17,8 +17,11 @@
                   type="email"
                   class="form-control"
                   [ngClass]="{
-                    'is-invalid': !myControlIsValidOrInvalid('email'),
-                    'is-valid': myControlIsValidOrInvalid('email')
+                    'is-invalid': myControlIsValidOrInvalid(
+                      'emailFB',
+                      'invalid'
+                    ),
+                    'is-valid': myControlIsValidOrInvalid('emailFB', 'valid')
                   }"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
