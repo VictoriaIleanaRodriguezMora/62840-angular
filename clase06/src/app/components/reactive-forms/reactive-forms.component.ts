@@ -26,43 +26,11 @@ export class ReactiveFormsComponent {
     return this.loginForm.get(ctrl)
   }
   // Funcion explayada
-  /* myControlIsValidOrInvalid(myControl: string): boolean {
-     const control = this.myControl(myControl);
-     // Verificar si el control existe
-     if (!control) {
-       console.log("!control");
-       return false;
-     }
-     // Verificar si el control fue tocado
-     if (!control.touched) {
-       console.log("!control.touched");
-       return false;
-     }
-     // Verificar si el control es válido 
-     if (control.valid) {
-       console.log("control.valid");
-       return true;
-     }
- 
-     if (control.invalid) {
-       console.log("control.invalid");
-       return false;
-     }
- 
-     return false;
-   }*/
-  /* --------  FUNCION RESUMIDA -------- --------  FUNCION RESUMIDA --------*/
-
-  // myControlIsValidOrInvalid(myControl: string): boolean {
-  //   const control = this.myControl(myControl);
-  //   return !!control && control.touched && (control.valid || control.invalid);
-  // }
-
   myControlIsValidOrInvalid(controlName: string, nameClass: 'valid' | 'invalid'): boolean {
     const control = this.myControl(controlName);
 
     if (!control) {
-      // Si el control no existe, siempre devolvemos false
+      // Si el control no existe, siempre devuelvo false
       return false;
     }
 
@@ -76,6 +44,19 @@ export class ReactiveFormsComponent {
 
     return false;
   }
+  /* --------  FUNCION RESUMIDA -------- --------  FUNCION RESUMIDA --------*/
+  /* myControlIsValidOrInvalid(controlName: string, nameClass: 'valid' | 'invalid'): boolean {
+     const control = this.myControl(controlName);
+     return (
+       !!control &&
+       ((nameClass === 'valid' && control.valid && control.touched) ||
+         (nameClass === 'invalid' && control.invalid && control.touched))
+     );
+   }*/
+
+
+
+
 
 
   /* return control?.touched && (control.valid || control.invalid); esto me da error porque el ? permite que sea undefined */
