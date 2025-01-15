@@ -1,1 +1,72 @@
-<p>template-driven works!</p>
+<div class="bg-primary">
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <form #loginForm="ngForm">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Email address</label
+                >
+                <!-- doble via, REFERENCIA a la propiedad definida en el .ts va a dar un error, porque cuando uso la directiva ngModel debo especificar el atributo name -->
+                <input
+                  [(ngModel)]="loginFormModel.emailTD"
+                  #emailControl="ngModel"
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  required
+                  pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                  [ngClass]="{
+                    'is-valid': emailControl.touched && emailControl.valid,
+                    'is-invalid': emailControl.touched && emailControl.invalid
+                  }"
+                />
+                <div class="form-text">
+                  El campo es valido: {{ emailControl.valid }}
+                </div>
+
+                <div class="form-text" *ngIf="emailControl.touched">
+                  <span *ngIf="emailControl.hasError('required')">Este campo es requerido</span>
+                  <span *ngIf="emailControl.hasError('pattern')">No es un email válido</span>
+                  <span *ngIf="emailControl.hasError('noHomero')">No se admiten homeros</span>
+                </div>
+                
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Password</label
+                >
+                <input
+                  [(ngModel)]="loginFormModel.passwordTD"
+                  name="password"
+                  type="password"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                />
+              </div>
+              <div class="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="exampleCheck1"
+                />
+                <label class="form-check-label" for="exampleCheck1"
+                  >Check me out</label
+                >
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <div class="col-6">
+            <!-- Mostrar en pantalla el valor de los campos -->
+            {{ loginFormModel | json }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

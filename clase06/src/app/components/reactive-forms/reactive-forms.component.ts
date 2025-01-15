@@ -20,6 +20,9 @@ export class ReactiveFormsComponent {
       passwordFB: [null, [Validators.required, Validators.minLength(6)]],
       rememberMeFB: []
     })
+
+    console.log(this.loginForm);
+
   }
   /* GETTER */
   myControl(ctrl: string) {
@@ -66,5 +69,18 @@ export class ReactiveFormsComponent {
     const control = this.myControl(controller);
     return control?.touched && control?.hasError(error);
   }
+
+  onSubmit() {
+    if (this.loginForm.invalid) {
+      alert('El form es invalido!');
+      this.loginForm.markAllAsTouched();
+      console.log('AQUÍ');
+    } else {
+      alert('Los datos se enviaron!');
+      console.log(this.loginForm.value);
+      this.loginForm.reset();
+    }
+  }
+  
 
 }
