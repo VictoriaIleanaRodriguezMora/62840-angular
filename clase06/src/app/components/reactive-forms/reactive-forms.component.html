@@ -7,7 +7,7 @@
         -->
         <div class="row">
           <div class="col-6">
-            <form [formGroup]="loginForm" autocomplete="off">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off">
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label"
                   >Email address</label
@@ -67,6 +67,9 @@
                     Este campo es requerido
                   </p>
                   <p *ngIf="hasErrors('emailFB', 'email')">Email no válido</p>
+                  <p *ngIf="hasErrors('emailFB','noHomero')"
+                    >No se admiten homeros</p
+                  >
                 </div>
 
                 <!-- <divngIf="myControl('emailFB')?.touched" class="form-text">

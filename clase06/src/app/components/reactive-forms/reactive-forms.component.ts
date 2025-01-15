@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { noHomeroValidator } from '../../shared/custom-validators/noHomero';
 
 @Component({
   selector: 'app-reactive-forms',
@@ -16,7 +17,7 @@ export class ReactiveFormsComponent {
   */
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
-      emailFB: [null, [Validators.required, Validators.email]],
+      emailFB: [null, [Validators.required, Validators.email, noHomeroValidator]],
       passwordFB: [null, [Validators.required, Validators.minLength(6)]],
       rememberMeFB: []
     })
