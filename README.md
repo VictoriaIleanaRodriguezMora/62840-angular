@@ -83,4 +83,30 @@ De acá a linea 18 dashboard.component.html
 
 En toolbar uso @output 
 
+A cada page le voy a crear un modulo 
 
+ng g module modules/dashboard/pages/students --routing
+CREATE src/app/modules/dashboard/pages/students/students-routing.module.ts (261 bytes)
+CREATE src/app/modules/dashboard/pages/students/students.module.ts (302 bytes)
+
+ng g module modules/dashboard/pages/home --routing
+CREATE src/app/modules/dashboard/pages/home/home-routing.module.ts (257 bytes)
+CREATE src/app/modules/dashboard/pages/home/home.module.ts (286 bytes)
+
+ng g module modules/dashboard/pages/courses --routing
+
+ng g module modules/dashboard/pages/enrollments --routing
+
+ng g component modules/dashboard/pages/students --skip-tests
+
+Ahora quiero mostrar el app-students, en el dashboard.component.html
+
+Los iconos de angular material estan basados en los iconos de google
+
+Mi angular material no está funcionando bien. Los íconos y los botones 
+
+https://material.angular.io/components/form-field/api
+https://material.angular.io/components/input/api
+
+
+Algo en serio no está funcionando de Material

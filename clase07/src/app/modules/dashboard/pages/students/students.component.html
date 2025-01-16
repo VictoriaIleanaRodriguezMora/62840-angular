@@ -1,0 +1,17 @@
+<h1>Estudiantes</h1>
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input formControlName="name" matInput appearance="outline" />
+    <br>
+    <br>
+    <mat-label>Apellido</mat-label>
+    <input formControlName="lastName" matInput appearance="outline" />
+  </mat-form-field>
+  <button mat-button>Enviar</button>
+</form>
+
+<button mat-stroked-button>Crear estudiante</button>
+<button>
+  <mat-icon mat-icon-button>delete</mat-icon>
+</button>
