@@ -1,0 +1,14 @@
+<!-- TOOLBAR - INICIO -->
+<mat-toolbar>
+    <!-- Entonces, al hacer click en este botón, quiero emitir el evento myDrawerToggle. Esta es toda la configuracion en el hijo, pero me falta vincularlo al padre.  -->
+    <button
+    (click)="myDrawerToggle.emit()"
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>My App</span>
+  </mat-toolbar>
+  <!-- TOOLBAR - FIN -->
