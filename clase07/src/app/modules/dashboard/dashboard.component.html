@@ -18,16 +18,16 @@
     <app-toolbar (myDrawerToggle)="drawer.toggle()" />
     <!-- SIDENAV -->
     <!-- Este drawer.toggle(), el drawer hace referencia al ID #drawer que dentro tiene la funcion toggle. 
-     Ahora: yo quiero llamar a esta funcion, desde el toolbar. Quiero que al clickear en el botón del toolbar, se dispare esa funcion. 
-     TOOLBAR -> HIJO
-     DASHBOARD -> PADRE -->
+       Ahora: yo quiero llamar a esta funcion, desde el toolbar. Quiero que al clickear en el botón del toolbar, se dispare esa funcion. 
+       TOOLBAR -> HIJO
+       DASHBOARD -> PADRE -->
 
-     <app-students />
+    <app-students />
 
-     <!-- Lo dejo de ejemplo para marcar que el toolbar reemplazó este boton -->
+    <!-- Lo dejo de ejemplo para marcar que el toolbar reemplazó este boton -->
     <!-- <button type="button" mat-raised-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button> -->
+        Toggle sidenav
+      </button> -->
   </div>
 
   <!-- AREA CONTENIDO - FIN -->
