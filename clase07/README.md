@@ -1,59 +1,88 @@
-# B
+ng new clase07 --no-standalone ng add @angular/material Enter, enter, instalar X version: SÍ Elegir el tema custom
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.1.
+https://material.angular.io/
 
-## Development server
+Packages successfully installed. ? Choose a prebuilt theme name, or "custom" for a custom theme: Custom ? Set up global Angular Material typography styles? Yes ? Include the Angular animations module? Include and enable animations
 
-To start a local development server, run:
+Sidenav
 
-```bash
-ng serve
-```
+Modules/dashboard carpeta encargada de administrar todo lo relacionado a cursos/alumnos
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+ng g module modules/dashboard --routing (por ahora routing no se usa) CREATE src/app/modules/dashboard/dashboard-routing.module.ts (262 bytes) CREATE src/app/modules/dashboard/dashboard.module.ts (306 bytes)
 
-## Code scaffolding
+ng g module modules/auth --routing CREATE src/app/modules/auth/auth-routing.module.ts (257 bytes) CREATE src/app/modules/auth/auth.module.ts (286 bytes)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Los módulos son cajas que agrupan componentes y funcionalidades. Para separar la ap en partes mas pequeñas "dashboard" > panel administrativo, de control dashboard > students.component & courses.component
 
-```bash
-ng generate component component-name
-```
+Auth module > autenticacion login & register
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+ng g component modules/dashboard --skip-tests CREATE src/app/modules/dashboard/dashboard.component.html (25 bytes) CREATE src/app/modules/dashboard/dashboard.component.ts (222 bytes) CREATE src/app/modules/dashboard/dashboard.component.scss (0 bytes) UPDATE src/app/modules/dashboard/dashboard.module.ts (393 bytes)
 
-```bash
-ng generate --help
-```
+ng g component modules/auth/login --skip-tests CREATE src/app/modules/auth/login/login.component.html (21 bytes) CREATE src/app/modules/auth/login/login.component.ts (206 bytes) CREATE src/app/modules/auth/login/login.component.scss (0 bytes) UPDATE src/app/modules/auth/auth.module.ts (367 bytes)
 
-## Building
+dashboard.component va a tener todo el encapsulamiento de la app
 
-To build the project run:
+https://material.angular.io/components/sidenav/overview
 
-```bash
-ng build
-```
+Si creo un componente con el nombre/ruta incorrecto y lo elimino, tengo que borrarlo de donde se importó tambien porque va a dar error.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+estoy intentando mostrar el app-dashboard, en el app-module. Pero app-dashboard pertenece a dashboard-module. Si no importo correctamente dashboard-module en app-module, no voy a poder usarlo
 
-## Running unit tests
+1° Importar en el módulo padre el modulo hijo en el array de imports 2° En el modúlo hijo, en el array declarations[] y exports[] tengo que escribir el/los Componentes a exportar.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Todos los componentes de angular tienen modulos que debo importar para usarlos y escribirlos en el array imports
 
-```bash
-ng test
-```
+Los botones del sidenav no se ven cómo de Material porque los botones son un componente, y no los estoy importando.
 
-## Running end-to-end tests
+https://material.angular.io/components/button/api https://material.angular.io/components/toolbar/api
 
-For end-to-end (e2e) testing, run:
+El toolbar va a ir dentro del area de contenido.
 
-```bash
-ng e2e
-```
+Al traer toolbar de error por la importacion de iconos, los iconos deben traerse
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+ng g component modules/dashboard/components/toolbar --skip-tests CREATE src/app/modules/dashboard/components/toolbar/toolbar.component.html (23 bytes) CREATE src/app/modules/dashboard/components/toolbar/toolbar.component.ts (214 bytes) CREATE src/app/modules/dashboard/components/toolbar/toolbar.component.scss (0 bytes) UPDATE src/app/modules/dashboard/dashboard.module.ts (854 bytes)
 
-## Additional Resources
+La vista es la misma pero mas limpio el código html
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+"Lazy loading" mejora el rendimiento. Hace que las cosas se carguen por demanda
+
+Quiero que el sidenav se abra cuando hago click en el boton del toolbar.
+
+De acá a linea 18 dashboard.component.html
+
+En toolbar uso @output
+
+A cada page le voy a crear un modulo
+
+ng g module modules/dashboard/pages/students --routing CREATE src/app/modules/dashboard/pages/students/students-routing.module.ts (261 bytes) CREATE src/app/modules/dashboard/pages/students/students.module.ts (302 bytes)
+
+ng g module modules/dashboard/pages/home --routing CREATE src/app/modules/dashboard/pages/home/home-routing.module.ts (257 bytes) CREATE src/app/modules/dashboard/pages/home/home.module.ts (286 bytes)
+
+ng g module modules/dashboard/pages/courses --routing
+
+ng g module modules/dashboard/pages/enrollments --routing
+
+ng g component modules/dashboard/pages/students --skip-tests
+
+Ahora quiero mostrar el app-students, en el dashboard.component.html
+
+Los iconos de angular material estan basados en los iconos de google
+
+Mi angular material no está funcionando bien. Los íconos y los botones
+
+https://material.angular.io/components/form-field/api https://material.angular.io/components/input/api
+
+Algo en serio no está funcionando de Material
+
+
+
+ng g module modules/dashboard --routing
+ng g module modules/auth --routing
+ng g component modules/dashboard --skip-tests --standalone=false
+ng g component modules/auth/login --skip-tests --standalone=false
+ng g component modules/dashboard/components/toolbar --skip-tests --standalone=false
+ng g module modules/dashboard/pages/students --routing 
+ng g module modules/dashboard/pages/home --routing 
+ng g module modules/dashboard/pages/courses --routing 
+ng g module modules/dashboard/pages/enrollments --routing
+ng g component modules/dashboard/pages/students --skip-tests --standalone=false

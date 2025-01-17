@@ -13,14 +13,14 @@ Packages successfully installed.
 
 Sidenav
 
-Modules/dashboard carpeta encargada de administrar todo lo relacionado a cursos/alumnos 
+Modules/dashboard carpeta encargada de administrar todo lo relacionado a cursos/alumnos
 
-ng g module modules/dashboard --routing 
+ng g module modules/dashboard --routing
 (por ahora routing no se usa)
 CREATE src/app/modules/dashboard/dashboard-routing.module.ts (262 bytes)
 CREATE src/app/modules/dashboard/dashboard.module.ts (306 bytes)
 
-ng g module modules/auth --routing 
+ng g module modules/auth --routing
 CREATE src/app/modules/auth/auth-routing.module.ts (257 bytes)
 CREATE src/app/modules/auth/auth.module.ts (286 bytes)
 
@@ -47,16 +47,15 @@ dashboard.component va a tener todo el encapsulamiento de la app
 
 https://material.angular.io/components/sidenav/overview
 
-Si creo un componente con el nombre/ruta incorrecto y lo elimino, tengo que borrarlo de donde se importó tambien porque va a dar error. 
+Si creo un componente con el nombre/ruta incorrecto y lo elimino, tengo que borrarlo de donde se importó tambien porque va a dar error.
 
-estoy intentando mostrar el app-dashboard, en el app-module. Pero app-dashboard pertenece a dashboard-module.  Si no importo correctamente dashboard-module en app-module, no voy a poder usarlo
-
+estoy intentando mostrar el app-dashboard, en el app-module. Pero app-dashboard pertenece a dashboard-module. Si no importo correctamente dashboard-module en app-module, no voy a poder usarlo
 
 1° Importar en el módulo padre el modulo hijo en el array de imports
-2° En el modúlo hijo, en el array declarations[] y exports[] tengo que escribir el/los Componentes a exportar. 
+2° En el modúlo hijo, en el array declarations[] y exports[] tengo que escribir el/los Componentes a exportar.
 
 Todos los componentes de angular tienen modulos que debo importar para usarlos
-y escribirlos en el array imports 
+y escribirlos en el array imports
 
 Los botones del sidenav no se ven cómo de Material porque los botones son un componente, y no los estoy importando.
 
@@ -73,7 +72,7 @@ CREATE src/app/modules/dashboard/components/toolbar/toolbar.component.ts (214 by
 CREATE src/app/modules/dashboard/components/toolbar/toolbar.component.scss (0 bytes)
 UPDATE src/app/modules/dashboard/dashboard.module.ts (854 bytes)
 
-La vista es la misma pero mas limpio el código html 
+La vista es la misma pero mas limpio el código html
 
 "Lazy loading" mejora el rendimiento. Hace que las cosas se carguen por demanda
 
@@ -81,9 +80,9 @@ Quiero que el sidenav se abra cuando hago click en el boton del toolbar.
 
 De acá a linea 18 dashboard.component.html
 
-En toolbar uso @output 
+En toolbar uso @output
 
-A cada page le voy a crear un modulo 
+A cada page le voy a crear un modulo
 
 ng g module modules/dashboard/pages/students --routing
 CREATE src/app/modules/dashboard/pages/students/students-routing.module.ts (261 bytes)
@@ -103,10 +102,22 @@ Ahora quiero mostrar el app-students, en el dashboard.component.html
 
 Los iconos de angular material estan basados en los iconos de google
 
-Mi angular material no está funcionando bien. Los íconos y los botones 
+Mi angular material no está funcionando bien. Los íconos y los botones
 
 https://material.angular.io/components/form-field/api
 https://material.angular.io/components/input/api
 
-
 Algo en serio no está funcionando de Material
+
+ng g module modules/dashboard --routing
+ng g module modules/auth --routing
+ng g component modules/dashboard --skip-tests --standalone=false
+ng g component modules/auth/login --skip-tests --standalone=false
+ng g component modules/dashboard/components/toolbar --skip-tests --standalone=false
+ng g module modules/dashboard/pages/students --routing
+ng g module modules/dashboard/pages/home --routing
+ng g module modules/dashboard/pages/courses --routing
+ng g module modules/dashboard/pages/enrollments --routing
+ng g component modules/dashboard/pages/students --skip-tests --standalone=false
+
+https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
