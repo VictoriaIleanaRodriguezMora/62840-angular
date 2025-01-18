@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from './models/students';
 import { randomString } from '../../../../shared/randomString';
+
 @Component({
   selector: 'app-students',
   standalone: false,
@@ -13,8 +14,8 @@ export class StudentsComponent {
   studentForm: FormGroup;
   students: Student[] = [{
     "id": "M%%Tf8&S",
-    "name": "aaaaaaaaaa",
-    "lastName": "ssssssss"
+    "name": "name",
+    "lastName": " last name"
   }];
   // listado de las columnas que va a tener mi tabla
 

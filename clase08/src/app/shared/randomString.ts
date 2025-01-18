@@ -14,4 +14,3 @@ export function randomString(chQuantity: number): string {
     }
     return stringFormed.join("");
 }
- 
