@@ -7,7 +7,7 @@ import { Student } from '../../modules/dashboard/pages/students/models/students'
 })
 export class FullName2Pipe implements PipeTransform {
   transform(value: Student): unknown {
-    console.log('Value passed to pipe:', value); // Para depurar
+    // console.log('Value passed to pipe:', value); // Para depurar
     if (!value || !value.lastName || !value.name) {
       return 'Información incompleta'; // Manejar casos donde falta información
     }

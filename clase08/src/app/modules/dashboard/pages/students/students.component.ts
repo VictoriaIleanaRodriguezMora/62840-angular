@@ -8,8 +8,8 @@ import { randomString } from '../../../../shared/randomString';
   standalone: false,
   templateUrl: './students.component.html',
   styleUrl: './students.component.scss',
-
 })
+
 export class StudentsComponent {
   studentForm: FormGroup;
   students: Student[] = [{
@@ -55,6 +55,11 @@ export class StudentsComponent {
 
   onDelete(id: string) {
     this.students = this.students.filter((e) => e.id != id)
+  }
+
+  onColorUpdated() {
+    console.log("Se actualizó el color del fondo del componente");
+
   }
 
 }

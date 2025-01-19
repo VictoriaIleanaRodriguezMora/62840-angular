@@ -1,4 +1,12 @@
-<h1 appHighlight>Estudiantes</h1>
+<!-- hay un error si el usuario no envia nada, hay que hacer validaciones y tipados -->
+<h1
+  *appMultiply="5"
+  (colorUpdated)="onColorUpdated()"
+  [bolder]="true"
+  appHighlight="green"
+>
+  Estudiantes
+</h1>
 <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
   <div class="grid">
     <div class="col-6">
@@ -28,8 +36,6 @@
     <td mat-cell *matCellDef="let element">{{ element.id }}</td>
   </ng-container>
 
-
-
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -37,8 +43,16 @@
     <!--  despues del nombre del pipe: argumento -->
     <!-- <td mat-cell *matCellDef="let element">{{ element.name | fullName: "uppercase"}}</td> -->
     <!-- <td mat-cell *matCellDef="let element"> {{ element.name | fullName : "uppercase" }} </td> -->
-    <td appHighlight mat-cell *matCellDef="let element"> {{ element | fullName2 }} </td>
-    </ng-container>
+    <!-- Escucho el evento colorUpdated, y ejecuto la funcion:  cuando ocurra -->
+    <td
+      (colorUpdated)="onColorUpdated()"
+      appHighlight
+      mat-cell
+      *matCellDef="let element"
+    >
+      {{ element | fullName2 }}
+    </td>
+  </ng-container>
 
   <!-- lastName Column -->
   <ng-container matColumnDef="lastName">
