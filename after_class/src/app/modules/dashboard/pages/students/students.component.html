@@ -67,6 +67,10 @@
       <button (click)="onDelete(element.id)" mat-button>
         <mat-icon>delete</mat-icon>
       </button>
+      <!-- envia el array del estudiante {id, name, lastName} -->
+      <button (click)="onEdit(element)" mat-button>
+        <mat-icon>edit</mat-icon>
+      </button>
     </td>
   </ng-container>
 
