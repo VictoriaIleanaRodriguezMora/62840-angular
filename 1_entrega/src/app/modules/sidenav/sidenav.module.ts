@@ -4,6 +4,7 @@ import { SidenavComponent } from './sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { ToolbarModule } from '../toolbar/toolbar.module';
+import { StudentsModule } from '../students/students.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ToolbarModule } from '../toolbar/toolbar.module';
     MatSidenavModule,
     MatButtonModule,
     ToolbarModule,
+    StudentsModule
   ], exports: [
     SidenavComponent
   ]

@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { StudentsTableComponent } from './students-table.component';
 
 
+
 @NgModule({
-  declarations: [StudentsTableComponent],
+  declarations: [
+    StudentsTableComponent
+  ],
   imports: [
     CommonModule
-  ],
-  exports: [
+  ], exports: [
     StudentsTableComponent
   ]
 })

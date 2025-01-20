@@ -44,10 +44,10 @@ ng g component modules/sidenav --skip-tests --standalone=false
 
 ng g module modules/students
 ng g component modules/students --skip-tests --standalone=false
-ng g component modules/students/students-form --skip-tests --standalone=false
 ng g module modules/students/students-form
-ng g component modules/students/students-table --skip-tests --standalone=false
+ng g component modules/students/students-form --skip-tests --standalone=false
 ng g module modules/students/students-table
+ng g component modules/students/students-table --skip-tests --standalone=false
 
 
 ng g module pages/pageStudents

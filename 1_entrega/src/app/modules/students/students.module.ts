@@ -13,10 +13,10 @@ import { StudentsTableModule } from './students-table/students-table.module';
   imports: [
     CommonModule,
     StudentsFormModule,
-    StudentsTableModule
+    StudentsTableModule,
   ],
   exports: [
-    StudentsComponent,
+    StudentsComponent
   ]
 })
 export class StudentsModule { }
