@@ -32,6 +32,8 @@ https://material.angular.io/components/sidenav/overview
 
 ### Comandos aplicados:
 ```bash
+ng add @angular/material
+
 ng g module modules/toolbar
 ng g component modules/toolbar --skip-tests --standalone=false
 
