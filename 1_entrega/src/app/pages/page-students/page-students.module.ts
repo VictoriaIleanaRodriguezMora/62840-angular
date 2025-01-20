@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PageStudentsComponent } from './page-students.component';
-// import { ToolbarModule } from '../../modules/toolbar/toolbar.module';
 import { SidenavModule } from '../../modules/sidenav/sidenav.module';
+import { StudentsModule } from '../../modules/students/students.module';
 
 @NgModule({
   declarations: [
@@ -11,9 +11,9 @@ import { SidenavModule } from '../../modules/sidenav/sidenav.module';
   ],
   imports: [
     CommonModule,
-    // ToolbarModule,
     SidenavModule,
-    
+    StudentsModule,
+
   ],
   exports: [
     PageStudentsComponent
