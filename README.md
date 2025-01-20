@@ -29,6 +29,8 @@ ng serve
 ```
 ### Recursos utilizados:
 https://material.angular.io/components/sidenav/overview
+https://material.angular.io/components/icon/overview
+https://material.angular.io/components/button/overview
 
 ### Comandos aplicados:
 ```bash
@@ -41,10 +43,15 @@ ng g module modules/sidenav
 ng g component modules/sidenav --skip-tests --standalone=false
 
 ng g module modules/students
-ng g component modules/students --standalone=false
+ng g component modules/students --skip-tests --standalone=false
+ng g component modules/students/students-form --skip-tests --standalone=false
+ng g module modules/students/students-form
+ng g component modules/students/students-table --skip-tests --standalone=false
+ng g module modules/students/students-table
 
-ng g module pages/students
-ng g component pages/students --skip-tests --standalone=false
+
+ng g module pages/pageStudents
+ng g component pages/pageStudents --skip-tests --standalone=false
 
 ng g module shared
 ng g interface shared/interfaces/students 
