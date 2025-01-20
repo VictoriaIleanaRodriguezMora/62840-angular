@@ -1,20 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StudentsFormComponent } from './students-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
-<<<<<<< HEAD
 
 @NgModule({
   declarations: [
     StudentsFormComponent
   ],
-=======
-@NgModule({
-  declarations: [StudentsFormComponent],
->>>>>>> 46c6a8154dc54b49afb8635294d428a59dc53946
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     StudentsFormComponent
