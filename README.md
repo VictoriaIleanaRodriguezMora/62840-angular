@@ -1,3 +1,19 @@
+# Consigna: Creación de un proyecto frontend basado en Angular para gestionar los asistentes a una serie de cursos
+
+[Enlace a la presentacion](https://docs.google.com/presentation/d/1CiBlc3EzlbjEJRkhxUcj13tfxtDRBIlTLJTB19evs7Y/edit#slide=id.g209c4004a56_0_1029)
+
+### Deberá contener el perfil de `administrador`, el cual podrá:
+- Listar
+- Realizar altas y bajas de los alumnos, cursos e inscripciones 
+- Modificar sus datos. 
+- También podrá crear y modificar usuarios
+
+### El perfil `usuario` podrá:
+- Listar los alumnos y los cursos, 
+    - Sí podrá agregar o eliminar inscripciones de alumnos a los cursos. 
+    - No podrá realizar ninguna operación sobre los usuarios
+
+
 Aspectos a incluir en el entregable
 
 - Proyecto Angular CLI con Angular.
