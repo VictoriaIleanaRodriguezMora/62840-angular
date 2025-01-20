@@ -1,8 +1,12 @@
-<p>students-form works!</p>
-<form action="">
-  <label for=""></label>
-  <input type="text" />
-  <label for=""></label>
-  <input type="text" />
-  <button type="submit"></button>
+<!-- <p>students-form works!</p> -->
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="name" appearance="outline" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Apellido</mat-label>
+    <input matInput formControlName="lastName" appearance="outline" />
+  </mat-form-field>
+  <button mat-flat-button type="submit">Enviar</button>
 </form>
