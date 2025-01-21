@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { StudentsModule } from './pages/students/students.module';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { SharedModule } from '../../shared/shared.module';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,11 +17,12 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     MatSidenavModule,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    StudentsModule
+    StudentsModule,
   ],
   exports: [DashboardComponent]
 })

@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Student } from '../interfaces/students';
 
 @Pipe({
   name: 'fullName',
@@ -6,8 +7,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FullNamePipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: Student): unknown {
+    return `${value.lastName}, ${value.name}`;
   }
 
 }
