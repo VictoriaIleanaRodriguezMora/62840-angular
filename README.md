@@ -45,7 +45,9 @@ ng g module modules/dashboard/components/toolbar
 ng g component modules/components/toolbar --skip-tests --standalone=false
 
 ng g module modules/dashboard/pages/students
-ng g component modules/pages/students --skip-tests --standalone=false
+ng g component modules/dashboard/pages/students --skip-tests --standalone=false
+
+ng g component modules/dashboard/components/toolbar --skip-tests --standalone=false
 
 ng g module shared
 ng g interface shared/interfaces/students 
