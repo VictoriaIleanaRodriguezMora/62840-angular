@@ -19,7 +19,7 @@
 ```bash
 git clone https://github.com/VictoriaIleanaRodriguezMora/62840-angular.git
 
-git checkout primera_entrega
+git checkout preentrega_1
 
 cd preentrega_1
 
