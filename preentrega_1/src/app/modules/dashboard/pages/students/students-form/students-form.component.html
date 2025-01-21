@@ -1,17 +1,21 @@
-<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-  <div class="row">
-    <div class="col-6">
-      <mat-form-field appearance="fill">
-        <mat-label>Nombre</mat-label>
-        <input matInput formControlName="name" />
-      </mat-form-field>
+<div class="container border p-2">
+  <h3 class="bg-primary">Formulario de carga de un estudiante</h3>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-12">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+      </div>
+
+      <div class="col-12">
+        <mat-form-field appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="lastName" />
+        </mat-form-field>
+      </div>
     </div>
-    <div class="col-6">
-      <mat-form-field appearance="fill">
-        <mat-label>Apellido</mat-label>
-        <input matInput formControlName="lastName" />
-      </mat-form-field>
-    </div>
-  </div>
-  <button mat-flat-button type="submit">Guardar</button>
-</form>
+    <button mat-flat-button type="submit">Guardar</button>
+  </form>
+</div>
