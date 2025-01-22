@@ -12,6 +12,7 @@ import { randomString } from '../../../../shared/randomString';
 
 export class StudentsComponent {
   studentForm: FormGroup;
+  // vamos a reemplazar este array local por el que estoy simulando en assets
   students: Student[] = [{
     "id": "M%%Tf8&S",
     "name": "name",
