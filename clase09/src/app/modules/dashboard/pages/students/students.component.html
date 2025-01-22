@@ -71,6 +71,10 @@
       <button (click)="onEdit(element)" mat-button>
         <mat-icon>edit</mat-icon>
       </button>
+      <!-- boton para ver -->
+      <button (click)="getStudentDetails(element.id)" mat-button>
+        <mat-icon>visibility</mat-icon>
+      </button>
     </td>
   </ng-container>
 
@@ -84,6 +88,13 @@
 </button> -->
 <!-- seria mejor mostrarlo en una tabla -->
 <!-- <pre> {{ students | json }} </pre> -->
+ 
+<div *ngIf="selectedStudent" class="mat-elevation-z4 p-4 m-2">
+  <h2>Detalles del estudiante</h2>
+  <p>ID: {{ selectedStudent.id }}</p>
+  <p>name: {{ selectedStudent.name }}</p>
+  <p>lastName: {{ selectedStudent.lastName }}</p>
+</div>
 
 <br />
 <br />

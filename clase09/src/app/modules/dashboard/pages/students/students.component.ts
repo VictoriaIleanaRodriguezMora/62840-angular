@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from './models/students';
 import { randomString } from '../../../../shared/randomString';
+import { StudentsService } from '../../../../services/students.service';
 
 @Component({
   selector: 'app-students',
@@ -10,25 +11,40 @@ import { randomString } from '../../../../shared/randomString';
   styleUrl: './students.component.scss',
 })
 
-export class StudentsComponent {
+export class StudentsComponent implements OnInit {
   studentForm: FormGroup;
   // vamos a reemplazar este array local por el que estoy simulando en assets
-  students: Student[] = [{
-    "id": "M%%Tf8&S",
-    "name": "name",
-    "lastName": " last name"
-  }];
+  // students: Student[] = [{
+  //   "id": "M%%Tf8&S",
+  //   "name": "name",
+  //   "lastName": " last name"
+  // }];
   // listado de las columnas que va a tener mi tabla
+  students: any[] = [];
+  selectedStudent: any;
 
   displayedColumns: string[] = ['id', 'name', 'lastName', 'action']
 
   // Si el id del estudiante que se está editando es null, significa que no estoy editando, si tiene valor, significa que estoy editando un estudiante 
   editingStudentId: string | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    // una nueva dependencia. importé MI servicio 
+    private myStudentService: StudentsService
+  ) {
     this.studentForm = this.fb.group({
       name: [null, [Validators.required]],
       lastName: [null, [Validators.required]]
+    })
+  }
+
+  ngOnInit(): void {
+    // me suscribo al metodo getStudents para que me traiga la lista de estudiantes , porque yo quiero que apenas cargue, me traiga la lista de estudiantes que está guardada en el Observer . ¿Cómo lo hago? Hay que suscribirse 
+    // ahora me suscribo a la informacion que tiene guardada, para que retorne algo 
+    this.myStudentService.getStudents().subscribe((data) => {
+      // data es la informacion que viene en getStudents, a la que yo me suscribo para recibir 
+      return this.students = data;
     })
   }
 
@@ -68,12 +84,20 @@ export class StudentsComponent {
         ]
         console.log(this.students);
       }
-      this.studentForm.reset() 
+      this.studentForm.reset()
     }
   }
 
   onDelete(id: string) {
     this.students = this.students.filter((e) => e.id != id)
+  }
+
+  getStudentDetails(id: string) {
+    // entro al archivo de servicios, uso el metodo que quiero, le paso el id por parametro al Servicio, me suscribo a la informacion que tiene alojada el service.
+    // Quiero que el 'student' que va a encontrar el getStudentsById, por medio del id que yo le envio, lo asigne a mi variable en el componente this.selectedStudent
+    this.myStudentService.getStudentsById(id).subscribe(student => {
+      return this.selectedStudent = student;
+    })
   }
 
   onColorUpdated() {
