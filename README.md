@@ -30,5 +30,5 @@ Angular no avisaba que esa directiva no estaba siendo exportada
 El elemento se muestra por defecto primero 10 veces, y luego tora 10 porque estaba harcodeado en el for
 
 nvm use  22.13.0
-cd clase08
+cd preentrega_1_fix
 ng serve

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from './models/students';
-import { randomString } from '../../../../shared/randomString';
+import { randomString } from '../../../../shared/functions/randomString';
 
 @Component({
   selector: 'app-students',
@@ -17,9 +17,10 @@ export class StudentsComponent {
     "name": "name",
     "lastName": " last name"
   }];
-  // listado de las columnas que va a tener mi tabla
 
-  displayedColumns: string[] = ['id', 'name', 'lastName', 'action']
+  editingStudentId: string | null = null;
+
+  displayedColumns: string[] = ['id', 'name', 'lastName', 'myPipe', 'action']
 
 
   constructor(private fb: FormBuilder) {
@@ -37,12 +38,6 @@ export class StudentsComponent {
       console.log(this.studentForm.value);
       const { name, lastName } = this.studentForm.value
       const id = randomString(8)
-      // const name = this.studentForm.value.name
-      // const lastName = this.studentForm.value.lastName
-      // const id = this.studentForm.value.id
-
-
-      // this.students.push({ id: randomString(8), name, lastName, }) // Esto no funciona en tiempo real
       this.students = [
         ...this.students,
         { id: randomString(8), name, lastName }
@@ -53,13 +48,24 @@ export class StudentsComponent {
     }
   }
 
+  onEdit(student: Student) {
+    console.log("Se va a editar el estudiante: ", student);
+    // editingStudentId va a ser igual al id que recibo cuando se hace click en el boton editar 
+    this.editingStudentId = student.id
+
+    // YO QUIERO QUE al tocar el boton editar, los campos del formulario se rellenen con lo que ya tienen. par ano escribir de cero
+    // El form group tiene un metodo patchValue, permite sobreescribir el valor de los campos del formulario. Entonces yo toco en el lapiz, y en el campo nombre aparece por defecto lo que yo escribí en name: "texto"
+    this.studentForm.patchValue({
+      // name: "nombre editado" //esto es hardcodeado
+      // ahora por defecto va a tener el valor que ya tiene el formulario
+      name: student.name,
+      lastName: student.lastName,
+    })
+  }
+
   onDelete(id: string) {
     this.students = this.students.filter((e) => e.id != id)
   }
 
-  onColorUpdated() {
-    console.log("Se actualizó el color del fondo del componente");
-
-  }
 
 }
