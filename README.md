@@ -121,3 +121,10 @@ ng g module modules/dashboard/pages/enrollments --routing
 ng g component modules/dashboard/pages/students --skip-tests --standalone=false
 
 https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+
+![alt text](./clase07/src/app/assets/image.png)
+el toolbar y el side nav siempre estan presentes en la página, nunca se van. lo unico que cambia es el contenido.1
+
+todos los demas módulos y cosas que creó, son lo que se va a mostrar en el area de contenido
+
+
