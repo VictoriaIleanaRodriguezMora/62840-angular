@@ -1,60 +1,34 @@
-# Primera entrega de Proyecto final -  Angular
-
-
-[Enlace a la presentacion](https://docs.google.com/presentation/d/1CiBlc3EzlbjEJRkhxUcj13tfxtDRBIlTLJTB19evs7Y/edit#slide=id.g209c4004a56_0_1029)
-
-## Aspectos a incluir en el entregable
-
-- [x] Proyecto Angular CLI con Angular.
-- [x] Componentes de layout que incluya un navbar para el menú lateral y un toolbar para el título de la app.
-- [x] Componentes: Lista de Alumnos y ABM de Alumnos.
-- [x] Formularios Reactivos de ABM de alumnos.
-- [ ] Lógica y estructura de representación de datos en listado, utilizando tablas de Angular Material tomando sus datos de arrays y funciones typescript.
-- [x] Pipe personalizado para mostrar el nombre junto al apellido de los alumnos
-- [x] Directiva personalizada para que las cabeceras o títulos tengan letra tamaño 20.
-- [x] Uso de la librería de bootstrap (instalada en el angular.json, no usar cdn)
-- [x] Subir el código a repositorio de GitHub
-
-### Cómo levantar el proyecto:
-```bash
-git clone https://github.com/VictoriaIleanaRodriguezMora/62840-angular.git
-
-git checkout preentrega_1
-
-cd preentrega_1
-
-npm i
-
-ng serve
-```
-### Recursos utilizados:
-https://material.angular.io/components/sidenav/overview
-https://material.angular.io/components/icon/overview
-https://material.angular.io/components/button/overview
-https://material.angular.io/components/form-field/overview
-https://material.angular.io/components/input/overview
-
-### Comandos aplicados:
-```bash
-ng add @angular/material
-
-ng g module modules/dashboard
-ng g component modules/dashboard --skip-tests --standalone=false
-
-ng g module modules/dashboard/components/toolbar
-ng g component modules/components/toolbar --skip-tests --standalone=false
-
-ng g module modules/dashboard/pages/students
-ng g component modules/dashboard/pages/students --skip-tests --standalone=false
-ng g component modules/dashboard/pages/students/students-form --skip-tests --standalone=false
-ng g component modules/dashboard/pages/students/students-table --skip-tests --standalone=false
-
-ng g component modules/dashboard/components/toolbar --skip-tests --standalone=false
+Generar un modulo shared
+y ahí generar un pipe. Los pipes cómo los componentes tienen que estar en un módulo
+Los pipes tmb tienen archivos de prueba y se pueden evitar
 
 ng g module shared
-ng g interface shared/interfaces/students 
-ng g directive shared/directives/fontSize --skip-tests --standalone=false
-ng g pipe shared/pipes/fullName --skip-tests --standalone=false
+ng g pipe shared/pipes/fullName --skip-tests --standalone-false
+ng g pipe shared/pipes/fullName2 --skip-tests --standalone-false
 
+ng g directive shared/directives/highlight --skip-tests
 
-```
+Todos los componentes tienen ciclos de vida
+
+El hecho de querer cambiar el valor de esa propiedad por medio de html, ya no es cuando se instancia el objeto, es cuando se renderiza el contenido
+
+Lo que yo quiero hacer seria el ciclo d vida changes
+El color verde lo recibo en el ciclo de vida onChanges, cuando ocurre un cambio con las propiedades Input de la directiva
+
+Las directivas reciben input y output. son parecidas a los componentes
+
+No entiendo porque hay que ponerlo con [] [bolder]="true". No sé porque sin las [] no lo entiende
+
+Directivas estructurales personalizadas
+
+ng g directive shared/directives/multiply --skip-tests
+
+la creacion de estas directivas estructurales es la misma que las directivas normales. Solo que para usarse, deben ir con un \* adelante, como si fuera una nativa
+
+Angular no avisaba que esa directiva no estaba siendo exportada
+
+El elemento se muestra por defecto primero 10 veces, y luego tora 10 porque estaba harcodeado en el for
+
+nvm use 22.13.0
+cd preentrega_1_fix
+ng serve

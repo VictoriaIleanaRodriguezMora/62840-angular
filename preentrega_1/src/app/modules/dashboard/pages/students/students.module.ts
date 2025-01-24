@@ -9,24 +9,21 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { SharedModule } from '../../../../shared/shared.module';
-import { StudentsFormComponent } from './students-form/students-form.component';
-import { StudentsTableComponent } from './students-table/students-table.component';
+
 
 @NgModule({
   declarations: [
-    StudentsComponent,
-    StudentsFormComponent,
-    StudentsTableComponent
+    StudentsComponent
   ],
   imports: [
     CommonModule,
-    SharedModule,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
     MatTableModule,
+    SharedModule,
   ],
   exports: [StudentsComponent]
 })

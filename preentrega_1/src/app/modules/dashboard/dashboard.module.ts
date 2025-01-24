@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard.component';
-import { StudentsModule } from './pages/students/students.module';
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { SharedModule } from '../../shared/shared.module';
 
+import { DashboardComponent } from './dashboard.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { StudentsModule } from './pages/students/students.module';
+
 
 @NgModule({
   declarations: [
@@ -17,12 +17,11 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     MatSidenavModule,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
-    StudentsModule,
+    StudentsModule
   ],
   exports: [DashboardComponent]
 })
