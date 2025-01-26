@@ -1,3 +1,5 @@
+`git clean -fdx`
+
 ng new clase07 --no-standalone
 ng add @angular/material
 Enter, enter,
@@ -17,12 +19,8 @@ Modules/dashboard carpeta encargada de administrar todo lo relacionado a cursos/
 
 ng g module modules/dashboard --routing
 (por ahora routing no se usa)
-CREATE src/app/modules/dashboard/dashboard-routing.module.ts (262 bytes)
-CREATE src/app/modules/dashboard/dashboard.module.ts (306 bytes)
 
-ng g module modules/auth --routing
-CREATE src/app/modules/auth/auth-routing.module.ts (257 bytes)
-CREATE src/app/modules/auth/auth.module.ts (286 bytes)
+`ng g module modules/auth --routing`
 
 Los módulos son cajas que agrupan componentes y funcionalidades. Para separar la ap en partes mas pequeñas
 "dashboard" > panel administrativo, de control
@@ -31,17 +29,9 @@ dashboard > students.component & courses.component
 Auth module > autenticacion
 login & register
 
-ng g component modules/dashboard --skip-tests
-CREATE src/app/modules/dashboard/dashboard.component.html (25 bytes)
-CREATE src/app/modules/dashboard/dashboard.component.ts (222 bytes)
-CREATE src/app/modules/dashboard/dashboard.component.scss (0 bytes)
-UPDATE src/app/modules/dashboard/dashboard.module.ts (393 bytes)
+`ng g component modules/dashboard --skip-tests`
 
-ng g component modules/auth/login --skip-tests
-CREATE src/app/modules/auth/login/login.component.html (21 bytes)
-CREATE src/app/modules/auth/login/login.component.ts (206 bytes)
-CREATE src/app/modules/auth/login/login.component.scss (0 bytes)
-UPDATE src/app/modules/auth/auth.module.ts (367 bytes)
+`ng g component modules/auth/login --skip-tests`
 
 dashboard.component va a tener todo el encapsulamiento de la app
 
@@ -66,11 +56,7 @@ El toolbar va a ir dentro del area de contenido.
 
 Al traer toolbar de error por la importacion de iconos, los iconos deben traerse
 
-ng g component modules/dashboard/components/toolbar --skip-tests
-CREATE src/app/modules/dashboard/components/toolbar/toolbar.component.html (23 bytes)
-CREATE src/app/modules/dashboard/components/toolbar/toolbar.component.ts (214 bytes)
-CREATE src/app/modules/dashboard/components/toolbar/toolbar.component.scss (0 bytes)
-UPDATE src/app/modules/dashboard/dashboard.module.ts (854 bytes)
+`ng g component modules/dashboard/components/toolbar --skip-tests`
 
 La vista es la misma pero mas limpio el código html
 
@@ -84,19 +70,15 @@ En toolbar uso @output
 
 A cada page le voy a crear un modulo
 
-ng g module modules/dashboard/pages/students --routing
-CREATE src/app/modules/dashboard/pages/students/students-routing.module.ts (261 bytes)
-CREATE src/app/modules/dashboard/pages/students/students.module.ts (302 bytes)
+`ng g module modules/dashboard/pages/students --routing`
 
-ng g module modules/dashboard/pages/home --routing
-CREATE src/app/modules/dashboard/pages/home/home-routing.module.ts (257 bytes)
-CREATE src/app/modules/dashboard/pages/home/home.module.ts (286 bytes)
+`ng g module modules/dashboard/pages/home --routing`
 
-ng g module modules/dashboard/pages/courses --routing
+`ng g module modules/dashboard/pages/courses --routing`
 
-ng g module modules/dashboard/pages/enrollments --routing
+`ng g module modules/dashboard/pages/enrollments --routing`
 
-ng g component modules/dashboard/pages/students --skip-tests
+`ng g component modules/dashboard/pages/students --skip-tests`
 
 Ahora quiero mostrar el app-students, en el dashboard.component.html
 
@@ -109,7 +91,7 @@ https://material.angular.io/components/input/api
 
 Algo en serio no está funcionando de Material
 
-ng g module modules/dashboard --routing
+`ng g module modules/dashboard --routing
 ng g module modules/auth --routing
 ng g component modules/dashboard --skip-tests --standalone=false
 ng g component modules/auth/login --skip-tests --standalone=false
@@ -119,6 +101,7 @@ ng g module modules/dashboard/pages/home --routing
 ng g module modules/dashboard/pages/courses --routing
 ng g module modules/dashboard/pages/enrollments --routing
 ng g component modules/dashboard/pages/students --skip-tests --standalone=false
+`
 
 https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 
@@ -126,5 +109,3 @@ https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Ar
 el toolbar y el side nav siempre estan presentes en la página, nunca se van. lo unico que cambia es el contenido.1
 
 todos los demas módulos y cosas que creó, son lo que se va a mostrar en el area de contenido
-
-
