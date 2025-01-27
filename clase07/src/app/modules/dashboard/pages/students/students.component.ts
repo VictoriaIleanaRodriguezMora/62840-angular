@@ -12,9 +12,9 @@ import { randomString } from '../../../../shared/randomString';
 export class StudentsComponent {
   studentForm: FormGroup;
   students: Student[] = [{
-    "id": "M%%Tf8&S",
-    "name": "aaaaaaaaaa",
-    "lastName": "ssssssss"
+    id: "M%%Tf8&S",
+    name: "aaaaaaaaaa",
+    lastName: "ssssssss"
   }];
   // listado de las columnas que va a tener mi tabla
 

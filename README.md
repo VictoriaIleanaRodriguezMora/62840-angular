@@ -1,5 +1,9 @@
 `git clean -fdx`
 
+nvm use 22.13.0
+cd clase07
+npm i
+
 ng new clase07 --no-standalone
 ng add @angular/material
 Enter, enter,
@@ -17,7 +21,7 @@ Sidenav
 
 Modules/dashboard carpeta encargada de administrar todo lo relacionado a cursos/alumnos
 
-ng g module modules/dashboard --routing
+`ng g module modules/dashboard --routing`
 (por ahora routing no se usa)
 
 `ng g module modules/auth --routing`
