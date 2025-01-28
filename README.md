@@ -1,15 +1,6 @@
-!! valores falsy devuelven false
-!!0
-!!undefined
-!!null
-
-!= null
-
-necesito una propiedad para saber cuando un estudiante se está editando y cuando no
-
-hay varias formas de realizar la logica de edicion, la mas recomendada es usar map
-
+```bash
 nvm use  22.13.0
-cd after_class
+cd clase10
 ng serve
 npm i 
+```
