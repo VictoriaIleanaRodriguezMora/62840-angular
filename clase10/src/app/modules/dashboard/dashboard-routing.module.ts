@@ -1,7 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
 
-const routes: Routes = [];
+/*
+Acá, parte de la ruta /dashboard/
+*/
+const routes: Routes = [
+  {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then(
+      (homeMod) => homeMod.HomeModule
+    ),
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
