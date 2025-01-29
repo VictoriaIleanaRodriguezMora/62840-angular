@@ -1,10 +1,13 @@
 <!-- hay un error si el usuario no envia nada, hay que hacer validaciones y tipados -->
 <h1
+  appHighlight
   *appMultiply="5"
-  (colorUpdated)="onColorUpdated()"
+  (myColorUpdated)="onColorUpdated()" 
   [bolder]="true"
-  appHighlight="green"
+  [colorHighlight]="'green'"
 >
+
+  <!-- (colorUpdated)="onColorUpdated()" // output -->
   Estudiantes
 </h1>
 <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">

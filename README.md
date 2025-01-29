@@ -36,3 +36,45 @@ la creacion de estas directivas estructurales es la misma que las directivas nor
 Angular no avisaba que esa directiva no estaba siendo exportada
 
 El elemento se muestra por defecto primero 10 veces, y luego tora 10 porque estaba harcodeado en el for
+
+Las directivas son para manipular el elemento html, y los pipes para manipular el contenido.
+Aunque con las directivas, cómo manipulo el DOM, puedo modificar el innerContent, textContent, etc  
+
+Con esto nada más se puede hacer una directiva, de está manera aplico la directiva a secas, y ya funciona
+![alt text](directiva1.png)
+
+Se complica cuando quiero recibir argumentos en la directiva
+
+  appHighlight="green" 
+ no va entre [], porque el valor que recibe es un string
+
+ [bolder]="true", debe ir entre [], porque asi angular, va a interpretar lo que está dentro de las "", como JAVASCRIPT. 
+
+
+ Si pusiera texto, buscaria una variable que no va a encontrar, 
+![alt text](image.png)
+y para que no de error deberia ir "''"
+  [appHighlight]="'green'" 
+
+Cuando yo defino que la directiva, puede recibir la propiedad appHighlight y bolder
+
+<h1
+  appHighlight
+  *appMultiply="5"
+  (colorUpdated)="onColorUpdated()"
+  [bolder]="true"
+  [colorHighlight]="'green'"
+>
+
+TENGO QUE APLICAR LA DIRECTIVA, PARA QUE ME PERMITA ENVIAR LOS OTROS DATOS, SI NO, ME DA ERROR PORQUE NO ESTOY APLICANDO LA DIRECTIVA.
+APLICAR LA DIRECTIVA ME PERMITE ENVIAR ESOS DATOS
+
+
+Las directivas pueden emitir eventos
+Puedo usar @output para notificar al componente que está renderizando la directiva que ocurrió algo dentro de la directiva
+
+
+
+
+
+01:09:00

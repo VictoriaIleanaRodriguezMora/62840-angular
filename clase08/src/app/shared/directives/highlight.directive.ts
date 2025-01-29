@@ -13,42 +13,54 @@ enviar como argumento algun dato
 
 export class HighlightDirective implements OnChanges {
 
-  @Input() appHighlight = "yellow" // El valor de esta propiedad puedo recibirla desde el elemento o componente padre
-  @Input() bolder = false;
+  @Input() colorHighlight: string = "yellow" // El valor de esta propiedad puedo recibirla desde el elemento o componente padre
+  @Input() bolder: boolean = false;
 
-  // Emitir un evento colorUpdated
-  @Output() colorUpdated = new EventEmitter();
+  // Emitir un evento myColorUpdated
+  @Output() myColorUpdated = new EventEmitter();
 
   constructor(private elementRef: ElementRef) {
     // Aparece 2 veces este console log porque lo estoy usando en una tabla y se renderiza 1 vez por fila
     console.log("EJECUTADO CONSTRUCTOR");
     console.log(this.elementRef);
-    this.elementRef.nativeElement.style.backgroundColor = this.appHighlight // no funciona
+    this.elementRef.nativeElement.style.backgroundColor = this.colorHighlight // no funciona
+
   }
 
+  // Cuando
   ngOnChanges(changes: SimpleChanges): void {
     console.log("EJECUTADO ngOnChanges");
     console.log(changes);
 
-    // Si dentro de los cambios, viene la propiedad 'appHighlight', entonces debo hacer los cambios 
+    // Si dentro de los cambios, viene la propiedad 'colorHighlight', entonces debo hacer los cambios 
     // Pero es distinta la asignacion
-    if (changes['appHighlight']) {
+    if (changes['colorHighlight']) {
       this.updateColor()
     }
 
     if (changes['bolder']) {
       this.updateFontWeight()
     }
-
   }
 
   updateColor() {
-    this.elementRef.nativeElement.style.backgroundColor = this.appHighlight || 'yellow' // 
-    this.colorUpdated.emit()
+    if (this.colorHighlight !== undefined && this.colorHighlight !== null) {
+      this.elementRef.nativeElement.style.backgroundColor = this.colorHighlight
+    } else {
+      this.colorHighlight = 'yellow'
+    }
+    // const color = this.colorHighlight !== undefined && this.colorHighlight !== null ? this.colorHighlight : 'yellow';
+    // this.elementRef.nativeElement.style.backgroundColor = color;
+    this.myColorUpdated.emit(); //Output
   }
 
   updateFontWeight() {
-    this.elementRef.nativeElement.style.fontWeight = this.bolder ? 'bolder' : 'unset'
+    if (this.bolder === true) {
+      this.elementRef.nativeElement.style.fontWeight = 'bolder';
+    } else {
+      this.elementRef.nativeElement.style.fontWeight = 'unset';
+    }
+    // const fontWeight = this.bolder === true ? 'bolder' : 'unset';
+    // this.elementRef.nativeElement.style.fontWeight = fontWeight;
   }
-
 }
