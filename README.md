@@ -76,5 +76,4 @@ Puedo usar @output para notificar al componente que está renderizando la direct
 
 
 
-
 01:09:00

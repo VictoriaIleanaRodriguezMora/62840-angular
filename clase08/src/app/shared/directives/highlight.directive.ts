@@ -17,7 +17,7 @@ export class HighlightDirective implements OnChanges {
   @Input() bolder: boolean = false;
 
   // Emitir un evento myColorUpdated
-  @Output() myColorUpdated = new EventEmitter();
+  @Output() myColorUpdated = new EventEmitter(); // <-- Especifica el tipo de dato a emitir (ej: string)
 
   constructor(private elementRef: ElementRef) {
     // Aparece 2 veces este console log porque lo estoy usando en una tabla y se renderiza 1 vez por fila
@@ -51,7 +51,9 @@ export class HighlightDirective implements OnChanges {
     }
     // const color = this.colorHighlight !== undefined && this.colorHighlight !== null ? this.colorHighlight : 'yellow';
     // this.elementRef.nativeElement.style.backgroundColor = color;
+    // this.myColorUpdated.emit(this.colorHighlight); //Output
     this.myColorUpdated.emit(); //Output
+
   }
 
   updateFontWeight() {

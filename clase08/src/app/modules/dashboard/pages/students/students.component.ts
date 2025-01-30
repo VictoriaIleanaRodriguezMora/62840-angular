@@ -59,7 +59,8 @@ export class StudentsComponent {
 
   // Output
   onColorUpdated() {
-    console.log("****************************************Se actualizó el color del fondo del componente");
+    console.log('-******************************************* Color actualizado:');
+    // Aquí puedes usar el dato recibido
   }
 
 }
