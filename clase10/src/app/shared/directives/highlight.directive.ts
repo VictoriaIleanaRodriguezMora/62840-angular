@@ -21,14 +21,14 @@ export class HighlightDirective implements OnChanges {
 
   constructor(private elementRef: ElementRef) {
     // Aparece 2 veces este console log porque lo estoy usando en una tabla y se renderiza 1 vez por fila
-    console.log("EJECUTADO CONSTRUCTOR");
-    console.log(this.elementRef);
+    // console.log("EJECUTADO CONSTRUCTOR");
+    // console.log(this.elementRef);
     this.elementRef.nativeElement.style.backgroundColor = this.appHighlight // no funciona
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("EJECUTADO ngOnChanges");
-    console.log(changes);
+    // console.log("EJECUTADO ngOnChanges");
+    // console.log(changes);
 
     // Si dentro de los cambios, viene la propiedad 'appHighlight', entonces debo hacer los cambios 
     // Pero es distinta la asignacion

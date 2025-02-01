@@ -29,6 +29,9 @@ export class StudentsComponent implements OnInit {
   // Si el id del estudiante que se está editando es null, significa que no estoy editando, si tiene valor, significa que estoy editando un estudiante 
   editingStudentId: string | null = null;
 
+  isLoading: Boolean = false;
+  promiseHasError: Boolean = false;
+
   constructor(
     private fb: FormBuilder,
     // una nueva dependencia. importé MI servicio 
@@ -50,10 +53,23 @@ export class StudentsComponent implements OnInit {
           return this.students = data;
         }) C09 */
     /* la funcion getStudentsPromise, devuelve una promesa. para atrapar el retorno de esa promesa uso .then .catch */
+    this.isLoading = true;
     this.myStudentService.getStudentsPromise()
+      /* atrapar cuando se resuelve satisfactoriamente. atrapo el return resolve() */
       .then((studentsReturned) => {
         this.students = studentsReturned;
       })
+      /* atrapar cuando no se resuelve satisfactoriamente. atrapo el return reject() */
+      .catch((e) => {
+        this.promiseHasError = true;
+        console.log("Promesa error: ", e); // Promesa error:  Promesa rechazada
+
+      })
+      // cuando la promesa termina, independientemente de resolve y reject
+      .finally(() => {
+        this.isLoading = false;
+      })
+
   }
 
   // acá va la logica para editar/crear
@@ -61,7 +77,7 @@ export class StudentsComponent implements OnInit {
     if (this.studentForm.invalid) {
       this.studentForm.markAllAsTouched()
     } else {
-      console.log(this.studentForm.value);
+      // console.log(this.studentForm.value);
       const { name, lastName } = this.studentForm.value
       const id = randomString(8)
       // const name = this.studentForm.value.name
@@ -90,7 +106,7 @@ export class StudentsComponent implements OnInit {
           ...this.students,
           { id: randomString(8), name, lastName }
         ]
-        console.log(this.students);
+        // console.log(this.students);
       }
       this.studentForm.reset()
     }
@@ -109,11 +125,11 @@ export class StudentsComponent implements OnInit {
   }
 
   onColorUpdated() {
-    console.log("Se actualizó el color del fondo del componente");
+    // console.log("Se actualizó el color del fondo del componente");
   }
 
   onEdit(student: Student) {
-    console.log("Se va a editar el estudiante: ", student);
+    // console.log("Se va a editar el estudiante: ", student);
     // editingStudentId va a ser igual al id que recibo cuando se hace click en el boton editar 
     this.editingStudentId = student.id
 

@@ -23,7 +23,7 @@ export class MultiplyDirective implements OnChanges {
   updateViewContainer() {
     this.viewContainer.clear()
     for (let i = 0; i < (this.appMultiply || 10); i++) {
-      console.log("repetir");
+      // console.log("repetir");
       this.viewContainer.createEmbeddedView(this.templateRef)
     }
   }
