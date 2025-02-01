@@ -42,13 +42,18 @@ export class StudentsComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { // este ciclo de vida se ejecuta despues del constructor, al inicializar el componente
     // me suscribo al metodo getStudents para que me traiga la lista de estudiantes , porque yo quiero que apenas cargue, me traiga la lista de estudiantes que está guardada en el Observer . ¿Cómo lo hago? Hay que suscribirse 
     // ahora me suscribo a la informacion que tiene guardada, para que retorne algo 
     /*     this.myStudentService.getStudents().subscribe((data) => {
           // data es la informacion que viene en getStudents, a la que yo me suscribo para recibir 
           return this.students = data;
         }) C09 */
+    /* la funcion getStudentsPromise, devuelve una promesa. para atrapar el retorno de esa promesa uso .then .catch */
+    this.myStudentService.getStudentsPromise()
+      .then((studentsReturned) => {
+        this.students = studentsReturned;
+      })
   }
 
   // acá va la logica para editar/crear
