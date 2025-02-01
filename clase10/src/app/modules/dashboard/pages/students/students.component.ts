@@ -48,18 +48,44 @@ export class StudentsComponent implements OnInit {
   ngOnInit(): void { // este ciclo de vida se ejecuta despues del constructor, al inicializar el componente
     // me suscribo al metodo getStudents para que me traiga la lista de estudiantes , porque yo quiero que apenas cargue, me traiga la lista de estudiantes que está guardada en el Observer . ¿Cómo lo hago? Hay que suscribirse 
     // ahora me suscribo a la informacion que tiene guardada, para que retorne algo 
+
+    // this.loadStudentsFromPromise()
+    this.loadStudentsFromObs()
+
+  }
+
+  loadStudentsFromObs() {
+    this.isLoading = true;
+
+    /* si quiero recibir los datos me tengo que suscribir al observable  */
+    this.myStudentService.getStudentsObservable().subscribe({
+      next: (studentsReceived) => {
+        this.students = studentsReceived
+      },
+      error: (err) => {
+        alert(err)
+        this.isLoading = false; // por eso tengo que repetir logica acá
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
+    })
+  }
+
+  loadStudentsFromPromise() {
     /*     this.myStudentService.getStudents().subscribe((data) => {
-          // data es la informacion que viene en getStudents, a la que yo me suscribo para recibir 
-          return this.students = data;
-        }) C09 */
+      // data es la informacion que viene en getStudents, a la que yo me suscribo para recibir 
+      return this.students = data;
+    }) C09 */
     /* la funcion getStudentsPromise, devuelve una promesa. para atrapar el retorno de esa promesa uso .then .catch */
     this.isLoading = true;
     this.myStudentService.getStudentsPromise()
-      /* atrapar cuando se resuelve satisfactoriamente. atrapo el return resolve() */
+
+      // atrapar cuando se resuelve satisfactoriamente. atrapo el return resolve()
       .then((studentsReturned) => {
         this.students = studentsReturned;
       })
-      /* atrapar cuando no se resuelve satisfactoriamente. atrapo el return reject() */
+      // atrapar cuando no se resuelve satisfactoriamente. atrapo el return reject()
       .catch((e) => {
         this.promiseHasError = true;
         console.log("Promesa error: ", e); // Promesa error:  Promesa rechazada
@@ -69,8 +95,8 @@ export class StudentsComponent implements OnInit {
       .finally(() => {
         this.isLoading = false;
       })
-
   }
+
 
   // acá va la logica para editar/crear
   onSubmit() {
