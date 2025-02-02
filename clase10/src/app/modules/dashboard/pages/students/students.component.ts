@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from './models/students';
 import { randomString } from '../../../../shared/randomString';
 import { StudentsService } from '../../../../core/services/StudentsService';
+import { first, Subscription } from 'rxjs';
 // import { StudentsService } from '../../../../services/students.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { StudentsService } from '../../../../core/services/StudentsService';
   styleUrl: './students.component.scss',
 })
 
-export class StudentsComponent implements OnInit {
+export class StudentsComponent implements OnInit, OnDestroy {
   studentForm: FormGroup;
   // vamos a reemplazar este array local por el que estoy simulando en assets
   // students: Student[] = [{
@@ -32,6 +33,8 @@ export class StudentsComponent implements OnInit {
   isLoading: Boolean = false;
   promiseHasError: Boolean = false;
 
+  studentsSubscription?: Subscription; // puede ser undefined porque al principio hasta que yo cree la suscripcion on va a estar definida. no está definida
+
   constructor(
     private fb: FormBuilder,
     // una nueva dependencia. importé MI servicio 
@@ -45,6 +48,11 @@ export class StudentsComponent implements OnInit {
     })
   }
 
+  // este ciclo de vida se ejecuta cuando el componente se destruye (sale de la vista)
+  ngOnDestroy(): void {
+    this.studentsSubscription?.unsubscribe // Subscription | undefined
+  }
+
   ngOnInit(): void { // este ciclo de vida se ejecuta despues del constructor, al inicializar el componente
     // me suscribo al metodo getStudents para que me traiga la lista de estudiantes , porque yo quiero que apenas cargue, me traiga la lista de estudiantes que está guardada en el Observer . ¿Cómo lo hago? Hay que suscribirse 
     // ahora me suscribo a la informacion que tiene guardada, para que retorne algo 
@@ -56,9 +64,16 @@ export class StudentsComponent implements OnInit {
 
   loadStudentsFromObs() {
     this.isLoading = true;
-
+    // la defino acá:
     /* si quiero recibir los datos me tengo que suscribir al observable  */
-    this.myStudentService.getStudentsObservable().subscribe({
+    this.studentsSubscription = this.myStudentService
+    .getStudentsObservable()
+    // los pipes son una tuberia que hay entre los datos y la vista para transformar el contenido 
+    // entre la info viaja del observable hacia el subscribe, se puede aplicar un pipe para manipular la info, o el flujo de emisiones 
+    .pipe(
+      first()
+    )
+    .subscribe({ // el metodo subscribe retorna una suscripcion 
       next: (studentsReceived) => {
         console.log("Recibo datos: ", studentsReceived); // esto se sigue jecutando aunque yo cambie de pantalla. infinitamente, y cada vez que cambio de ruta se hace más rapido. eso consume memoria en la pc del cliente. es un problema
         // esto va a seguir pasando hasta que el observer se complete,  o hasta que yo me desuscriba 

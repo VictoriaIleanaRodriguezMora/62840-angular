@@ -36,4 +36,30 @@ Pueden emitir multiples valores, tambien pueden pasar por pipes operators que pe
 
 supongamos que el observable cada 5 minutos emite una actualizacion de los estudiantes 
 
-00:50:00
+a pesar de que ahora el observable finaliza cuando el contador llega a 10. si yo me voy a otra pantalla, sigue cargandolos estudiantes, sigue cargando datos que no estoy usando en esa pantalla 
+
+la manera para hacerlo es usar el la suscripcion para desuscribirse
+
+yo no puedo probar esto porqque no tengo lo de las rutas acá 
+
+usar el metodo ngOnDestroy es una forma de trabajar con las desuscripciones, otra es con el pipe operator
+permiten controlar el flujo con el cual nosotros emitimos datos desde el observable  
+
+https://rxjs.dev/api
+
+https://rxjs.dev/api/index/function/take
+
+y si a pesar de que el observable emita 10 valores yo solo quiero recibir 1?
+hay un pipe que se llama first
+
+https://rxjs.dev/api/index/function/first
+
+first lo que hace es: ni bien reciba una emision desde el observable se va a completar la suscripcion  
+![alt text](image.png) grafico de canicas
+
+la primera linea de tiempo, representa el observable
+la 2da representa el pipe
+y la ultima es lo que va a suceder con el pipe.
+
+en este caso, se va a emitir un dato, y va a terminar ahi
+
