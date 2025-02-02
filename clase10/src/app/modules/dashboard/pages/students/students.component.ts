@@ -60,7 +60,13 @@ export class StudentsComponent implements OnInit {
     /* si quiero recibir los datos me tengo que suscribir al observable  */
     this.myStudentService.getStudentsObservable().subscribe({
       next: (studentsReceived) => {
-        this.students = studentsReceived
+        console.log("Recibo datos: ", studentsReceived); // esto se sigue jecutando aunque yo cambie de pantalla. infinitamente, y cada vez que cambio de ruta se hace más rapido. eso consume memoria en la pc del cliente. es un problema
+        // esto va a seguir pasando hasta que el observer se complete,  o hasta que yo me desuscriba 
+        // fugas de memoria 
+        // un observebale que nunca se completa es un observable que nunca llama al complete 
+        this.students = [...studentsReceived] // nuevo array con los estudiante recibidos
+        this.isLoading = false;
+
       },
       error: (err) => {
         alert(err)

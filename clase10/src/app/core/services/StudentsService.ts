@@ -14,18 +14,27 @@ export class StudentsService {
     getStudentsObservable(): Observable<Student[]> {
         return new Observable<Student[]>((mySubscriber) => { //los observables reciben una referencia al subscriber (mySusbcriber)
 
-            setTimeout(() => {
+            const students = [{
+                id: randomString(6),
+                name: "name",
+                lastName: "last name"
+            }]
+
+            setInterval(() => {
                 //emito los estudiantes
-                /* mySubscriber.next([{
+                students.push({
                     id: randomString(6),
                     name: "name",
-                    lastName: "last name"
-                }]) */
+                    lastName: "last name " + students.length
+                })
+                mySubscriber.next(students)
+                // mySubscriber.error("error desde observable ") // cuando hay un error, no llega al complete, se sale del bloque
+                /* #1 forma de solucionar esto, seria: */
+                if (students.length === 10) {
 
-                mySubscriber.error("error desde observable ") // cuando hay un error, no llega al complete, se sale del bloque
-
-                mySubscriber.complete() // notifica al subscriptor/es que ya no va a emitir mas datos este obs
-            }, 3000);
+                    mySubscriber.complete() // notifica al subscriptor/es que ya no va a emitir mas datos este obs
+                }
+            }, 5000);
 
         })
     }

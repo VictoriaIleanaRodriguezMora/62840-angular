@@ -32,5 +32,8 @@ los obsrvables pueden emitir mas de un valor, yo tengo que explicitamente defini
 
 si yo quiero que el observable se complete para poner el loading en false 
 
+Pueden emitir multiples valores, tambien pueden pasar por pipes operators que permite controlar otransformar las emisiones del observable 
 
-00:38:00
+supongamos que el observable cada 5 minutos emite una actualizacion de los estudiantes 
+
+00:50:00
