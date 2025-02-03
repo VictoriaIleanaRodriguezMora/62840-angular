@@ -36,7 +36,7 @@ export class StudentsComponent {
     if (this.studentForm.invalid) {
       this.studentForm.markAllAsTouched()
     } else {
-      console.log(this.studentForm.value);
+      // console.log(this.studentForm.value);
       const { name, lastName } = this.studentForm.value
       const id = randomString(8)
       // const name = this.studentForm.value.name
@@ -65,7 +65,7 @@ export class StudentsComponent {
           ...this.students,
           { id: randomString(8), name, lastName }
         ]
-        console.log(this.students);
+        // console.log(this.students);
       }
       this.studentForm.reset() 
     }
@@ -76,11 +76,11 @@ export class StudentsComponent {
   }
 
   onColorUpdated() {
-    console.log("Se actualizó el color del fondo del componente");
+    // console.log("Se actualizó el color del fondo del componente");
   }
 
   onEdit(student: Student) {
-    console.log("Se va a editar el estudiante: ", student);
+    // console.log("Se va a editar el estudiante: ", student);
     // editingStudentId va a ser igual al id que recibo cuando se hace click en el boton editar 
     this.editingStudentId = student.id
 
