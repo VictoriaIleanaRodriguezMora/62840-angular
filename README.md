@@ -63,3 +63,4 @@ y la ultima es lo que va a suceder con el pipe.
 
 en este caso, se va a emitir un dato, y va a terminar ahi
 
+- un observable que emita nros 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../../modules/dashboard/pages/students/models/students';
 import { randomString } from '../../shared/randomString';
-import { Observable } from 'rxjs';
+import { interval, Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root', // esto permite que pueda ser usado en cualquier parte de la app sin necesidad de importarse, porque va a estar en la raiz del proyecto
@@ -55,13 +55,14 @@ export class StudentsService {
                         lastName: "last name"
                     }
                 ])
-            }
-                , 3000);
+            }, 3000);
         });
     }
 
     // rxjs tiene una forma mas facil para crear observables que no sea con  return new Observable
-    getInterval(): Observable<number>
+    getInterval(): Observable<number> {
+        return interval(1000) // retorna: Observable<number>
+    }
 
 }
 

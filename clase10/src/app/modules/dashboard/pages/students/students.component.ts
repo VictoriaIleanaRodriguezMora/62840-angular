@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from './models/students';
 import { randomString } from '../../../../shared/randomString';
 import { StudentsService } from '../../../../core/services/StudentsService';
-import { first, Subscription } from 'rxjs';
+import { filter, first, map, Subscription, take, tap } from 'rxjs';
 // import { StudentsService } from '../../../../services/students.service';
 
 @Component({
@@ -58,8 +58,30 @@ export class StudentsComponent implements OnInit, OnDestroy {
     // ahora me suscribo a la informacion que tiene guardada, para que retorne algo 
 
     // this.loadStudentsFromPromise()
-    this.loadStudentsFromObs()
+    // this.loadStudentsFromObs()
 
+    this.subcribeToInterval()
+
+  }
+
+  subcribeToInterval(): void {
+    // this.loadStudentsFromObs()
+    this.myStudentService
+      .getInterval()
+      .pipe(
+        take(5),
+        tap((value) => console.log('Valor antes del primer map:', value)),
+        map((value) => value * 2), // Transformación 1
+        tap((value) => console.log('Valor antes del segundo map:', value)),
+        map((value) => value * 2),  // Transformación 2
+        // filter, sirve para filtrar las emisiones con una condicion booleana. si retorno true, la emision pasa, si retorno false, la emision no pasa
+        filter((value) => value < 8)
+      )
+      .subscribe({
+        next: (value) => {
+          console.log(value);
+        }
+      })
   }
 
   loadStudentsFromObs() {
@@ -67,30 +89,30 @@ export class StudentsComponent implements OnInit, OnDestroy {
     // la defino acá:
     /* si quiero recibir los datos me tengo que suscribir al observable  */
     this.studentsSubscription = this.myStudentService
-    .getStudentsObservable()
-    // los pipes son una tuberia que hay entre los datos y la vista para transformar el contenido 
-    // entre la info viaja del observable hacia el subscribe, se puede aplicar un pipe para manipular la info, o el flujo de emisiones 
-    .pipe(
-      first()
-    )
-    .subscribe({ // el metodo subscribe retorna una suscripcion 
-      next: (studentsReceived) => {
-        console.log("Recibo datos: ", studentsReceived); // esto se sigue jecutando aunque yo cambie de pantalla. infinitamente, y cada vez que cambio de ruta se hace más rapido. eso consume memoria en la pc del cliente. es un problema
-        // esto va a seguir pasando hasta que el observer se complete,  o hasta que yo me desuscriba 
-        // fugas de memoria 
-        // un observebale que nunca se completa es un observable que nunca llama al complete 
-        this.students = [...studentsReceived] // nuevo array con los estudiante recibidos
-        this.isLoading = false;
+      .getStudentsObservable()
+      // los pipes son una tuberia que hay entre los datos y la vista para transformar el contenido 
+      // entre la info viaja del observable hacia el subscribe, se puede aplicar un pipe para manipular la info, o el flujo de emisiones 
+      .pipe(
+        first()
+      )
+      .subscribe({ // el metodo subscribe retorna una suscripcion 
+        next: (studentsReceived) => {
+          console.log("Recibo datos: ", studentsReceived); // esto se sigue jecutando aunque yo cambie de pantalla. infinitamente, y cada vez que cambio de ruta se hace más rapido. eso consume memoria en la pc del cliente. es un problema
+          // esto va a seguir pasando hasta que el observer se complete,  o hasta que yo me desuscriba 
+          // fugas de memoria 
+          // un observebale que nunca se completa es un observable que nunca llama al complete 
+          this.students = [...studentsReceived] // nuevo array con los estudiante recibidos
+          this.isLoading = false;
 
-      },
-      error: (err) => {
-        alert(err)
-        this.isLoading = false; // por eso tengo que repetir logica acá
-      },
-      complete: () => {
-        this.isLoading = false;
-      },
-    })
+        },
+        error: (err) => {
+          alert(err)
+          this.isLoading = false; // por eso tengo que repetir logica acá
+        },
+        complete: () => {
+          this.isLoading = false;
+        },
+      })
   }
 
   loadStudentsFromPromise() {
