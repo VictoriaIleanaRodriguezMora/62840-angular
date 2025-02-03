@@ -64,3 +64,10 @@ y la ultima es lo que va a suceder con el pipe.
 en este caso, se va a emitir un dato, y va a terminar ahi
 
 - un observable que emita nros 
+
+
+¿Cómo hago para aplicar un loading cuando los dos cargan a diferente tiempo?
+forkjoin
+
+Tambien podria pasar que yo necesite encadenar un observable despues de otro. 
+Si necesitara esperar el observable de frutas, para hacer algo con el de roles?

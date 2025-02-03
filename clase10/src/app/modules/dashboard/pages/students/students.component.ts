@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from './models/students';
 import { randomString } from '../../../../shared/randomString';
 import { StudentsService } from '../../../../core/services/StudentsService';
-import { filter, first, map, Subscription, take, tap } from 'rxjs';
+import { concatMap, filter, first, forkJoin, interval, map, Subscription, take, tap } from 'rxjs';
 // import { StudentsService } from '../../../../services/students.service';
 
 @Component({
@@ -35,6 +35,8 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   studentsSubscription?: Subscription; // puede ser undefined porque al principio hasta que yo cree la suscripcion on va a estar definida. no está definida
 
+  myInterval$ = interval(3000)
+
   constructor(
     private fb: FormBuilder,
     // una nueva dependencia. importé MI servicio 
@@ -60,7 +62,70 @@ export class StudentsComponent implements OnInit, OnDestroy {
     // this.loadStudentsFromPromise()
     // this.loadStudentsFromObs()
 
-    this.subcribeToInterval()
+    // this.subcribeToInterval()
+    // this.loadFrutasAndRoles()
+    this.loadFrutasWithRoles()
+  }
+
+  loadFrutasWithRoles() {
+    //  actualmente recibo por separado las frutas y los roles. si yo quiera recibirlos en un mismo array que hago?
+    // con el pipe de: 'aplanamiento'
+    this.myStudentService.getRoles()
+      .pipe(
+        // 1° recibo los roles. los valores del observable original 
+        concatMap((roles) => {
+          return this.myStudentService
+            // 2° cargo las frutas
+            .getFrutas()
+            .pipe(
+              // 3° acá se conccatenan las frutas y roles
+              map((frutas) => [...roles, ...frutas])
+            )
+        })
+      )
+      .subscribe({
+        next: (result) => console.log(result) // el concat devuelve ['admin', 'student', 'seller', 'Banana 🍌', 'Manzana 🍏', 'Pera 🍐']
+      })
+  }
+
+  // cargo los datos en el componente:
+  loadFrutasAndRoles() {
+
+    this.isLoading = true;
+
+    // al forkjoin le paso un array, con los estudiantes que tengo que cargar
+    // el forkjoin me devuelve un array de array con las respuestas de las suscripciones, cuando cargó todo. espera a que cargue todo para devolverlo
+    // unifica ambos obsrevables, y cuando ambos se completan, recienn ahí hace una emision donde el array tiene en cada posicion, la respuesta de cada observable 
+    forkJoin([
+      this.myStudentService.getRoles(),
+      this.myStudentService.getFrutas()
+
+    ])
+      .subscribe({
+        next: (value) => {
+          console.log(`Recibo roles: ${value[0]}`);
+          console.log(`Recibo frutas: ${value[1]}`);
+        },
+        complete: () => {
+          this.isLoading = false;
+        }
+      })
+
+    {/*     this.myStudentService
+      .getRoles()
+      .subscribe({
+        next: (roles) => {
+          console.log(`Los roles son: ${roles.join(", ")}`);
+        }
+      }) */}
+
+    /*     this.myStudentService
+          .getFrutas()
+          .subscribe({
+            next: (frutas) => {
+              console.log(`Las frutas son: ${frutas.join(", ")}`);
+            }
+          }) */
 
   }
 
