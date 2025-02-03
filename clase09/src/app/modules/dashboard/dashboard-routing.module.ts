@@ -3,14 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 
 /*
-Acá, parte de la ruta /dashboard/
+  Acá, parte de la ruta /dashboard/.
+  Y LOS RUTAS QUE YO DEFINO ACÁ, HEREDAN LO QUE ESCRIBO EN PATH:
 */
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then(
-      (homeMod) => homeMod.HomeModule
-    ),
+    path: 'home', // la ruta es /dashboard/home
+    loadChildren: () => import('./pages/home/home.module').then((homeMod) => homeMod.HomeModule),
   }
 ];
 
