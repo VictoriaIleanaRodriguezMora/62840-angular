@@ -60,5 +60,8 @@ export class StudentsService {
         });
     }
 
+    // rxjs tiene una forma mas facil para crear observables que no sea con  return new Observable
+    getInterval(): Observable<number>
+
 }
 
