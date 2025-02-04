@@ -73,7 +73,14 @@
       </button>
       <!-- boton para ver -->
       <!-- <button (click)="getStudentDetails(element.id)" mat-button> -->
-      <button [routerLink]="element.id" mat-button>
+      <button
+        [routerLink]="element.id"
+        [queryParams]="{
+          name: element.name,
+          lastName: element.lastName
+        }"
+        mat-button
+      >
         <mat-icon>visibility</mat-icon>
       </button>
     </td>

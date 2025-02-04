@@ -184,7 +184,39 @@ constructor(private activatedRoute: ActivatedRoute) {
 Ese objeto tiene toda esta info:
 ![alt text](image.png)
 
-
 ¿Para que sirve esto? En un futuro cuando aprendamos a trabajar con APIS que son servicios en la nube que van a devolver informacion de la bbdd, voy a poder usar ese id que recibo por URL para hacer una petición HTTP, y que el servidor se encargue de buscar en la bdd cual es ese usuario, que cursos tiene,
 
-01:23:00
+| Parametro de URL                                 | Parametro de Consulta (query)                                                    |
+| ------------------------------------------------ | -------------------------------------------------------------------------------- |
+| Van directamente despues de una /, son estáticos | Los que estan seguidos de un símbolo de ? Pueden ser usados para hacer búsquedas |
+| -                                                | Ejemplo: localhost:8080/dashboard/?id=234&name=ola                               |
+
+**Query Parameters**
+
+```html
+<button
+  [routerLink]="element.id"
+  [queryParams]="{
+                  name: element.name,
+                  lastName: element.lastName
+                 }"
+  mat-button
+></button>
+```
+
+```ts
+
+  studentId: string;
+  fullName: string;
+
+  constructor(private activatedRoute: ActivatedRoute) {
+    // Es un objeto que tiene informacion de la ruta cargada actualmente
+    console.log(this.activatedRoute);
+    this.studentId = this.activatedRoute.snapshot.params['id'] 
+    const name = this.activatedRoute.snapshot.queryParams['name']
+    const lastName = this.activatedRoute.snapshot.queryParams['lastName']
+    this.fullName = `${name}, ${lastName}`
+  }
+```
+
+01:33:00
