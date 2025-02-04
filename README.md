@@ -174,4 +174,17 @@ Yo necesito crear una ruta, que muestre el detalle y maneje el pasaje de paramet
 
 Los :id indican que es un parametro que se va a pasar por URL, es un parametro dinamico.
 
+```ts
+constructor(private activatedRoute: ActivatedRoute) {
+  // Es un objeto que tiene informacion de la ruta cargada actualmente
+  console.log(this.activatedRoute);
+}
+```
+
+Ese objeto tiene toda esta info:
+![alt text](image.png)
+
+
+¿Para que sirve esto? En un futuro cuando aprendamos a trabajar con APIS que son servicios en la nube que van a devolver informacion de la bbdd, voy a poder usar ese id que recibo por URL para hacer una petición HTTP, y que el servidor se encargue de buscar en la bdd cual es ese usuario, que cursos tiene,
+
 01:23:00
