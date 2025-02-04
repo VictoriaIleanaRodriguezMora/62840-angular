@@ -134,4 +134,8 @@ Si en cambio yo pusiera con "/". Lo que va a hacer angular, es reemplazar TODO E
 ```
 Osea que la ruta que renderiza, es: `/home`
 
-00:53:00
+En aplicaciones reales, el cierre de sesion viene acompañado de otra lógica, no es sólo redirigir a la ruta. 
+Se limpia el token de acceso, se ceirra el backend, se elimina algunas cookies, etc...
+Entonces toda esa lógica tiene que ser manejada en el .ts 
+
+01:13:00
