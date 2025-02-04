@@ -2,13 +2,9 @@
   <!-- MENU LATERAL - INICIO SIDENAV -->
   <!-- Este id #drawer se comunica con el botón -->
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    @if (showFiller) {
-    <p>Lorem, ipsum dolor sit amet consectetur.</p>
-    }
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
+    <!-- Navegacion - Inicio -->
+    <app-nav-menu />
+    <!-- Navegacion - Fin -->
   </mat-drawer>
   <!-- MENU LATERAL - FIN -->
 
@@ -20,7 +16,6 @@
 
     <!-- <app-students /> -->
     <router-outlet />
-    
   </div>
 
   <!-- AREA CONTENIDO - FIN -->

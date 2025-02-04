@@ -108,5 +108,30 @@ Debo configurar el ¡**`students-routing.module.ts`**!
 El beneficio de modularizar la aplicación, es que genera más rendimiento, en tiempos de carga y memoria.
 Y es mas organizado para trabajar y detectar errores.
 
+[Listas angular material](https://material.angular.io/components/list/overview)
 
-00:44:00
+```bash
+ng g c modules/dashboard/components/nav-menu --skip-tests --no-standalone
+```
+
+La navegacion/enrutamiento de angular, provee la directiva `routerLink=""`, es cómo el Link, Route, Routes de React. `routerLink` maneja una navegacion dentro de Angular. href no, porque usa el coportamiento por defecto del navegador, va a recargar todo el documento, la pantalla se va a poner en blanco al recargar. Indico una ruta relativa en `routerLink`   
+
+Cuando uso `routerLink` y el valor que le paso NO COMIENZA CON "/" quiere decir que hago una navegacion **relativa**. Quiere decir que el path que le sigue a ese segmente de url se va a mantener.
+
+Osea, que si el path es `/dashboard`, lo  que yo le pasé cómo valor al routerLink, va a ir precedido de `/dashboard + lo que le puse como valor`. En este caso:
+
+
+```html 
+// /dashboard/+ el valor de routerLink
+// /dashboard/home
+  <a mat-list-item routerLink="home" > Inicio </a>
+```
+
+‼⁉
+Si en cambio yo pusiera con "/". Lo que va a hacer angular, es reemplazar TODO EL PATH, por lo que puse textualmente/explicitamente en el `routerLink`
+```html 
+  <a mat-list-item routerLink="/home" > Inicio </a>
+```
+Osea que la ruta que renderiza, es: `/home`
+
+00:53:00
