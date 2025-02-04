@@ -1,8 +1,8 @@
 ```bash
 nvm use  22.13.0
 cd clase09
-ng serve
 npm i
+ng serve
 ```
 
 Angular permite hacer aplicaciones SPA, osea que las rutas/navegacion y los componentes los renderiza JavaScript. Para eso voy a usar el router de Angular
@@ -31,14 +31,14 @@ Son rutas hijas del dashboard, porque el `/dashboard` es parte de la ruta que la
 // El método load children es para cargar rutas hijas que están alojadas en otro módulo. En este caso la que estan en el `dashboard-routing.module`.ts
 
 ```js
-loadChildren: () => import('./modules/dashboard/dashboard.module') // devuelve una promesa
+loadChildren: () => import("./modules/dashboard/dashboard.module"); // devuelve una promesa
 ```
 
 Cuando la ruta sea `'dashboard'`, va a cargar el `DashboardComponent` y tambien va a cargar las rutas hijas definidas en el ./modules/dashboard/dashboard.module .
 
 Porque el `DashboardModule`, tiene importado el `DashboardRoutingModule`, el cúal tiene la configuracion de las rutas hijas del dashboard
 
-```js 
+```js
 {
     path: 'dashboard',
     component: DashboardComponent,
@@ -50,25 +50,27 @@ Porque el `DashboardModule`, tiene importado el `DashboardRoutingModule`, el cú
 Cada una de las pages representan una ruta dentro de dashboard
 ![alt text](clase09/src/app/assets/image.png)
 
-El `DashboardRoutingModule` es el archivo de configuracion de rutas hijas 
+El `DashboardRoutingModule` es el archivo de configuracion de rutas hijas
 
 En `dashboard-routing.module`, todas las rutas que yo configure tienen de base la ruta /dashboard/ , son .forChild
 
-```bash 
+```bash
 ng g c modules/dashboard/pages/home --skip-tests --no-standalone
 ```
 
-Por el 'lazy loading'   que vamos a ver más adelante hace eso en el `dashboard-routing.module`
+Por el 'lazy loading' que vamos a ver más adelante hace eso en el `dashboard-routing.module`
 
 No define un component, si no un loadChildren
 
 Luego de realizar la configuracion en `dashboard-routing.module`:
+
 ```js
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then((homeMod) => homeMod.HomeModule),
-  }
+    path: "home",
+    loadChildren: () =>
+      import("./pages/home/home.module").then((homeMod) => homeMod.HomeModule),
+  },
 ];
 ```
 
@@ -77,12 +79,11 @@ Hay que configurar el ¡**`home-routing.module.ts`**!
 A pesar de que yo tengo las rutas bien definidas, no tengo errores ni nada, en todas las rutas veo el componente estudiantes en todas las rutas.
 Es porque está hardcodeado en el html de dashboard.
 
-    
 Lo que hace `<router-outlet />` es ir a consultar al módulo, cuales son las rutas definidas en el módulo y según cual sea la ruta definida en el módulo, la va a comparar con la URL actual y va a mostrar el componente el cúal corresponda a la ruta
 
 El `<router-outlet />` va, donde yo quiero representar el area de contenido.
 
-```js 
+```js
 // ¡No alcanza con esto en `dashboard-routing.module`! Debo definir en students-routing.module.ts la ruta hija
   {
     path: 'students', // la ruta es /dashboard/students
@@ -91,7 +92,6 @@ El `<router-outlet />` va, donde yo quiero representar el area de contenido.
 ```
 
 Debo configurar el ¡**`students-routing.module.ts`**!
-
 
 ```js {
 // Esta forma de definir rutas hijas sólo es válida si todos los componentes de la aplicación pertenecen a un mismo módulo. Si mi aplicación no está modularizada.
@@ -114,28 +114,42 @@ Y es mas organizado para trabajar y detectar errores.
 ng g c modules/dashboard/components/nav-menu --skip-tests --no-standalone
 ```
 
-La navegacion/enrutamiento de angular, provee la directiva `routerLink=""`, es cómo el Link, Route, Routes de React. `routerLink` maneja una navegacion dentro de Angular. href no, porque usa el coportamiento por defecto del navegador, va a recargar todo el documento, la pantalla se va a poner en blanco al recargar. Indico una ruta relativa en `routerLink`   
+La navegacion/enrutamiento de angular, provee la directiva `routerLink=""`, es cómo el Link, Route, Routes de React. `routerLink` maneja una navegacion dentro de Angular. href no, porque usa el coportamiento por defecto del navegador, va a recargar todo el documento, la pantalla se va a poner en blanco al recargar. Indico una ruta relativa en `routerLink`
 
 Cuando uso `routerLink` y el valor que le paso NO COMIENZA CON "/" quiere decir que hago una navegacion **relativa**. Quiere decir que el path que le sigue a ese segmente de url se va a mantener.
 
-Osea, que si el path es `/dashboard`, lo  que yo le pasé cómo valor al routerLink, va a ir precedido de `/dashboard + lo que le puse como valor`. En este caso:
+Osea, que si el path es `/dashboard`, lo que yo le pasé cómo valor al routerLink, va a ir precedido de `/dashboard + lo que le puse como valor`. En este caso:
 
-
-```html 
-// /dashboard/+ el valor de routerLink
-// /dashboard/home
-  <a mat-list-item routerLink="home" > Inicio </a>
+```html
+// /dashboard/+ el valor de routerLink // /dashboard/home
+<a mat-list-item routerLink="home"> Inicio </a>
 ```
 
 ‼⁉
 Si en cambio yo pusiera con "/". Lo que va a hacer angular, es reemplazar TODO EL PATH, por lo que puse textualmente/explicitamente en el `routerLink`
-```html 
-  <a mat-list-item routerLink="/home" > Inicio </a>
+
+```html
+<a mat-list-item routerLink="/home"> Inicio </a>
 ```
+
 Osea que la ruta que renderiza, es: `/home`
 
-En aplicaciones reales, el cierre de sesion viene acompañado de otra lógica, no es sólo redirigir a la ruta. 
+En aplicaciones reales, el cierre de sesion viene acompañado de otra lógica, no es sólo redirigir a la ruta.
 Se limpia el token de acceso, se ceirra el backend, se elimina algunas cookies, etc...
-Entonces toda esa lógica tiene que ser manejada en el .ts 
+Entonces toda esa lógica tiene que ser manejada en el .ts
 
-01:13:00
+Navegacion por .ts:
+
+```html
+<a mat-list-item routerLink="courses" (click)="logout()"> Cerrar sesión </a>
+```
+
+```ts
+constructor(private router: Router) { }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    // navigacion /auth/login
+    this.router.navigate(['auth', 'login']);
+  }
+```
