@@ -153,3 +153,25 @@ constructor(private router: Router) { }
     this.router.navigate(['auth', 'login']);
   }
 ```
+
+### Pasaje de parametros por URL
+
+Quiero que al hacer click en el boton de 👁️, me lleve al detalle. Una redrección
+
+```bash
+ng g c modules/dashboard/pages/students/pages/student-detail --skip-tests --no-standalone
+```
+
+Yo necesito crear una ruta, que muestre el detalle y maneje el pasaje de parametros.
+
+```ts
+{
+ // /dashboard/students/loquesea ¡LO QUE SEA QUE ESCRIBA DESPUES DE /dashboard/students/ va a ser considerado el id!
+  path: "/:id", // representa /dashboard/students/:id
+  component: StudentDetailComponent
+}
+```
+
+Los :id indican que es un parametro que se va a pasar por URL, es un parametro dinamico.
+
+01:23:00

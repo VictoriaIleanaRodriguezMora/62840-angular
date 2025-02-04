@@ -71,6 +71,11 @@
       <button (click)="onEdit(element)" mat-button>
         <mat-icon>edit</mat-icon>
       </button>
+      <!-- boton para ver -->
+      <!-- <button (click)="getStudentDetails(element.id)" mat-button> -->
+      <button [routerLink]="element.id" mat-button>
+        <mat-icon>visibility</mat-icon>
+      </button>
     </td>
   </ng-container>
 

@@ -79,6 +79,14 @@ export class StudentsComponent {
     // console.log("Se actualizó el color del fondo del componente");
   }
 
+  // getStudentDetails(id: string) {
+  //   // entro al archivo de servicios, uso el metodo que quiero, le paso el id por parametro al Servicio, me suscribo a la informacion que tiene alojada el service.
+  //   // Quiero que el 'student' que va a encontrar el getStudentsById, por medio del id que yo le envio, lo asigne a mi variable en el componente this.selectedStudent
+  //   this.myStudentService.getStudentsById(id).subscribe(student => {
+  //     return this.selectedStudent = student;
+  //   })
+  // }
+
   onEdit(student: Student) {
     // console.log("Se va a editar el estudiante: ", student);
     // editingStudentId va a ser igual al id que recibo cuando se hace click en el boton editar 
