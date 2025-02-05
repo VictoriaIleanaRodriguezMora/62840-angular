@@ -1,6 +1,6 @@
 ```bash
 nvm use  22.13.0
-cd clase09
+cd clase11
 npm i
 ng serve
 ```
