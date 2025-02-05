@@ -38,17 +38,16 @@ export class StudentsComponent {
     } else {
       console.log(this.studentForm.value);
       const { name, lastName } = this.studentForm.value
-      const id = randomString(8)
+
       // const name = this.studentForm.value.name
       // const lastName = this.studentForm.value.lastName
-      // const id = this.studentForm.value.id
 
       // Si esto es true, es decir si tiene valor, voy a editar, sino, debo crear
       if (this.editingStudentId != null) {
         // Editar
         this.students = this.students.map((estudiante) => {
           if (estudiante.id === this.editingStudentId) {
-            // retorna lo que ya tiene (...estudiante) y (...this.studentForm.value) va a sobreescribir los campos que coincidan, con nuevos valores 
+            // retorna lo que ya tiene (...estudiante) y (...this.studentForm.value) va a sobreescribir los campos que coincidan el nombr, con nuevos valores 
             return { ...estudiante, ...this.studentForm.value }
           } else {
             // sino, lo dejo como está

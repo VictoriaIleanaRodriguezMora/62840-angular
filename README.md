@@ -1,3 +1,10 @@
+```bash
+nvm use  22.13.0
+cd after_class
+ng serve
+npm i 
+```
+
 !! valores falsy devuelven false
 !!0
 !!undefined
@@ -9,7 +16,4 @@ necesito una propiedad para saber cuando un estudiante se está editando y cuand
 
 hay varias formas de realizar la logica de edicion, la mas recomendada es usar map
 
-nvm use  22.13.0
-cd after_class
-ng serve
-npm i 
+Agregar campos al formulario 
