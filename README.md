@@ -71,6 +71,6 @@ Shared: Se agrupan componentes, directivas, pipes, funciones que se usan en toda
 Featured Module: No es que un módulo en especifico se llame así, sino que se refiere a la técnica de crear un módulo por caracteristica. ¿Qué es una caracteristica? Sería agrupar: componentes, directivas, pantallas y demas según el tipo de indentidad
  
 El módulo de estudiantes, es un features, porque toda su logica y funcionalidad está en ese modulo.
- 
+No es bueno modularizar en un 100%, si no agrupar funcionalidades según la lógica.
 
- 00:20:00
+ 00:23:00
