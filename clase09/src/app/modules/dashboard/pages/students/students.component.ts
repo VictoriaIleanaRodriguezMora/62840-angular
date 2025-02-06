@@ -19,12 +19,12 @@ export class StudentsComponent implements OnInit { // 09
   //   "name": "name",
   //   "lastName": " last name"
   // }];
-  
+
   // 09
   students: any[] = [];
   selectedStudent: any;
   // 09
-  
+
   // listado de las columnas que va a tener mi tabla
   displayedColumns: string[] = ['id', 'name', 'lastName', 'action']
 
@@ -50,6 +50,19 @@ export class StudentsComponent implements OnInit { // 09
       return this.students = data;
     })
   }
+
+  // 09
+  getStudentDetails(id: string) {
+    // entro al archivo de servicios, uso el metodo que quiero, le paso el id por parametro al Servicio, me suscribo a la informacion que tiene alojada el service.
+    // Quiero que el 'student' que va a encontrar el getStudentsById, por medio del id que yo le envio, lo asigne a mi variable en el componente this.selectedStudent
+    this.myStudentService // 1° llamo al servicio
+    .getStudentsById(id) // 2° llamo al método del servicio que necesito, le paso el parametro, que es el parametro del método que lo envuelve (getStudentDetails)
+    .subscribe(student => { // 3° me suscribo para recibir una respuesta
+      return this.selectedStudent = student; // student, es la respuesta del suscribe. this.selectedStudent la definí acá en el componente
+    })
+  }
+  // 09
+
 
   // acá va la logica para editar/crear
   onSubmit() {
@@ -95,13 +108,7 @@ export class StudentsComponent implements OnInit { // 09
     this.students = this.students.filter((e) => e.id != id)
   }
 
-  getStudentDetails(id: string) {
-    // entro al archivo de servicios, uso el metodo que quiero, le paso el id por parametro al Servicio, me suscribo a la informacion que tiene alojada el service.
-    // Quiero que el 'student' que va a encontrar el getStudentsById, por medio del id que yo le envio, lo asigne a mi variable en el componente this.selectedStudent
-    this.myStudentService.getStudentsById(id).subscribe(student => {
-      return this.selectedStudent = student;
-    })
-  }
+
 
   onColorUpdated() {
     console.log("Se actualizó el color del fondo del componente");

@@ -122,12 +122,15 @@ export class StudentsService {
 }
 ```
 
-`bash clase09\src\app\modules\dashboard\pages\students\students.component.ts`
+```bash
+ clase09\src\app\modules\dashboard\pages\students\students.component.ts
+```
 
 ```ts
-import { StudentsService } from '../../../../services/students.service'; // importé MI servicio
+import { StudentsService } from "../../../../services/students.service"; // importé MI servicio
 
-export class StudentsComponent implements OnInit { // El implements OnInit lo poneen esta clase
+export class StudentsComponent implements OnInit {
+  // El implements OnInit lo poneen esta clase
   students: any[] = []; // Nuevo
   selectedStudent: any;
 
@@ -136,25 +139,33 @@ export class StudentsComponent implements OnInit { // El implements OnInit lo po
     private myStudentService: StudentsService // Agrego una nueva dependencia. importé MI servicio.
   );
 
-    ngOnInit(): void { // Me suscribo al metodo getStudents para que me traiga la lista de estudiantes.
-    // Porque yo quiero que apenas cargue la página, me traiga la lista de estudiantes que está guardada en el Observable. 
-    // ¿Cómo lo hago? Hay que suscribirse 
-    
-    // ahora me suscribo a la informacion que tiene guardada, para que retorne algo 
+  ngOnInit(): void {
+    // Me suscribo al metodo getStudents para que me traiga la lista de estudiantes.
+    // Porque yo quiero que apenas cargue la página, me traiga la lista de estudiantes que está guardada en el Observable.
+    // ¿Cómo lo hago? Hay que suscribirse
+
+    // ahora me suscribo a la informacion que tiene guardada, para que retorne algo
     this.myStudentService // 1° llamo a mi servicio
-    .getStudents() // 2° indico el método que quiero usar de mi servicio
-    .subscribe((data) => { // 3° me suscribo, y hago algo con la informacion que me devuelve
-      // data es la informacion que viene en getStudents, a la que yo me suscribo para recibir 
-      return this.students = data; // ¡data, es el RETURN de getStudents! y se lo estoy asignando a mi variable this.students que es la que uso para mostrar en la Vista
-    })
+      .getStudents() // 2° indico el método que quiero usar de mi servicio
+      .subscribe((data) => {
+        // 3° me suscribo, y hago algo con la informacion que me devuelve
+        // data es la informacion que viene en getStudents, a la que yo me suscribo para recibir
+        return (this.students = data); // ¡data, es el RETURN de getStudents! y se lo estoy asignando a mi variable this.students que es la que uso para mostrar en la Vista
+      });
   }
 
+  getStudentDetails(id: string) {
+    this.myStudentService // 1° llamo al servicio
+      .getStudentsById(id) // 2° llamo al método del servicio que necesito, le paso el parametro, que es el parametro del método que lo envuelve (getStudentDetails)
+      .subscribe((student) => {
+        // 3° me suscribo para recibir una respuesta
+        return (this.selectedStudent = student); // student, es la respuesta del suscribe, que retorna un unico elemento, el que coincide con el id. this.selectedStudent la definí acá en el componente
+      });
+  }
 }
 ```
 
 **El tema de http, HTTPCLIENT, es una libreria, no tiene que ver con Angular. El profe de Back la usó**
 
-() va de donde quiero que lo saque
-en este caso quiero que lo saque de la url
 
-00:51:00
+00:58:00
