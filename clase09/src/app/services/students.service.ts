@@ -21,7 +21,7 @@ export class StudentsService {
   constructor(private http: HttpClient) { }
 
   // primer metodo dentro de nuestro servicio
-  getStudents(): Observable<any[]> {
+  getStudents(): Observable<any[]> { // esto podría no ser de tipo observable, y obtendriamos la info igual. pero no es cómo se trabaja en angular
     return this.http.get<any[]>(this.studentUrl)
   }
 
@@ -30,11 +30,11 @@ export class StudentsService {
   getStudentsById(myId: string): Observable<any> {
     // vamos a hacer un mapeo / editar
     return this.http.get<any[]>(this.studentUrl).pipe(
-      // map((students) => {
-      //   return students.find((student) => { return student.id === myId })
-      // })
-      map(students => students.find(student => student.id === myId))
+      map(students => students.find(studMap => studMap.id === myId)) // este map es de RXJS
     )
   }
-
+  /* map((students) => {
+     return students.find((student) => { return student.id === myId })
+    })
+  */
 }

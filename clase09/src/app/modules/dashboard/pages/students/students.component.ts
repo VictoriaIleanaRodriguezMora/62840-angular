@@ -11,7 +11,7 @@ import { StudentsService } from '../../../../services/students.service';
   styleUrl: './students.component.scss',
 })
 
-export class StudentsComponent implements OnInit {
+export class StudentsComponent implements OnInit { // 09
   studentForm: FormGroup;
   // vamos a reemplazar este array local por el que estoy simulando en assets
   // students: Student[] = [{
@@ -19,10 +19,13 @@ export class StudentsComponent implements OnInit {
   //   "name": "name",
   //   "lastName": " last name"
   // }];
-  // listado de las columnas que va a tener mi tabla
+  
+  // 09
   students: any[] = [];
   selectedStudent: any;
-
+  // 09
+  
+  // listado de las columnas que va a tener mi tabla
   displayedColumns: string[] = ['id', 'name', 'lastName', 'action']
 
   // Si el id del estudiante que se está editando es null, significa que no estoy editando, si tiene valor, significa que estoy editando un estudiante 
@@ -31,7 +34,7 @@ export class StudentsComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     // una nueva dependencia. importé MI servicio 
-    private myStudentService: StudentsService
+    private myStudentService: StudentsService // 09
   ) {
     this.studentForm = this.fb.group({
       name: [null, [Validators.required]],
