@@ -16,7 +16,10 @@ const routes: Routes = [
     path: 'students', // la ruta es /dashboard/students
     loadChildren: () => import('./pages/students/students.module').then((studMod) => studMod.StudentsModule),
   },
-
+  {
+    path: 'courses', // la ruta es /dashboard/courses
+    loadChildren: () => import('./pages/courses/courses.module').then((courseMod) => courseMod.CoursesModule)
+  }
 ];
 
 @NgModule({
