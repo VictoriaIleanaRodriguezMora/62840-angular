@@ -73,4 +73,119 @@ Featured Module: No es que un módulo en especifico se llame así, sino que se r
 El módulo de estudiantes, es un features, porque toda su logica y funcionalidad está en ese modulo.
 No es bueno modularizar en un 100%, si no agrupar funcionalidades según la lógica.
 
- 00:23:00
+```bash
+ng g c modules/dashboard/pages/courses --skip-tests --no-standalone
+```
+
+Se agrega esta configuracion en `dashboard-routing.module.ts`
+
+```ts
+{
+    path: 'courses', // la ruta es /dashboard/courses
+    loadChildren: () => import('./pages/courses/courses.module').then((courseMod) => courseMod.CoursesModule),
+  },
+```
+
+En: `courses-routing.module.ts`
+```ts
+/* Aquí la ruta de la que parte, es /dashboard/courses/ */
+const routes: Routes = [
+  {
+    path: '', // representa /dashboard/courses/
+    component: CoursesComponent
+  }
+];
+```
+
+Tema aparte: En: `modules/dashboard/components/nav-menu/`
+`nav-menu.component.ts`
+```ts
+export class NavMenuComponent {
+  linktems: { label: string, routerLink: string }[] = [
+    {
+      label: 'Inicio',
+      routerLink: 'home'
+    },
+    {
+      label: 'Estudiantes',
+      routerLink: 'students'
+    }
+    ,
+    {
+      label: 'Cursos',
+      routerLink: 'courses'
+    }
+  ]
+}
+```
+
+`nav-menu.component.html`
+
+```html
+<mat-nav-list>
+  <a
+    *ngFor="let item of linktems"
+    [routerLink]="item.routerLink"
+    routerLinkActive
+    #linkItem="routerLinkActive"
+    [activated]="linkItem.isActive"
+    mat-list-item
+  >
+    {{ item.label }}
+  </a>
+  <a mat-list-item routerLink="courses" (click)="logout()"> Cerrar sesión </a>
+</mat-nav-list>
+```
+
+Módulo e tabla de curso
+```bash
+ng g c modules/dashboard/pages/courses/components/courses-table --skip-tests --no-standalone
+```
+
+[https://material.angular.io/components/table/overview](https://material.angular.io/components/table/overview)
+
+Las listas, tablas, botones, son cosas que uso a lo largo de toda la app. Por eso sería bueno importarlas y exportarlas en el módulo compartido.
+
+Los datos deben venir de un servicio. 
+
+```bash
+ng g service core/courses --skip-tests
+```
+
+`CoursesComponent` va a sacar los datos de `CoursesService`
+
+```bash
+courses.service
+```
+
+```ts
+  // El servicio es el que envia los datos al componente
+export class CoursesService {
+  // Trabajamos con Observables para simular que estos datos vienen desde una API externa/bdd. Porque cuando realmente algún dia yo consu,a una API, va a devolver un observable, y vamos a hacer uso de un servico que se llama HttpClient que devuelve observables, asique nos adelantamos a esa forma de trabajar
+  getCourses(): Observable<Course[]> {
+    // El método getCourses va a devolver un array de Courses
+    // El método of converte a observable lo que le paso entre ()
+    return of([
+      {
+        id: randomString(6),
+        name: 'Js'
+      },
+      {
+        id: randomString(6),
+        name: 'Des Web'
+      },
+    ])
+      .pipe(delay(1000))
+  }
+}
+```
+
+### Documentarlo:
+Mostrar en la tabla de cursos la data que viene del servicio.
+
+
+Próximo: Realizar altas y bajas
+
+
+
+01:16:00

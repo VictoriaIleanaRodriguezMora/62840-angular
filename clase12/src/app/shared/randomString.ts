@@ -12,5 +12,5 @@ export function randomString(chQuantity: number): string {
     for (let i = 0; i < chQuantity; i++) {
         stringFormed.push(characters[0][getRandomNum(72)]);
     }
-    return stringFormed.join("");
+    return stringFormed.join('');
 }

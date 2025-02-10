@@ -5,7 +5,9 @@ import { FullName2Pipe } from './pipes/full-name2.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { MultiplyDirective } from './directives/multiply.directive';
 import { MatListModule } from '@angular/material/list';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Para usar el FullNamePipe en otro módulo:
 // 1° Exportarlo
@@ -26,7 +28,10 @@ import { MatListModule } from '@angular/material/list';
     FullName2Pipe,
     HighlightDirective,
     MultiplyDirective,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class SharedModule { }
