@@ -167,5 +167,33 @@ export class StudentsComponent implements OnInit {
 
 **El tema de http, HTTPCLIENT, es una libreria, no tiene que ver con Angular. El profe de Back la usó**
 
+En la tabla, en la columna donde está el 🗑️ y el ✍🏼, agrego un 👁️, para usar el método getStudentsById()
 
-00:58:00
+```html
+<!-- action Column -->
+<ng-container matColumnDef="action">
+  <th mat-header-cell *matHeaderCellDef>action</th>
+  <td mat-cell *matCellDef="let element">
+    <button (click)="onDelete(element.id)" mat-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+    <!-- envia el array del estudiante {id, name, lastName} -->
+    <button (click)="onEdit(element)" mat-button>
+      <mat-icon>edit</mat-icon>
+    </button>
+    <!-- boton para ver -->
+    <button (click)="getStudentDetails(element.id)" mat-button>
+      <mat-icon>visibility</mat-icon>
+    </button>
+  </td>
+</ng-container>
+<!-- action Column -->
+
+<!-- Muestro el detalle del estudiante en el que hice click en el botón de 👁️ de la columna actions -->
+<div *ngIf="selectedStudent" class="mat-elevation-z4 p-4 m-2">
+  <h2>Detalles del estudiante</h2>
+  <p>ID: {{ selectedStudent.id }}</p>
+  <p>name: {{ selectedStudent.name }}</p>
+  <p>lastName: {{ selectedStudent.lastName }}</p>
+</div>
+```
