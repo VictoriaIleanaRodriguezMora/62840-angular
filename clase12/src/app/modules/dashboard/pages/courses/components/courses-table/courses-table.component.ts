@@ -10,5 +10,5 @@ import { Course } from '../../../../../../interfaces/courses';
 })
 export class CoursesTableComponent {
   @Input() dataSource: Course[] = [] // necesito que la data a renderizar en la tabla sea la data del observable. Necesito poder recibirla desde el Padre. Ahora donde uso el c.hijo, en el c.padre puedo enviar una propiedad llamada [dataSource]
-  displayedColumns = ["id", "name"]
+  displayedColumns = ["id", "name","actions "]
 }
