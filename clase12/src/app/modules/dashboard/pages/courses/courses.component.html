@@ -4,6 +4,7 @@
 </ng-container>
 
 <ng-template #coursesTable>
+  <button (click)="openFormDialog()" mat-flat-button >Crear curso</button>
   <app-courses-table 
   [dataSource]="coursesData"
   (toDelete)="onDelete($event)"

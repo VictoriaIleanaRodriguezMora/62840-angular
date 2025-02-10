@@ -348,4 +348,13 @@ export class CoursesComponent implements OnInit {
 }
 ```
 
+### Eliminación Cursos
+Para la lógica de eliminación tengo que crear un formulario
+```bash
+ng g c modules/dashboard/pages/courses/components/course-form-dialog --skip-tests --no-standalone
+```
+
+
+
+
 01:31:00

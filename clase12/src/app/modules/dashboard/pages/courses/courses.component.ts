@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../../../core/courses.service';
 import { Course } from '../../../../interfaces/courses';
+import { MatDialog } from "@angular/material/dialog"
+import { CourseFormDialogComponent } from './components/course-form-dialog/course-form-dialog.component';
 
 @Component({
   selector: 'app-courses',
@@ -15,10 +17,27 @@ export class CoursesComponent implements OnInit {
   isLoading = false; // Inicia en false
   coursesData: Course[] = [];
 
-  constructor(private courseService: CoursesService) { }
+  constructor(
+    private courseService: CoursesService,
+    private matDialog: MatDialog,
+  ) { }
 
   handleCoursesUpdate(cursos: Course[]): void {
     this.coursesData = [...cursos];
+  }
+
+  openFormDialog() {
+    // Este método abre el form 
+    this.matDialog.open(CourseFormDialogComponent) // esto tiene un método  .afterClosed
+      .afterClosed() // Ref.02 Lo recibo en la data de .afterClosed este devuelve un Observable
+      .subscribe({
+        next: (data) => {
+          // recibo data si es el caso del confirm. Pero si es el cancelar recibo un undefined
+          console.log(data); 
+          //Entonces para crear un curso tengo que validar 
+        }
+      })
+
   }
 
   ngOnInit(): void {
@@ -52,10 +71,10 @@ export class CoursesComponent implements OnInit {
             this.handleCoursesUpdate(cursos)
           },
           error: () => {
-            this.isLoading = false; 
+            this.isLoading = false;
           },
           complete: () => {
-            this.isLoading = false; 
+            this.isLoading = false;
           },
         })
     }
