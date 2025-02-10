@@ -9,17 +9,14 @@ import { HomeComponent } from './pages/home/home.component';
 const routes: Routes = [
   {
     path: 'home', // la ruta es /dashboard/home
-    loadChildren: () => import('./pages/home/home.module').then((homeMod) => homeMod.HomeModule)
+    loadChildren: () => import('./pages/home/home.module').then((homeMod) => homeMod.HomeModule),
   },
   // ¡No alcanza con esto! Debo definir en students-routing.module.ts la ruta hija
   {
     path: 'students', // la ruta es /dashboard/students
-    loadChildren: () => import('./pages/students/students.module').then((studMod) => studMod.StudentsModule)
+    loadChildren: () => import('./pages/students/students.module').then((studMod) => studMod.StudentsModule),
   },
-  {
-    path: 'courses', // la ruta es /dashboard/courses
-    loadChildren: () => import('./pages/courses/courses.module').then((courseMod) => courseMod.CoursesModule)
-  }
+
 ];
 
 @NgModule({

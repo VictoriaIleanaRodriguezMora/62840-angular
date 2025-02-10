@@ -1,6 +1,6 @@
 <!-- La navegacion/enrutamiento de angular, provee la directiva routerLink="", es cómo el Link, Route, Routes de React. routerLink maneja una navegacion dentro de Angular. href no, porque usa el coportamiento por defecto del navegador, va a recargar todo el docuumento, la pantalla se va a poner en blanco al recargar. Indico una ruta relativa en routerLink     -->
 <mat-nav-list>
-  <!-- <a
+  <a
     mat-list-item
     routerLink="home"
     routerLinkActive
@@ -16,17 +16,7 @@
   #studentsLink="routerLinkActive"
   [activated]="studentsLink.isActive"
   > Estudiantes </a>
-  <a mat-list-item routerLink="courses"> Cursos </a> -->
-  <a
-    *ngFor="let item of linktems"
-    [routerLink]="item.routerLink"
-    routerLinkActive
-    #linkItem="routerLinkActive"
-    [activated]="linkItem.isActive"
-    mat-list-item
-  >
-    {{ item.label }}
-  </a>
-  <a mat-list-item routerLink="courses" (click)="logout()"> Cerrar sesión </a> 
-  <!-- esto se podria mejorar cómo una prop que reciba funcoines -->
+  <a mat-list-item routerLink="courses"> Cursos </a>
+  <a mat-list-item routerLink="courses" (click)="logout()" > Cerrar sesión </a>
+
 </mat-nav-list>
