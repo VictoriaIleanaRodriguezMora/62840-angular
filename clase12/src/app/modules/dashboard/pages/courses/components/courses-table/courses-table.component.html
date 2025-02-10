@@ -15,7 +15,19 @@
   <!-- Actions Column -->
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>Acciones</th>
-    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    <td mat-cell *matCellDef="let element">
+      <button mat-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+      <!-- Debo emitir un evento  -->
+      <!-- Esto es lo que emite Ref.01, el element.id -->
+      <button (click)="toDelete.emit(element.id)" mat-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-button>
+        <mat-icon>visibility</mat-icon>
+      </button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

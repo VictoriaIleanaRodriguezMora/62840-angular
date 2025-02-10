@@ -8,6 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatIconModule } from '@angular/material/icon';
 
 // Para usar el FullNamePipe en otro módulo:
 // 1° Exportarlo
@@ -33,6 +34,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatTableModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatIconModule,
+
   ]
 })
 export class SharedModule { }

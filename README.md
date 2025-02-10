@@ -220,6 +220,9 @@ export class CoursesTableComponent {
 }
 ```
 
-Próximo: Realizar altas y bajas
+Próximo: Realizar altas y bajas. ABM
+Desde el componente hijo, courses-table.c.html en el botón de eliminar; Tengo que emitir un evento para avisarle al padre de que ocurrió un evento 
 
-01:16:00
+
+
+01:31:00
