@@ -221,8 +221,131 @@ export class CoursesTableComponent {
 ```
 
 Próximo: Realizar altas y bajas. ABM
-Desde el componente hijo, courses-table.c.html en el botón de eliminar; Tengo que emitir un evento para avisarle al padre de que ocurrió un evento 
+Desde el componente hijo, courses-table.c.html en el botón de eliminar; Tengo que emitir un evento para avisarle al padre de que ocurrió un evento
 
+### Eliminación Cursos
 
+```bash
+courses.service.ts
+```
+
+```ts
+export class CoursesTableComponent {
+  @Input() dataSource: Course[] = []; // necesito que la data a renderizar en la tabla sea la data del observable. Necesito poder recibirla desde el Padre. Ahora donde uso el c.hijo, en el c.padre puedo enviar una propiedad llamada [dataSource]
+  @Output() toDelete = new EventEmitter<string>(); // Va a emitir un string con el ID del curso a eliminar
+  displayedColumns = ["id", "name", "actions"];
+}
+```
+
+```bash
+courses-table.component.html
+```
+
+```html
+<!-- Se agrega esta columna -->
+<!-- Actions Column -->
+<ng-container matColumnDef="actions">
+  <th mat-header-cell *matHeaderCellDef>Acciones</th>
+  <td mat-cell *matCellDef="let element">
+    <button mat-button>
+      <mat-icon>edit</mat-icon>
+    </button>
+    <!-- Debo emitir un evento  -->
+    <!-- Esto es lo que emite Ref.01, el element.id -->
+    <button (click)="toDelete.emit(element.id)" mat-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-button>
+      <mat-icon>visibility</mat-icon>
+    </button>
+  </td>
+</ng-container>
+```
+
+```bash
+courses-table.component.ts
+```
+
+```ts
+export class CoursesTableComponent {
+  @Input() dataSource: Course[] = []; // necesito que la data a renderizar en la tabla sea la data del observable. Necesito poder recibirla desde el Padre. Ahora donde uso el c.hijo, en el c.padre puedo enviar una propiedad llamada [dataSource]
+  @Output() toDelete = new EventEmitter<string>(); // Va a emitir un string con el ID del curso a eliminar
+  displayedColumns = ["id", "name", "actions"];
+}
+```
+
+```bash
+courses.component.html
+```
+
+```html
+<p>courses works!</p>
+<ng-container *ngIf="isLoading; else coursesTable">
+  <mat-spinner></mat-spinner>
+</ng-container>
+
+<ng-template #coursesTable>
+  <app-courses-table [dataSource]="coursesData" (toDelete)="onDelete($event)" />
+  <!-- Escucho el evento toDelete, y le paso una funcion para hacer ALGO al escucharlo -->
+  <!-- El $event, representa, lo que emite el evento Ref.01 -->
+</ng-template>
+```
+
+```bash
+courses.component.ts
+```
+
+```ts
+export class CoursesComponent implements OnInit {
+  isLoading = false; // Inicia en false
+  coursesData: Course[] = [];
+
+  constructor(private courseService: CoursesService) {}
+
+  handleCoursesUpdate(cursos: Course[]): void {
+    this.coursesData = [...cursos];
+  }
+
+  ngOnInit(): void {
+    this.isLoading = true; // Cuando se inicializa el componente se pasa true, para que aunque sean 0.5segundos, se vea el spiner
+    this.courseService.getCourses().subscribe({
+      next: (cursos) => {
+        console.log("Recbo datos de getCourses: ", cursos);
+        // this.coursesData = [...cursos]; // Fue reemplazado por la linea siguiente
+        this.handleCoursesUpdate(cursos);
+      },
+      error: () => {
+        this.isLoading = false; // Cuando termina la carga, lo paso a false
+      },
+      complete: () => {
+        this.isLoading = false; // Cuando termina la carga, lo paso a false
+      },
+    });
+  }
+
+  onDelete(idFn: string) {
+    this.isLoading = true;
+    if (confirm("Está seguro?")) {
+      // Operacion delete
+      // Estamos trabajando con observables de manera ASINCRONICA
+      this.courseService
+        .deleteCourseById(idFn) // cómo devuelve un observable me tengo que suscribir para recibir la respuesta
+        .subscribe({
+          next: (cursos) => {
+            console.log("cursos ACTUALIZADA", cursos);
+            // this.coursesData = [...cursos]; //Fue reemplazado por la linea siguiente
+            this.handleCoursesUpdate(cursos);
+          },
+          error: () => {
+            this.isLoading = false;
+          },
+          complete: () => {
+            this.isLoading = false;
+          },
+        });
+    }
+  }
+}
+```
 
 01:31:00
