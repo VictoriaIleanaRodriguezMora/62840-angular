@@ -19,7 +19,12 @@ let MY_FAKE_DATABASE: Course[] = [
 
 export class CoursesService {
 
-  createCourse(payload: {name: string}):Observable<Course[]>{
+  updateCourseById(id: string, data: { name: string }): Observable<Course[]> {
+    MY_FAKE_DATABASE = MY_FAKE_DATABASE.map((course) => course.id === id ? { ...course, ...data } : course)
+    return this.getCourses()
+  }
+
+  createCourse(payload: { name: string }): Observable<Course[]> {
     // Tengo que hacer la operación d agregar data a la bdd ficticia
     MY_FAKE_DATABASE.push({
       ...payload,

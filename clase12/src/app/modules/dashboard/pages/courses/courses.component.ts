@@ -26,24 +26,45 @@ export class CoursesComponent implements OnInit {
     this.coursesData = [...cursos];
   }
 
-  openFormDialog() {
+  openFormDialog(editingCourse?: Course) {
+    if (editingCourse) {
+      console.log("Se va a editar el curso: ", editingCourse);
+    }
     // Este método abre el form 
-    this.matDialog.open(CourseFormDialogComponent) // esto tiene un método  .afterClosed
+    this.matDialog
+    .open(CourseFormDialogComponent, { data: { editingCourse } }) // esto tiene un método  .afterClosed
       .afterClosed() // Ref.02 Lo recibo en la data de .afterClosed este devuelve un Observable
       .subscribe({
         next: (data) => {
           // recibo data si es el caso del confirm. Pero si es el cancelar recibo un undefined
-          console.log(data);
+          // console.log(data);
           //Entonces para crear un curso tengo que validar que la data no sea undefined
           if (!!data) {
             // crear o actualizar un curso
+            if (!!editingCourse) {
+              // actualizar
+              this.updateCourse(editingCourse.id, data)
+            } else {
+              //crear
+              this.createCourse(data)
+            }
             // this.courseService.createCourse(data) // retorna un observable
             //   .subscribe({ // un subscribe dentro de un subrcibe no está bien visto
             //     next: (data) => this.handleCoursesUpdate(data)
             //   })
-            this.createCourse(data)
           }
         }
+      })
+  }
+
+  updateCourse(id: string, data: { name: string }) {
+    this.isLoading = true;
+    this.courseService.updateCourseById(id, data)
+      .subscribe({
+        next: (data) => this.handleCoursesUpdate(data),
+        error: (error) => this.isLoading = false,
+        complete: () => this.isLoading = false
+
       })
   }
 
