@@ -33,11 +33,29 @@ export class CoursesComponent implements OnInit {
       .subscribe({
         next: (data) => {
           // recibo data si es el caso del confirm. Pero si es el cancelar recibo un undefined
-          console.log(data); 
-          //Entonces para crear un curso tengo que validar 
+          console.log(data);
+          //Entonces para crear un curso tengo que validar que la data no sea undefined
+          if (!!data) {
+            // crear o actualizar un curso
+            // this.courseService.createCourse(data) // retorna un observable
+            //   .subscribe({ // un subscribe dentro de un subrcibe no está bien visto
+            //     next: (data) => this.handleCoursesUpdate(data)
+            //   })
+            this.createCourse(data)
+          }
         }
       })
+  }
 
+  createCourse(dataa: { name: string }) {
+    this.isLoading = true;
+    this.courseService.createCourse(dataa) // retorna un observable
+      .subscribe({ // un subscribe dentro de un subrcibe no está bien visto
+        next: (dataa) => this.handleCoursesUpdate(dataa),
+        error: (error) => this.isLoading = false,
+        complete: () => this.isLoading = false,
+
+      })
   }
 
   ngOnInit(): void {

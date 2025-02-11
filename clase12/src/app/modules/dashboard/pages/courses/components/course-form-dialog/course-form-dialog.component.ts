@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -9,8 +10,22 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrl: './course-form-dialog.component.scss'
 })
 export class CourseFormDialogComponent {
-  constructor(private matDialogRef: MatDialogRef<CourseFormDialogComponent>) { }
+
+  courseForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private matDialogRef: MatDialogRef<CourseFormDialogComponent>) {
+    this.courseForm = this.fb.group({
+      name: ['', Validators.required]
+    })
+  }
   onConfirm() {
-    this.matDialogRef.close("info") // Emito. Con esto voy a cerrar el dialog al hacer click en el confirm. Puedo enviar data. ¿Cómo lo atrapo? En el Componente padre. Ref.02 Lo que emito acá
+    if (this.courseForm.invalid) {
+      this.courseForm.markAllAsTouched
+    } else {
+      // this.matDialogRef.close("info onconfirm") // Emito. Con esto voy a cerrar el dialog al hacer click en el confirm. Puedo enviar data. ¿Cómo lo atrapo? En el Componente padre. Ref.02 Lo que emito acá
+      this.matDialogRef.close(this.courseForm.value) // emito la data del form
+    }
   }
 }

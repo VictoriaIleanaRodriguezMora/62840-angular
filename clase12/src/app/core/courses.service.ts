@@ -18,6 +18,16 @@ let MY_FAKE_DATABASE: Course[] = [
 })
 
 export class CoursesService {
+
+  createCourse(payload: {name: string}):Observable<Course[]>{
+    // Tengo que hacer la operación d agregar data a la bdd ficticia
+    MY_FAKE_DATABASE.push({
+      ...payload,
+      id: randomString(6)
+    })
+    return this.getCourses()
+  }
+
   // El servicio es el que envia los datos al componente
   // Trabajamos con Observables para simular que estos datos vienen desde una API externa/bdd. Porque cuando realmente algún dia yo consu,a una API, va a devolver un observable, y vamos a hacer uso de un servico que se llama HttpClient que devuelve observables, asique nos adelantamos a esa forma de trabajar
   // El método getCourses va a devolver un array de Courses

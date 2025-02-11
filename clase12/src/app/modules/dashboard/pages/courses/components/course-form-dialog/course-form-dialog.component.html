@@ -1,9 +1,10 @@
 <h1 mat-dialog-title>Crear curso</h1>
 <div mat-dialog-content>
-    <form>
+    <!-- conecto el form al html -->
+    <form [formGroup]="courseForm" >
         <mat-form-field>
             <mat-label>Nombre</mat-label>
-            <input matInput />
+            <input formControlName="name" matInput />
         </mat-form-field>
     </form>
 </div>

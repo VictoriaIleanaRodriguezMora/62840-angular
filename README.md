@@ -357,4 +357,4 @@ ng g c modules/dashboard/pages/courses/components/course-form-dialog --skip-test
 
 
 
-01:31:00
+01:46:00
