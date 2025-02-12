@@ -5,7 +5,7 @@
 ## ¿Cómo levantar el proyecto?
 ```bash
 nvm use  22.13.0
-cd 62840-angular
+cd clase13
 npm i
 ng serve
 ```
