@@ -1,0 +1,20 @@
+<mat-drawer-container class="example-container" autosize>
+  <!-- MENU LATERAL - INICIO SIDENAV -->
+  <!-- Este id #drawer se comunica con el botón -->
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <!-- Navegacion - Inicio -->
+    <app-nav-menu />
+    <!-- Navegacion - Fin -->
+  </mat-drawer>
+  <!-- MENU LATERAL - FIN -->
+
+  <!-- AREA CONTENIDO - INICIO -->
+  <div class="example-sidenav-content">
+    <app-toolbar (myDrawerToggle)="drawer.toggle()" />
+    <!-- SIDENAV -->
+
+    <router-outlet />
+  </div>
+
+  <!-- AREA CONTENIDO - FIN -->
+</mat-drawer-container>

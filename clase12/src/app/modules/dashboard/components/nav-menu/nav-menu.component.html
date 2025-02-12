@@ -1,0 +1,21 @@
+<mat-nav-list>
+  <a
+    mat-list-item
+    routerLink="home"
+    routerLinkActive
+    #inicioLink="routerLinkActive"
+    [activated]="inicioLink.isActive"
+  >
+    Inicio
+  </a>
+  <a 
+  mat-list-item 
+  routerLink="students"
+  routerLinkActive
+  #studentsLink="routerLinkActive"
+  [activated]="studentsLink.isActive"
+  > Estudiantes </a>
+  <a mat-list-item routerLink="courses"> Cursos </a>
+  <a mat-list-item routerLink="courses" (click)="logout()" > Cerrar sesión </a>
+
+</mat-nav-list>
