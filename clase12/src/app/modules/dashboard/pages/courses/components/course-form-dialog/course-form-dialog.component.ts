@@ -28,7 +28,6 @@ export class CourseFormDialogComponent {
     });
 
     if (!!dataDialog && dataDialog.editingCourse) {
-      // esto significa que quiero editar
       this.courseForm.patchValue(dataDialog.editingCourse)
     }
 
@@ -38,8 +37,7 @@ export class CourseFormDialogComponent {
     if (this.courseForm.invalid) {
       this.courseForm.markAllAsTouched()
     } else {
-      // this.matDialogRef.close("info onconfirm") // Emito. Con esto voy a cerrar el dialog al hacer click en el confirm. Puedo enviar data. ¿Cómo lo atrapo? En el Componente padre. Ref.02 Lo que emito acá
-      this.matDialogRef.close(this.courseForm.value) // emito la data del form
+      this.matDialogRef.close(this.courseForm.value) 
     }
   }
 }

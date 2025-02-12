@@ -14,7 +14,6 @@ export class NavMenuComponent {
 
   logout(): void {
     localStorage.removeItem('token');
-    // navigacion /auth/login
     this.router.navigate(['auth', 'login']);
   }
 }

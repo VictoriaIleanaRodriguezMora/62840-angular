@@ -8,6 +8,5 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent {
-  // Los output siempre son de tipo EventEmitter
   @Output() myDrawerToggle = new EventEmitter();
 }

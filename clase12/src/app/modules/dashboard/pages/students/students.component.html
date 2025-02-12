@@ -1,6 +1,4 @@
-<!-- hay un error si el usuario no envia nada, hay que hacer validaciones y tipados -->
 <h1
-  *appMultiply="5"
   (colorUpdated)="onColorUpdated()"
   [bolder]="true"
   appHighlight="green"
@@ -27,23 +25,16 @@
 </form>
 
 <!-- TABLAS - INICIO -->
-<!-- data Source hace referencia a los elementos que yo quiero mostrar. Entonces el "dataSource" va a ser mi array de estudiantes  -->
 <table mat-table [dataSource]="students" class="mat-elevation-z8">
   <!-- id Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id</th>
-    <!-- la variable "element" es un elemento del arreglo students. Students es mi array, de objetos de estudiantes. Le puedo poner el nombre que yo quiera  -->
     <td mat-cell *matCellDef="let element">{{ element.id }}</td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef>Name</th>
-    <!-- value del pipe seria element.name -->
-    <!--  despues del nombre del pipe: argumento -->
-    <!-- <td mat-cell *matCellDef="let element">{{ element.name | fullName: "uppercase"}}</td> -->
-    <!-- <td mat-cell *matCellDef="let element"> {{ element.name | fullName : "uppercase" }} </td> -->
-    <!-- Escucho el evento colorUpdated, y ejecuto la funcion:  cuando ocurra -->
     <td
       (colorUpdated)="onColorUpdated()"
       appHighlight
@@ -71,8 +62,6 @@
       <button (click)="onEdit(element)" mat-button>
         <mat-icon>edit</mat-icon>
       </button>
-      <!-- boton para ver -->
-      <!-- <button (click)="getStudentDetails(element.id)" mat-button> -->
       <button
         [routerLink]="element.id"
         [queryParams]="{
@@ -90,12 +79,6 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 <!-- TABLAS - FIN -->
-<!-- <button mat-stroked-button>Crear estudiante</button>
-<button>
-  <mat-icon mat-icon-button>delete</mat-icon>
-</button> -->
-<!-- seria mejor mostrarlo en una tabla -->
-<!-- <pre> {{ students | json }} </pre> -->
 
 <br />
 <br />

@@ -5,12 +5,11 @@ import { StudentDetailComponent } from './pages/student-detail/student-detail.co
 /* Aquí la ruta de la que parte, es /dashboard/students/ */
 
 const routes: Routes = [{
-  path: "", // representa /dashboard/students/
+  path: "", 
   component: StudentsComponent,
 },
 {
-  // /dashboard/students/loquesea ¡LO QUE SEA QUE ESCRIBA DESPUES DE /dashboard/students/ va a ser considerado el id!
-  path: ":id", // representa /dashboard/students/:id
+  path: ":id", 
   component: StudentDetailComponent
 }
 ];

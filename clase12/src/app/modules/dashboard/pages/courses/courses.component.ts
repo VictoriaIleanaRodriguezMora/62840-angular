@@ -14,7 +14,7 @@ import { CourseFormDialogComponent } from './components/course-form-dialog/cours
 
 export class CoursesComponent implements OnInit {
 
-  isLoading = false; // Inicia en false
+  isLoading = false; 
   coursesData: Course[] = [];
 
   constructor(
@@ -30,28 +30,17 @@ export class CoursesComponent implements OnInit {
     if (editingCourse) {
       console.log("Se va a editar el curso: ", editingCourse);
     }
-    // Este método abre el form 
     this.matDialog
-    .open(CourseFormDialogComponent, { data: { editingCourse } }) // esto tiene un método  .afterClosed
-      .afterClosed() // Ref.02 Lo recibo en la data de .afterClosed este devuelve un Observable
+    .open(CourseFormDialogComponent, { data: { editingCourse } }) 
+      .afterClosed() 
       .subscribe({
         next: (data) => {
-          // recibo data si es el caso del confirm. Pero si es el cancelar recibo un undefined
-          // console.log(data);
-          //Entonces para crear un curso tengo que validar que la data no sea undefined
           if (!!data) {
-            // crear o actualizar un curso
             if (!!editingCourse) {
-              // actualizar
               this.updateCourse(editingCourse.id, data)
             } else {
-              //crear
               this.createCourse(data)
             }
-            // this.courseService.createCourse(data) // retorna un observable
-            //   .subscribe({ // un subscribe dentro de un subrcibe no está bien visto
-            //     next: (data) => this.handleCoursesUpdate(data)
-            //   })
           }
         }
       })
@@ -70,8 +59,8 @@ export class CoursesComponent implements OnInit {
 
   createCourse(dataa: { name: string }) {
     this.isLoading = true;
-    this.courseService.createCourse(dataa) // retorna un observable
-      .subscribe({ // un subscribe dentro de un subrcibe no está bien visto
+    this.courseService.createCourse(dataa) 
+      .subscribe({ 
         next: (dataa) => this.handleCoursesUpdate(dataa),
         error: (error) => this.isLoading = false,
         complete: () => this.isLoading = false,
@@ -80,19 +69,18 @@ export class CoursesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLoading = true; // Cuando se inicializa el componente se pasa true, para que aunque sean 0.5segundos, se vea el spiner
+    this.isLoading = true; 
     this.courseService.getCourses()
       .subscribe({
         next: (cursos) => {
           console.log("Recbo datos de getCourses: ", cursos);
-          // this.coursesData = [...cursos]; // Fue reemplazado por la linea siguiente
           this.handleCoursesUpdate(cursos)
         },
         error: () => {
-          this.isLoading = false; // Cuando termina la carga, lo paso a false
+          this.isLoading = false; 
         },
         complete: () => {
-          this.isLoading = false; // Cuando termina la carga, lo paso a false
+          this.isLoading = false; 
         },
       })
   }
@@ -100,13 +88,10 @@ export class CoursesComponent implements OnInit {
   onDelete(idFn: string) {
     this.isLoading = true;
     if (confirm("Está seguro?")) {
-      // Operacion delete
-      // Estamos trabajando con observables de manera ASINCRONICA 
-      this.courseService.deleteCourseById(idFn) // cómo devuelve un observable me tengo que suscribir para recibir la respuesta
+      this.courseService.deleteCourseById(idFn) 
         .subscribe({
           next: (cursos) => {
             console.log("cursos ACTUALIZADA", cursos);
-            // this.coursesData = [...cursos]; //Fue reemplazado por la linea siguiente
             this.handleCoursesUpdate(cursos)
           },
           error: () => {

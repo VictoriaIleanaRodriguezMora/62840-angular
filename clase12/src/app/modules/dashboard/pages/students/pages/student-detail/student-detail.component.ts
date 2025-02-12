@@ -14,10 +14,8 @@ export class StudentDetailComponent {
   fullName: string;
 
   constructor(private activatedRoute: ActivatedRoute) {
-    // Es un objeto que tiene informacion de la ruta cargada actualmente 
     console.log(this.activatedRoute);
-    // this.studentId = this.activatedRoute.snapshot.params.id // no me deja acceder así
-    this.studentId = this.activatedRoute.snapshot.params['id'] // debo acceder así
+    this.studentId = this.activatedRoute.snapshot.params['id'] 
 
     const name = this.activatedRoute.snapshot.queryParams['name']
     const lastName = this.activatedRoute.snapshot.queryParams['lastName']

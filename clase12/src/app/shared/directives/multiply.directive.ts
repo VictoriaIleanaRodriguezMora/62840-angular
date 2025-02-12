@@ -6,7 +6,7 @@ import { Directive, ElementRef, Input, OnChanges, SimpleChanges, TemplateRef, Vi
 })
 export class MultiplyDirective implements OnChanges {
 
-  @Input() appMultiply? = 5; // al definir esta propiedad cómo Input, le eprmito al usuario vambiar su valor 
+  @Input() appMultiply? = 5; 
 
   constructor(private elementRef: ElementRef,
     private viewContainer: ViewContainerRef,

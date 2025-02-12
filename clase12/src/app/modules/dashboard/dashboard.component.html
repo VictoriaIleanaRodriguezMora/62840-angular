@@ -10,11 +10,9 @@
 
   <!-- AREA CONTENIDO - INICIO -->
   <div class="example-sidenav-content">
-    <!-- Acá en el padre, donde estoy usando el componente donde definí el componente hijo, aplico el binding () . Cuando el padre escuche ese evento, lo que va a hacer va en las comillas -->
     <app-toolbar (myDrawerToggle)="drawer.toggle()" />
     <!-- SIDENAV -->
 
-    <!-- <app-students /> -->
     <router-outlet />
   </div>
 
