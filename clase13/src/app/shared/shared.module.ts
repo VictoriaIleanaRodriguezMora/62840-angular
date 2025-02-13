@@ -13,7 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatCardModule } from '@angular/material/card';
 // Para usar el FullNamePipe en otro módulo:
 // 1° Exportarlo
 // 2° Importar el módulo en el módulo padre 
@@ -42,8 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    MatCardModule,
   ]
 })
-export class SharedModule { }
+  export class SharedModule { }
