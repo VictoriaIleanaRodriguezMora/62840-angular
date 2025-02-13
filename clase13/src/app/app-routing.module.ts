@@ -7,12 +7,14 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    loadChildren: () =>
-      import('./modules/dashboard/dashboard.module').then(
-        (dashMod) => dashMod.DashboardModule
-      ),
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then((dashMod) => dashMod.DashboardModule),
   },
-  { path: 'auth/login', component: LoginComponent },
+  {
+    // path: 'auth/login', // el segmento login debe ser definido en el modulo
+    path: 'auth', 
+    // component: LoginComponent  // Eager loading
+    loadChildren: () => import('./modules/auth/auth.module').then((dashMod) => dashMod.AuthModule),
+  },
   { path: '**', redirectTo: 'auth/login' },
 ];
 
