@@ -132,5 +132,4 @@ A la pantalla de cursos sólo van a poder acceder administradores
 
 
 
-
-01:24:00 sin documentacion desde 00:15:00
+01:31:00 sin documentacion desde 00:15:00
