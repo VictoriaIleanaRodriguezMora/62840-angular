@@ -116,7 +116,7 @@ ng g service core/auth --skip-tests
 ### Roles
 
 ```bash
- ng g guard guards/admin --skip-tests
+ ng g guard core/guards/admin --skip-tests
 ```
 
 ```bash
@@ -127,5 +127,10 @@ ng g service core/auth --skip-tests
 
 La aplicación está pensada para ser un backoffice, no está expuesta a los clientes. Es una aplicación administrativa e interna.
 Los usuarios son los maestros, alumnos, directivos.
+
+A la pantalla de cursos sólo van a poder acceder administradores
+
+
+
 
 01:24:00 sin documentacion desde 00:15:00

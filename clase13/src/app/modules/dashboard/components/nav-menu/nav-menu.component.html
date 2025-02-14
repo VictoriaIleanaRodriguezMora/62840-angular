@@ -1,21 +1,13 @@
 <mat-nav-list>
   <a
-    mat-list-item
-    routerLink="home"
+    *ngFor="let item of linktems"
+    [routerLink]="item.routerLink"
     routerLinkActive
-    #inicioLink="routerLinkActive"
-    [activated]="inicioLink.isActive"
+    #linkItem="routerLinkActive"
+    [activated]="linkItem.isActive"
+    mat-list-item
   >
-    Inicio
+    {{ item.label }}
   </a>
-  <a 
-  mat-list-item 
-  routerLink="students"
-  routerLinkActive
-  #studentsLink="routerLinkActive"
-  [activated]="studentsLink.isActive"
-  > Estudiantes </a>
-  <a mat-list-item routerLink="courses"> Cursos </a>
-  <a mat-list-item routerLink="courses" (click)="logout()" > Cerrar sesión </a>
-
+  <a mat-list-item routerLink="courses" (click)="logout()"> Cerrar sesión </a>
 </mat-nav-list>

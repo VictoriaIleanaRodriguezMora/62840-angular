@@ -16,7 +16,7 @@ const FAKE_USERS_DB: User[] = [
   },
   {
     id: randomString(6),
-    email: 'employee@email.com',
+    email: 'e@email.com',
     password: '123456',
     name: 'Empleado',
     accessToken: '123qwerty',

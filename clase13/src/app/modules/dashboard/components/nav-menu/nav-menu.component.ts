@@ -16,6 +16,25 @@ export class NavMenuComponent {
     private authService: AuthService
   ) { }
 
+  linktems: { label: string; routerLink: string }[] = [
+    {
+      label: "Inicio",
+      routerLink: "home",
+    },
+    {
+      label: "Estudiantes",
+      routerLink: "students",
+    },
+    {
+      label: "Cursos",
+      routerLink: "courses",
+    },
+    {
+      label: "Usuarios",
+      routerLink: "users",
+    },
+  ];
+
   logout(): void {
     // localStorage.removeItem('token');
     // this.router.navigate(['auth', 'login']);
