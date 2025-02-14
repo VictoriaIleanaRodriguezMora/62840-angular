@@ -11,6 +11,21 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent {
   constructor(private router: Router) { }
+  
+  linktems: { label: string; routerLink: string }[] = [
+    {
+      label: "Inicio",
+      routerLink: "home",
+    },
+    {
+      label: "Estudiantes",
+      routerLink: "students",
+    },
+    {
+      label: "Cursos",
+      routerLink: "courses",
+    },
+  ];
 
   logout(): void {
     localStorage.removeItem('token');
