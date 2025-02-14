@@ -111,12 +111,21 @@ ng g service core/auth --skip-tests
 
 ![alt text](image.png)
 
-
 ### Sesión del usuario para no perderla al recargar la página. - LocalStorage
 
+### Roles
 
+```bash
+ ng g guard guards/admin --skip-tests
+```
 
+```bash
+ ng g module modules/dashboard/pages/users --routing
+ ng g component modules/dashboard/pages/users --skip-tests --no-standalone
 
+```
 
-01:19:00 sin documentacion desde 00:15:00
+La aplicación está pensada para ser un backoffice, no está expuesta a los clientes. Es una aplicación administrativa e interna.
+Los usuarios son los maestros, alumnos, directivos.
 
+01:24:00 sin documentacion desde 00:15:00
