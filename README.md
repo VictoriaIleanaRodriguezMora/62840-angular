@@ -74,11 +74,13 @@ Generalmente, en caso de que no se cumpla la condición del Guard, se suele hace
 ```bash
 ng g guard core/guards/auth --skip-tests
 ```
+
 Con el espacio puedo elegir cuantos quiero generar![alt text](image.png)
 
 ```bash
 app-routing.module.ts
 ```
+
 ```ts
 {
     path: 'dashboard',
@@ -87,10 +89,11 @@ app-routing.module.ts
     loadChildren: () => import('./modules/dashboard/dashboard.module').then((dashMod) => dashMod.DashboardModule),
   },
 ```
+
 ¿Cómo comprobar que el guard funciona?
 No es amigable retornar un false y pantalla en blanco. En cambio se puede retornar al usuario a otra pantalla con un mensaje de error
 
-Necesito un servicio de autenticación al nivel de mi app para saber si el usuario está autenticado o no. 
+Necesito un servicio de autenticación al nivel de mi app para saber si el usuario está autenticado o no.
 
 Mejorar la lógica de cuando no es válido, se repite en todos.
 
@@ -108,4 +111,12 @@ ng g service core/auth --skip-tests
 
 ![alt text](image.png)
 
-00:56:00 sin audio desde 00:15:00
+
+### Sesión del usuario para no perderla al recargar la página. - LocalStorage
+
+
+
+
+
+01:19:00 sin documentacion desde 00:15:00
+

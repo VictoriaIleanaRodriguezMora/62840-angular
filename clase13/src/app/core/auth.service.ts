@@ -11,6 +11,7 @@ const FAKE_USERS_DB: User[] = [
     email: 'admin@email.com',
     password: '123456',
     name: 'Administador',
+    accessToken: 'qwerty123',
     role: 'ADMIN'
   },
   {
@@ -18,6 +19,7 @@ const FAKE_USERS_DB: User[] = [
     email: 'employee@email.com',
     password: '123456',
     name: 'Empleado',
+    accessToken: '123qwerty',
     role: 'EMPLOYEE'
   }
 ]
@@ -40,12 +42,27 @@ export class AuthService {
       return;
     }
 
+    localStorage.setItem("access_token", loginResult.accessToken)
     this._authUser$.next(loginResult)
     this.router.navigate(['dashboard', 'home'])
   }
 
-  isAuthenticated(): Observable<boolean>{
+  logout(){
+    localStorage.removeItem("access_token")
+    this._authUser$.next(null)
+    this.router.navigate(['auth', 'login'])
+  }
+
+  isAuthenticated(): Observable<boolean> {
+    const storageUser = FAKE_USERS_DB.find((user) => {
+      if (user.accessToken === localStorage.getItem("access_token")) {
+        return this._authUser$.next(user)
+      } else{
+        return this._authUser$.next(null)
+      }
+    })
+
     // Los pipes transforman la emisión de un obsevable. El map me permite transformarlo
-    return this._authUser$.pipe(map((x)=> !!x ? true : false))
+    return this._authUser$.pipe(map((x) => !!x ? true : false))
   }
 }
