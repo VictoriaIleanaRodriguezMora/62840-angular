@@ -106,6 +106,6 @@ ng g service core/auth --skip-tests
  ng g interface interfaces/user
 ```
 
+![alt text](image.png)
 
-
-00:43:00 sin audio desde 00:15:00
+00:56:00 sin audio desde 00:15:00
