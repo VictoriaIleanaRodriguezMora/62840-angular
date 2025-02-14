@@ -4,10 +4,12 @@
 </ng-container>
 
 <ng-template #coursesTable>
-  <button (click)="openFormDialog()" mat-flat-button >Crear curso</button>
-  <app-courses-table 
-  [dataSource]="coursesData"
-  (toDelete)="onDelete($event)"
-  (toEdit)="openFormDialog($event)"
+  <button *ngIf="isAdmin$ | async" (click)="openFormDialog()" mat-flat-button>
+    Crear curso
+  </button>
+  <app-courses-table
+    [dataSource]="coursesData"
+    (toDelete)="onDelete($event)"
+    (toEdit)="openFormDialog($event)"
   />
 </ng-template>

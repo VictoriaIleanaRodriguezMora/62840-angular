@@ -3,6 +3,8 @@ import { CoursesService } from '../../../../core/courses.service';
 import { Course } from '../../../../interfaces/courses';
 import { MatDialog } from "@angular/material/dialog"
 import { CourseFormDialogComponent } from './components/course-form-dialog/course-form-dialog.component';
+import { AuthService } from '../../../../core/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-courses',
@@ -14,13 +16,16 @@ import { CourseFormDialogComponent } from './components/course-form-dialog/cours
 
 export class CoursesComponent implements OnInit {
 
-  isLoading = false; 
+  isLoading = false;
   coursesData: Course[] = [];
-
+  isAdmin$: Observable<boolean>
   constructor(
     private courseService: CoursesService,
     private matDialog: MatDialog,
-  ) { }
+    private authService: AuthService
+  ) {
+    this.isAdmin$ = this.authService.isAdmin$
+   }
 
   handleCoursesUpdate(cursos: Course[]): void {
     this.coursesData = [...cursos];
@@ -31,8 +36,8 @@ export class CoursesComponent implements OnInit {
       console.log("Se va a editar el curso: ", editingCourse);
     }
     this.matDialog
-    .open(CourseFormDialogComponent, { data: { editingCourse } }) 
-      .afterClosed() 
+      .open(CourseFormDialogComponent, { data: { editingCourse } })
+      .afterClosed()
       .subscribe({
         next: (data) => {
           if (!!data) {
@@ -59,8 +64,8 @@ export class CoursesComponent implements OnInit {
 
   createCourse(dataa: { name: string }) {
     this.isLoading = true;
-    this.courseService.createCourse(dataa) 
-      .subscribe({ 
+    this.courseService.createCourse(dataa)
+      .subscribe({
         next: (dataa) => this.handleCoursesUpdate(dataa),
         error: (error) => this.isLoading = false,
         complete: () => this.isLoading = false,
@@ -69,7 +74,7 @@ export class CoursesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLoading = true; 
+    this.isLoading = true;
     this.courseService.getCourses()
       .subscribe({
         next: (cursos) => {
@@ -77,10 +82,10 @@ export class CoursesComponent implements OnInit {
           this.handleCoursesUpdate(cursos)
         },
         error: () => {
-          this.isLoading = false; 
+          this.isLoading = false;
         },
         complete: () => {
-          this.isLoading = false; 
+          this.isLoading = false;
         },
       })
   }
@@ -88,7 +93,7 @@ export class CoursesComponent implements OnInit {
   onDelete(idFn: string) {
     this.isLoading = true;
     if (confirm("Está seguro?")) {
-      this.courseService.deleteCourseById(idFn) 
+      this.courseService.deleteCourseById(idFn)
         .subscribe({
           next: (cursos) => {
             console.log("cursos ACTUALIZADA", cursos);

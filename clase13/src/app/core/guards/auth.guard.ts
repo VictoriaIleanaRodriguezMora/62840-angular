@@ -14,12 +14,20 @@ export const authGuard: CanActivateFn = (route, state) => {
   */
   return authService.isAuthenticated().pipe(
     map((isAuthenticated) => {
-      if (!isAuthenticated) { // caso false
+      console.log("¿Está autenticado?", isAuthenticated);
+  
+      if (!isAuthenticated) {
         return router.createUrlTree(["auth", "login"]);
       }
-      return isAuthenticated
+  
+      authService.authUser$.subscribe(user => {
+        console.log("Usuario autenticado en Guard:", user);
+      });
+  
+      return true;
     })
-  )
+  );
+  
 
 
 
