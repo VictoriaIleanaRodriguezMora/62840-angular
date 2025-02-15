@@ -130,6 +130,7 @@ Los usuarios son los maestros, alumnos, directivos.
 
 A la pantalla de cursos sólo van a poder acceder administradores
 
+El rol de administrador puede crear/editar/eliminar cursos, el que no es admin, por ejemplo el empleado va a haber cosas que no puede hacer, por ejemplo: Puede VER la pantalla de cursos pero no puede modificarlos, ni crear/editar/eliminar. Sólo GET, permisos de lectura
 
 
 01:31:00 sin documentacion desde 00:15:00
