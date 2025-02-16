@@ -1,13 +1,39 @@
 {
-    "posts": [
-      { "id": "1", "title": "a title", "views": 100 },
-      { "id": "2", "title": "another title", "views": 200 }
-    ],
-    "comments": [
-      { "id": "1", "text": "a comment about post 1", "postId": "1" },
-      { "id": "2", "text": "another comment about post 1", "postId": "1" }
-    ],
-    "profile": {
-      "name": "typicode"
+  "courses": [
+    {
+      "id": "Course1",
+      "name": "Desarrollo Web",
+      "price" : "100"
+    },
+    {
+      "id": "Course2",
+      "name": "Javascript",
+      "price" : "100"
+    },
+    {
+      "id": "Course3",
+      "name": "Javascript",
+      "price" : "300"
+    },
+    {
+      "id": "Course4",
+      "name": "Javascript",
+      "price" : "400"
+    },
+    {
+      "id": "Course5",
+      "name": "Javascript",
+      "price" : "500"
+    },
+    {
+      "id": "Course6",
+      "name": "Javascript",
+      "price" : "600"
+    },
+    {
+      "id": "Course7",
+      "name": "Javascript",
+      "price" : "700"
     }
-  }
+  ]
+}
