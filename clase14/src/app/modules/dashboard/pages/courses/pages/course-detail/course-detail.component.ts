@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../../../../../core/courses.service';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from '../../../../../../interfaces/courses';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-course-detail',
@@ -13,6 +14,8 @@ import { Course } from '../../../../../../interfaces/courses';
 export class CourseDetailComponent implements OnInit {
   isLoading = false;
   course: Course | null = null;
+  errorMessage = '';
+
   constructor(
     private coursesService: CoursesService,
     private activatedRoute: ActivatedRoute
@@ -28,11 +31,17 @@ export class CourseDetailComponent implements OnInit {
         },
         complete: () => {
           this.isLoading = false;
-
+          this.errorMessage = ''
         },
         error: (error) => {
           this.isLoading = false;
           console.log(error);
+          if(error instanceof HttpErrorResponse){
+            if (error.status === 404) {
+              this.errorMessage = "El curso no existe" 
+              alert("El curso no existe")
+            }
+          }
         },
       })
   }

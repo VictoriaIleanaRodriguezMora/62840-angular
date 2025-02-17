@@ -44,7 +44,7 @@ export class AuthService {
   get isAdmin$(): Observable<boolean> {
     return this.authUser$.pipe(
       map(user => {
-        console.log("Verificando admin:", user);
+        // console.log("Verificando admin:", user);
         return user?.role === "ADMIN";
       })
     );

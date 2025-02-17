@@ -84,6 +84,7 @@ Detalle del profesor
 
 Cuando entro a la ruta de detalle y no tiene profesores devuelve un 404
 
+Hay que manejar los errores de alguna manera. Redireccion pantalla de errores algo.
 
 
-01:45:00
+01:54:00
