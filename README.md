@@ -28,4 +28,4 @@ http://undefined:3001/courses?_page=1&perpage_2 // 2 x pagina
 Ordenar
  
 
-00:27:00
+01:02:00
