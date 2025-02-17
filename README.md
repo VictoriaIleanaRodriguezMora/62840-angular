@@ -19,8 +19,10 @@ npm i -g json-server
 ```bash
 json-server db.json --watch
 ```
-
+```bash
 npx json-server db.json --port 3001
+```
+
 http://undefined:3001/courses
 http://undefined:3001/courses?price_gt=1000 // greater than
 Paginaciones
@@ -66,4 +68,10 @@ Se elimina el contenido del comando budget porque no deja levantar la app.
 
 Tengo que entrar con el usuario admin para poder crear un curso.
 
-01:24:00
+En db.json para relacionar correctamente un profesor a un curso, uso el id del curso. Pero debe estar escrito sintacticamente así course para referirme al array de cursos y Id para hacer entender a json server que es el id del curso a lo que me quiero referir
+
+Quiero acceder al detalle: 👁️ y ver el nombre del profesor. ¿Cómo se hace?
+
+$ ng g c modules/dashboard/pages/courses/pages/coursesDetail --skip-tests --no-standalone
+
+01:31:00

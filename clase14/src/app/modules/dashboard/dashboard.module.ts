@@ -12,12 +12,14 @@ import { StudentsModule } from './pages/students/students.module';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../../shared/shared.module';
+import { CoursesDetailComponent } from './courses/pages/courses-detail/courses-detail.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ToolbarComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    CoursesDetailComponent
   ],
   imports: [
     CommonModule,

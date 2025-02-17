@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 // import { HttpClientModule } from '@angular/common/http';
 @NgModule({
@@ -14,7 +13,6 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DashboardModule,
     // HttpClientModule
   ],
   providers: [

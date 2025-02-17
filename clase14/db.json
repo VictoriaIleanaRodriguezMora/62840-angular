@@ -35,5 +35,12 @@
       "name": "Javascript",
       "price": "700"
     }
+  ],
+  "professors": [
+    {
+      "id": "professor1",
+      "name": "Logan",
+      "courseId": "Course1"
+    }
   ]
 }

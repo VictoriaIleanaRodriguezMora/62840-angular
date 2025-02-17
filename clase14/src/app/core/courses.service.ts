@@ -5,16 +5,8 @@ import { randomString } from '../shared/randomString';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-let MY_FAKE_DATABASE: Course[] = [
-  {
-    id: randomString(6),
-    name: 'Js'
-  },
-  {
-    id: randomString(6),
-    name: 'Des Web'
-  },
-]
+// ya no se usa
+
 @Injectable({
   providedIn: 'root'
 })
