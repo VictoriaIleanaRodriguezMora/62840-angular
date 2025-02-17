@@ -3,6 +3,7 @@ import { Course } from '../interfaces/courses';
 import { of, Observable, delay } from 'rxjs';
 import { randomString } from '../shared/randomString';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 let MY_FAKE_DATABASE: Course[] = [
   {
@@ -36,8 +37,10 @@ export class CoursesService {
   }
 
   getCourses(): Observable<Course[]> {
+    console.log("environment.baseApiUrl", environment.baseApiUrl);
+
     // return of([...MY_FAKE_DATABASE]).pipe(delay(500))
-    return this.httpClient.get<Course[]>('http://localhost:3001/courses') // si el día de mañana despliego mi aplicacion no puedo dejar hardcodeada acá algo apuntando a localhost
+    return this.httpClient.get<Course[]>(`${environment.baseApiUrl}/courses`) // si el día de mañana despliego mi aplicacion no puedo dejar hardcodeada acá algo apuntando a localhost
   }
 
   deleteCourseById(id: string): Observable<Course[]> {

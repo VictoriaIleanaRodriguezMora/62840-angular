@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,4 +10,5 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ToolbarComponent {
   @Output() myDrawerToggle = new EventEmitter();
+  baseApiUrl = environment.baseApiUrl
 }
