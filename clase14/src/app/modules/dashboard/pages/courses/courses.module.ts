@@ -7,14 +7,14 @@ import { CoursesTableComponent } from './components/courses-table/courses-table.
 
 import { SharedModule } from '../../../../shared/shared.module';
 import { CourseFormDialogComponent } from './components/course-form-dialog/course-form-dialog.component';
-import { CoursesDetailComponent } from './pages/courses-detail/courses-detail.component';
+import { CourseDetailComponent } from './pages/course-detail/course-detail.component';
 
 @NgModule({
   declarations: [
     CoursesComponent,
     CoursesTableComponent,
     CourseFormDialogComponent,
-    CoursesDetailComponent
+    CourseDetailComponent,
   ],
   imports: [
     CommonModule,

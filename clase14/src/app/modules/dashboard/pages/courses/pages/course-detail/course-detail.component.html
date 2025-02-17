@@ -1,0 +1,14 @@
+<p>course-detail works!</p>
+<ng-container *ngIf="isLoading; else coursesTable">
+  <mat-spinner></mat-spinner>
+</ng-container>
+<ng-template #coursesTable>
+  <h2>{{ course?.name }}</h2>
+  <h4>Profesores:</h4>
+  <!-- Tabla para editar, crear, eliminar -->
+  <mat-list>
+    <mat-list-item *ngFor="let professor of course?.professors">
+      {{ professor.name }}
+    </mat-list-item>
+  </mat-list>
+</ng-template>

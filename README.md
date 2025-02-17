@@ -72,6 +72,18 @@ En db.json para relacionar correctamente un profesor a un curso, uso el id del c
 
 Quiero acceder al detalle: 👁️ y ver el nombre del profesor. ¿Cómo se hace?
 
-$ ng g c modules/dashboard/pages/courses/pages/coursesDetail --skip-tests --no-standalone
+```bash
+ng g c modules/dashboard/pages/courses/pages/courseDetail --skip-tests --no-standalone
+```
 
-01:31:00
+```bash
+ng g interface interfaces/professors
+```
+
+Detalle del profesor
+
+Cuando entro a la ruta de detalle y no tiene profesores devuelve un 404
+
+
+
+01:45:00
