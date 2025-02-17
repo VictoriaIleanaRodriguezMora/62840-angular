@@ -86,5 +86,11 @@ Cuando entro a la ruta de detalle y no tiene profesores devuelve un 404
 
 Hay que manejar los errores de alguna manera. Redireccion pantalla de errores algo.
 
+Headers
+En http en el detalle de las solicitudes van adjuntados unos metadatos que se pueden consultar en la pestaña headers .
+Datos que yo envío al servidor
+El dev de back puede pedir que yo le envie data por headers
+
+
 
 01:54:00

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Course } from '../interfaces/courses';
 import { of, Observable, delay, concatMap } from 'rxjs';
 import { randomString } from '../shared/randomString';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 // ya no se usa
@@ -47,7 +47,11 @@ export class CoursesService {
   getCourses(): Observable<Course[]> {
     console.log("environment.baseApiUrl", environment.baseApiUrl);
     // return of([...MY_FAKE_DATABASE]).pipe(delay(500))
-    return this.httpClient.get<Course[]>(`${environment.baseApiUrl}/courses`) // si el día de mañana despliego mi aplicacion no puedo dejar hardcodeada acá algo apuntando a localhost
+const myHeaders = new HttpHeaders().append('Authorization', localStorage.getItem('access_token') || '')
+
+    return this.httpClient.get<Course[]>(`${environment.baseApiUrl}/courses`.{
+      headers: myHeaders
+    }) // si el día de mañana despliego mi aplicacion no puedo dejar hardcodeada acá algo apuntando a localhost
   }
 
   deleteCourseById(id: string): Observable<Course[]> {
