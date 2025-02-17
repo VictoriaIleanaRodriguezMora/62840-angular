@@ -64,4 +64,6 @@ Con este comando va a leer las variables del archivo de produccion
 
 Se elimina el contenido del comando budget porque no deja levantar la app.
 
-01:15:00
+Tengo que entrar con el usuario admin para poder crear un curso.
+
+01:24:00

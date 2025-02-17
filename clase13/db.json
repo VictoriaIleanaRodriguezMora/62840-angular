@@ -2,38 +2,38 @@
   "courses": [
     {
       "id": "Course1",
-      "name": "Desarrollo Web",
-      "price" : "100"
+      "name": "Desarrollo Web ed",
+      "price": "100"
     },
     {
       "id": "Course2",
       "name": "Javascript",
-      "price" : "100"
+      "price": "100"
     },
     {
       "id": "Course3",
       "name": "Javascript",
-      "price" : "300"
+      "price": "300"
     },
     {
       "id": "Course4",
       "name": "Javascript",
-      "price" : "400"
+      "price": "400"
     },
     {
       "id": "Course5",
       "name": "Javascript",
-      "price" : "500"
+      "price": "500"
     },
     {
       "id": "Course6",
       "name": "Javascript",
-      "price" : "600"
+      "price": "600"
     },
     {
       "id": "Course7",
       "name": "Javascript",
-      "price" : "700"
+      "price": "700"
     }
   ]
 }
