@@ -45,16 +45,18 @@ ng test
 Al correr este comando, se despliega un servidor de Karma, en donde se abre en el navegador una pestaña mas amigable con los errores/cosas de los tests
 ![alt text](image.png)
 
+Login es el punto de acceso a mi app, sin el no tengo usuario.
+
+login.compnent.spec.ts
 
 
-
-
-
+Los componentes de Angular son clases de ts que se instancian por angular cuando se muestran en pantalla. Verifico que la instancia esté definida, que no sea nula ni undefined
  
+Si creo un archivo con el ng test corriendo, debo cortarlo y volver a arrancar para que lo tome
 
-
-
-
+```bash
+npm i ng-mocks
+```
 
 
 

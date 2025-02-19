@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../../../interfaces/students';
 import { randomString } from '../../../../shared/randomString';
-import { StudentsService } from '../../../../core/students.service';
+import { StudentsService } from '../../../../core/services/students.service';
 
 @Component({
   selector: 'app-students',
@@ -22,7 +22,7 @@ export class StudentsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private myStudentService: StudentsService 
+    private myStudentService: StudentsService
   ) {
     this.studentForm = this.fb.group({
       name: [null, [Validators.required]],
@@ -37,11 +37,11 @@ export class StudentsComponent implements OnInit {
   }
 
   getStudentDetails(id: string) {
-    this.myStudentService 
-    .getStudentsById(id) 
-    .subscribe(student => { 
-      return this.selectedStudent = student; 
-    })
+    this.myStudentService
+      .getStudentsById(id)
+      .subscribe(student => {
+        return this.selectedStudent = student;
+      })
   }
 
   onSubmit() {
@@ -60,7 +60,7 @@ export class StudentsComponent implements OnInit {
           }
         })
 
-        this.editingStudentId = null 
+        this.editingStudentId = null
       } else {
         this.students = [
           ...this.students,

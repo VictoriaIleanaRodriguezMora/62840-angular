@@ -3,6 +3,7 @@ import { Robot } from './robot.class';
 describe('Pruebas de la clase Robot', () => {
   let myRobot = new Robot('Goku');
 
+/* sin el before each la instancia seria la misma para todas las pruebas, y puede pasar que una prueba, contamine la sig. y que no sea un error de la prueba si no que se contaminó| */
   beforeEach(() => {
     myRobot = new Robot('Goku');
   });
