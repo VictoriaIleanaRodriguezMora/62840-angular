@@ -1,96 +1,63 @@
 ```bash
 nvm use  22.13.0
-cd clase14
+cd clase15
 npm i
 ng serve
 ```
 
-¿Que es API? Conjunto de
-¿REST?
+Metodologias de Testing
 
-Servicios Mock
+TDD | BDD
+TDD es la que vamos a usar
+Testing Driven Development
+1. Definimos los objetivos y escribimos su posible implementación.
+2. Programamos el código para pasar las pruebas.
+3. Podemos añadir nuevos casos de uso y refactorizar nuestro código.
 
-Json server
+BDD
+Behavior Driven Development
+No es una estrategia de testing si no una metodologia de desarrollo
+
+Distintas formas de hacer testing
+| End to End | Integración | Unitarias |
+| ---------- | ----------- | --------- |
+
+las primeras 2 no son tan necesarias si tengo unas buenas pruebas unitarias
+
+Lo mas optimo es testear los componentes/funciones más importantes y vitales de mi aplicación
+
+Todos los recursos externos al componente debería tratar de mockearse en la prueba unitaria para no tener que hacer consultas externas. 
+
+En el ambiente del testing.
+Testear el componente.html y el componente.ts es una prueba de integración. Porque estoy probando cómo se integra el .ts en mi .html
+En realidad son componentes separados. Pero no vamos a hacer este tipo de pruebas, sólo del .ts
+
+Por defecto Angular trae instalado y pre configurado Jasmine y Karma
+
+
+Estas librerias buscan dentro de mi proyecto archivos que terminen en .spec.ts, si no, no lo van a testear
+
+Angular CLI  tiene un comando para los tests. Con este comando
+```bash 
+ng test
+```
+
+Al correr este comando, se despliega un servidor de Karma, en donde se abre en el navegador una pestaña mas amigable con los errores/cosas de los tests
+![alt text](image.png)
+
+Login es el punto de acceso a mi app, sin el no tengo usuario.
+
+login.compnent.spec.ts
+
+
+Los componentes de Angular son clases de ts que se instancian por angular cuando se muestran en pantalla. Verifico que la instancia esté definida, que no sea nula ni undefined
+ 
+Si creo un archivo con el ng test corriendo, debo cortarlo y volver a arrancar para que lo tome
 
 ```bash
-npm i -g json-server
+npm i ng-mocks
 ```
 
-```bash
-json-server db.json --watch
-```
-```bash
-npx json-server db.json --port 3001
-```
-
-http://undefined:3001/courses
-http://undefined:3001/courses?price_gt=1000 // greater than
-Paginaciones
-http://undefined:3001/courses?\_page=1&perpage_2 // 2 x pagina
-Ordenar
-
-```bash
-ng generate environments
-```
-
-`CREATE src/environments/environment.ts (31 bytes)
-CREATE src/environments/environment.development.ts (31 bytes)
-UPDATE angular.json (3443 bytes)`
-Genera un archivo para variables de entorno en DEV y PRD
-
-Cuando se usa `ng serve` la configuracion que toma por defecto es la de desarrollo
-
-```bash
-angular.json
-```
-
-```json
- "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "b:build:production"
-            },
-            "development": {
-              "buildTarget": "b:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-```
-Con:
-```bash
-ng serve -c production
-```
-Con este comando va a leer las variables del archivo de produccion
-
-Se elimina el contenido del comando budget porque no deja levantar la app.
-
-Tengo que entrar con el usuario admin para poder crear un curso.
-
-En db.json para relacionar correctamente un profesor a un curso, uso el id del curso. Pero debe estar escrito sintacticamente así course para referirme al array de cursos y Id para hacer entender a json server que es el id del curso a lo que me quiero referir
-
-Quiero acceder al detalle: 👁️ y ver el nombre del profesor. ¿Cómo se hace?
-
-```bash
-ng g c modules/dashboard/pages/courses/pages/courseDetail --skip-tests --no-standalone
-```
-
-```bash
-ng g interface interfaces/professors
-```
-
-Detalle del profesor
-
-Cuando entro a la ruta de detalle y no tiene profesores devuelve un 404
-
-Hay que manejar los errores de alguna manera. Redireccion pantalla de errores algo.
-
-Headers
-En http en el detalle de las solicitudes van adjuntados unos metadatos que se pueden consultar en la pestaña headers .
-Datos que yo envío al servidor
-El dev de back puede pedir que yo le envie data por headers
 
 
-
-01:54:00
+01:02:00
