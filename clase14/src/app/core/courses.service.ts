@@ -16,9 +16,9 @@ export class CoursesService {
   constructor(private httpClient: HttpClient) { }
 
   getCourseDetail(id: string): Observable<Course> {
-// este es sólo el detalle del curso, no muestra los docentes
+    // este es sólo el detalle del curso, no muestra los docentes
     // return this.httpClient.get<Course>(`${environment.baseApiUrl}/courses/${id}`) // si el día de mañana despliego mi aplicacion no puedo dejar hardcodeada acá algo apuntando a localhost
-    
+
     return this.httpClient.get<Course>(`${environment.baseApiUrl}/courses/${id}?_embed=professors`) // si el día de mañana despliego mi aplicacion no puedo dejar hardcodeada acá algo apuntando a localhost
   }
 
@@ -47,9 +47,9 @@ export class CoursesService {
   getCourses(): Observable<Course[]> {
     console.log("environment.baseApiUrl", environment.baseApiUrl);
     // return of([...MY_FAKE_DATABASE]).pipe(delay(500))
-const myHeaders = new HttpHeaders().append('Authorization', localStorage.getItem('access_token') || '')
+    const myHeaders = new HttpHeaders().append('Authorization', localStorage.getItem('access_token') || '')
 
-    return this.httpClient.get<Course[]>(`${environment.baseApiUrl}/courses`.{
+    return this.httpClient.get<Course[]>(`${environment.baseApiUrl}/courses`, {
       headers: myHeaders
     }) // si el día de mañana despliego mi aplicacion no puedo dejar hardcodeada acá algo apuntando a localhost
   }
