@@ -25,7 +25,7 @@ export class CourseDetailComponent implements OnInit {
     this.coursesService.getCourseDetail(this.activatedRoute.snapshot.params['id']) // importante
       .subscribe({
         next: (c) => {
-          console.log("c",c);
+          console.log("course recibido",c);
           
           this.course = c
         },
