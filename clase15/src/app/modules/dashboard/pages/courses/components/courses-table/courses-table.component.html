@@ -22,7 +22,7 @@
       <button *ngIf="isAdmin$ | async" (click)="toDelete.emit(element.id)" mat-button>
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-button>
+      <button [routerLink]="element.id" mat-button>
         <mat-icon>visibility</mat-icon>
       </button>
     </td>
