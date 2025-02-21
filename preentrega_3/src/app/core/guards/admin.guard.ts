@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { map } from 'rxjs';
 
 export const adminGuard: CanActivateFn = (route, state) => {
@@ -16,7 +16,8 @@ export const adminGuard: CanActivateFn = (route, state) => {
       if (authUser.role === 'ADMIN') {
         return true
       } else {
-        return router.createUrlTree(['dashboard', 'home'])      }
+        return router.createUrlTree(['dashboard', 'home'])
+      }
     })
   )
 

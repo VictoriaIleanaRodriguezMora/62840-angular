@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Course } from '../interfaces/courses';
+import { Course } from '../../interfaces/courses';
 import { of, Observable, delay, concatMap } from 'rxjs';
-import { randomString } from '../shared/randomString';
+import { randomString } from '../../shared/randomString';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 // ya no se usa
 

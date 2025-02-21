@@ -1,12 +1,10 @@
-<p>course-detail works!</p>
-
 <ng-container *ngIf="isLoading; else checkError">
   <mat-spinner></mat-spinner>
 </ng-container>
 
 <ng-template #checkError>
   <ng-container *ngIf="errorMessage; else coursesTable">
-    <p>{{ errorMessage }}</p>
+    <app-my-alert [contentAlert]="alertMessage|| ''"></app-my-alert>
   </ng-container>
 </ng-template>
 

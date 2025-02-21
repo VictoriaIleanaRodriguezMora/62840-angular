@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
-import { AuthService } from '../../../../core/auth.service';
+import { AuthService } from '../../../../core/services/auth.service';
 import { map, Observable } from 'rxjs';
 
 @Component({
@@ -20,7 +20,7 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit() {
     this.userRole$ = this.authService.authUser$.pipe(
-      map(user => user ? user.role : null) 
+      map(user => user ? user.role : null)
     );
   }
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '../../../../../../interfaces/courses';
-import { AuthService } from '../../../../../../core/auth.service';
+import { AuthService } from '../../../../../../core/services/auth.service';
 import { map, Observable } from 'rxjs';
 
 @Component({

@@ -19,7 +19,7 @@ ng serve
 ```bash
 nvm use  22.13.0
 cd preentrega_3
-npx json-server db.json --port 3001
+npx json-server courses_db.json --port 3001
 ```
  
 ## Usuarios de prueba:
@@ -55,5 +55,6 @@ Optimizar tu proyecto frontend basado en Angular, integrando lo trabajado en cla
 - [x] dividir en columnas las acciones
 - [ ] manejar los errores de alguna manera. Redireccion pantalla de errores algo.
 - [ ] boton de cancelar me deja pensando la pág
-- [ ] hacer que no entre al detalle si no hay nada que mostrar
+- [x] hacer que no entre al detalle si no hay nada que mostrar
 - [x] mostrar en toolbar algo respecto al rol
+- [ ] Pop up, sweet alert para los mensaje en vez de alert

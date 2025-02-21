@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { LoginPayload } from '../interfaces/login-payload';
+import { LoginPayload } from '../../interfaces/login-payload';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { User } from '../interfaces/user';
-import { randomString } from '../shared/randomString';
+import { User } from '../../interfaces/user';
+import { randomString } from '../../shared/randomString';
 import { Router } from '@angular/router';
 
 const FAKE_USERS_DB: User[] = [
@@ -42,7 +42,7 @@ export class AuthService {
       })
     );
   }
-  
+
   login(payload: LoginPayload): void {
     console.log("payload", payload);
 
@@ -75,15 +75,15 @@ export class AuthService {
   isAuthenticated(): Observable<boolean> {
     const accessToken = localStorage.getItem("access_token");
     const storageUser = FAKE_USERS_DB.find(user => user.accessToken === accessToken);
-  
+
     console.log("Usuario obtenido desde localStorage:", storageUser);
-  
+
     if (storageUser) {
       this._authUser$.next(storageUser);
     } else {
       this._authUser$.next(null);
     }
-  
+
     return this.authUser$.pipe(map(user => {
       console.log("Usuario en authUser$ dentro de isAuthenticated:", user);
       return !!user;
