@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StudentsComponent } from './students.component';
-import { StudentDetailComponent } from './pages/student-detail/student-detail.component';
+
 /* Aquí la ruta de la que parte, es /dashboard/students/ */
 
 const routes: Routes = [{
@@ -10,7 +10,8 @@ const routes: Routes = [{
 },
 {
   path: ":id", 
-  component: StudentDetailComponent
+  loadChildren: () => import('./students.module').then((studMod) => studMod.StudentsModule),
+
 }
 ];
 

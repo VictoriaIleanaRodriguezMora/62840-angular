@@ -8,14 +8,12 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [authGuard], // el guard va a funcionar bajo cualquier ruta dentro del arbol de rutas de dashboard
+    canActivate: [authGuard], 
     loadChildren: () => import('./modules/dashboard/dashboard.module').then((dashMod) => dashMod.DashboardModule),
   },
   {
-    // path: 'auth/login', // el segmento login debe ser definido en el modulo
     path: 'auth', 
-    // component: LoginComponent  // Eager loading
-    loadChildren: () => import('./modules/auth/auth.module').then((dashMod) => dashMod.AuthModule),
+    loadChildren: () => import('./modules/auth/auth.module').then((authMod) => authMod.AuthModule),
   },
   { path: '**', redirectTo: 'auth/login' },
 ];

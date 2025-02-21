@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     path: "login", // /auth/login
     component: LoginComponent
+    // loadChildren: () => import('./auth.module').then((authMod) => authMod.AuthModule) // ❌
   },
   { path: '**', redirectTo: 'login' },
 ];
