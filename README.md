@@ -5,6 +5,7 @@
 ## ¿Cómo levantar el proyecto?
  
 ```bash
+nvm i 22.13.0
 nvm use  22.13.0
 git clone https://github.com/VictoriaIleanaRodriguezMora/62840-angular.git
 cd 62840-angular
@@ -49,3 +50,10 @@ Optimizar tu proyecto frontend basado en Angular, integrando lo trabajado en cla
 - [ ] Guards y Autenticación de usuarios.
 - [ ] API Rest.
 - [ ] Unit Testing: Test unitarios de componentes y servicios.
+
+### A realizar
+- [x] dividir en columnas las acciones
+- [ ] manejar los errores de alguna manera. Redireccion pantalla de errores algo.
+- [ ] boton de cancelar me deja pensando la pág
+- [ ] hacer que no entre al detalle si no hay nada que mostrar
+- [x] mostrar en toolbar algo respecto al rol

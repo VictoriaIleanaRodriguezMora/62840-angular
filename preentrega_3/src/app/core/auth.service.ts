@@ -32,31 +32,22 @@ export class AuthService {
   private _authUser$ = new BehaviorSubject<null | User>(null);
   authUser$ = this._authUser$.asObservable();
 
-  // isAdmin$: Observable<boolean>;
   constructor(private router: Router) {
-    // this.isAdmin$ = this.authUser$.pipe(
-    //   map((x) => x?.role === "ADMIN")
-    // );
-    console.log("c");
-
   }
 
   get isAdmin$(): Observable<boolean> {
     return this.authUser$.pipe(
       map(user => {
-        // console.log("Verificando admin:", user);
         return user?.role === "ADMIN";
       })
     );
   }
   
-
   login(payload: LoginPayload): void {
     console.log("payload", payload);
 
     const loginResult = FAKE_USERS_DB.find((user) => {
       if (user.email === payload.email && user.password === payload.password) {
-        console.log("Usuario encontrado:", user);
         return user;
       }
       return null;
@@ -74,7 +65,6 @@ export class AuthService {
 
     this.router.navigate(["dashboard", "home"]);
   }
-
 
   logout() {
     localStorage.removeItem("access_token")
@@ -99,4 +89,5 @@ export class AuthService {
       return !!user;
     }));
   }
+
 }  

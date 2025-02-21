@@ -13,7 +13,7 @@ import { map, Observable } from 'rxjs';
 export class CoursesTableComponent {
   @Input() dataSource: Course[] = [];
   @Output() toDelete = new EventEmitter<string>;
-  displayedColumns = ["id", "name", "actions"];
+  displayedColumns = ["id", "name", "edit", "delete", "detail"];
   @Output() toEdit = new EventEmitter<Course>()
 
   isAdmin$: Observable<boolean>
