@@ -14,12 +14,20 @@ npm i
 ng serve
 ```
  
-## En otra terminal:
+## Cursos | En otra terminal:
  
 ```bash
 nvm use  22.13.0
 cd preentrega_3
 npx json-server courses_db.json --port 3001
+```
+
+## Estudiantes | En otra terminal:
+ 
+```bash
+nvm use  22.13.0
+cd preentrega_3
+npx json-server students_db.json --port 3000
 ```
  
 ## Usuarios de prueba:
@@ -39,17 +47,17 @@ Optimizar tu proyecto frontend basado en Angular, integrando lo trabajado en cla
  
 ### 🎯 Objetivos específicos
  
-- [ ] Usar correctamente los métodos de la API.
-- [ ] Generar, al menos, un archivo de test que testee un servicio y otro que testee un componente.
-- [ ] Crear rutas para la aplicación.
-- [ ] Uso de angular material.
+- [x] Usar correctamente los métodos de la API.
+- [x] Generar, al menos, un archivo de test que testee un servicio y otro que testee un componente.
+- [x] Crear rutas para la aplicación.
+- [x] Uso de angular material.
  
 ### 🎯 Se debe entregar
  
-- [ ] Lazy Loading y Rutas child.
-- [ ] Guards y Autenticación de usuarios.
-- [ ] API Rest.
-- [ ] Unit Testing: Test unitarios de componentes y servicios.
+- [x] Lazy Loading y Rutas child.
+- [x] Guards y Autenticación de usuarios.
+- [x] API Rest.
+- [x] Unit Testing: Test unitarios de componentes y servicios.
 
 ### A realizar
 - [x] dividir en columnas las acciones
@@ -57,4 +65,4 @@ Optimizar tu proyecto frontend basado en Angular, integrando lo trabajado en cla
 - [ ] boton de cancelar me deja pensando la pág
 - [x] hacer que no entre al detalle si no hay nada que mostrar
 - [x] mostrar en toolbar algo respecto al rol
-- [ ] Pop up, sweet alert para los mensaje en vez de alert
+- [x] Pop up, sweet alert para los mensaje en vez de alert

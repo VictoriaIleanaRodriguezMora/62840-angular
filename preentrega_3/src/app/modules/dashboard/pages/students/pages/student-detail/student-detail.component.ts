@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { StudentsService } from '../../../../../../core/services/students.service';
+import { Student } from '../../../../../../interfaces/students';
 
 @Component({
   selector: 'app-student-detail',
@@ -8,18 +10,20 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './student-detail.component.html',
   styleUrl: './student-detail.component.scss'
 })
-export class StudentDetailComponent {
+export class StudentDetailComponent implements OnInit {
+  studentId: string = '';
+  student: Student | null = null;
 
-  studentId: string;
-  fullName: string;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private studentsService: StudentsService
+  ) {}
 
-  constructor(private activatedRoute: ActivatedRoute) {
-    console.log(this.activatedRoute);
-    this.studentId = this.activatedRoute.snapshot.params['id'] 
+  ngOnInit(): void {
+    this.studentId = this.activatedRoute.snapshot.params['id'];
 
-    const name = this.activatedRoute.snapshot.queryParams['name']
-    const lastName = this.activatedRoute.snapshot.queryParams['lastName']
-    this.fullName = `${name}, ${lastName}`
-
+    this.studentsService.getStudentDetail(this.studentId).subscribe((studentData) => {
+      this.student = studentData;
+    });
   }
 }
