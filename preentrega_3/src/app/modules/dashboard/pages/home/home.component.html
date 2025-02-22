@@ -1,0 +1,9 @@
+<!-- INICIO HOME -->
+<div class="container">
+  <h3>Bienvenidx!</h3>
+
+  <div *ngIf="userRole$ | async as myRole">
+    <span>Rol: {{ myRole }}</span>
+  </div>
+</div>
+<!-- FIN HOME -->

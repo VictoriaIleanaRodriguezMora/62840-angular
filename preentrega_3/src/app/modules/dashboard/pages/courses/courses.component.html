@@ -1,0 +1,21 @@
+<div class="container">
+
+  <h3>Page - Cursos Instituto 'abc'</h3>
+
+  <ng-container *ngIf="isLoading; else coursesTable">
+    <mat-spinner></mat-spinner>
+  </ng-container>
+
+  <ng-template #coursesTable>
+
+    <button *ngIf="isAdmin$ | async" (click)="openFormDialog()" class="mt-2" mat-flat-button>
+      Crear curso
+    </button>
+
+    <app-courses-table
+      [dataSource]="coursesData"
+      (toDelete)="onDelete($event)"
+      (toEdit)="openFormDialog($event)"
+    />
+  </ng-template>
+</div>

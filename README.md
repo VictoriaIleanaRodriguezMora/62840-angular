@@ -1,47 +1,60 @@
-# Segunda entrega de Proyecto final - Angular
-
-[Enlace a la presentacion](https://docs.google.com/presentation/d/1Sysx6eeGKL3HjecCNrbpx20S-j-2clyjIGXZjIL-pYY/edit#slide=id.g228a08608a5_0_426)
-
+# Tercera entrega de Proyecto final - Angular
+ 
+[Enlace a la presentacion](https://docs.google.com/presentation/d/1OuhibK4qB-QOfUx4qVJt6MiEgBopOIIcKgg8YBV9cOE/edit#slide=id.g22c4018c097_1_586)
+ 
 ## ¿Cómo levantar el proyecto?
+ 
 ```bash
+nvm i 22.13.0
 nvm use  22.13.0
+git clone https://github.com/VictoriaIleanaRodriguezMora/62840-angular.git
 cd 62840-angular
+cd preentrega_3
 npm i
 ng serve
 ```
-
-### 📚Consigna
-Generar un proyecto Angular que contemple la **administración** de `alumnos`, `clases` y `cursos`, utilizando Angular Material. Ten en cuenta los aspectos técnicos y aspectos funcionales claves para que tu proyecto cumpla con los objetivos. Puedes ayudarte con la Rúbrica de la Segunda Entrega del Proyecto Final.
-
-### 💭 Objetivos generales
-Optimizar tu proyecto frontend basado en Angular, integrando lo trabajado en clases hasta el momento y respetando los aspectos técnicos y funcionales esenciales.
-
-### 🎯 Objetivos específicos
-- [x] Añadir modulos especifícos.
-- [x] Creación de servicios que devuelvan un observable con datos mockeados.
-- [x] Uso de routing.
-- [x] Uso de angular material.
-
-### 🎯 Se debe entregar
-- [x] Agregar servicios de las entidades que permitan el ABM de los mismos
-- [x] Utilizar estos servicios en los componentes.
-- [x] Modularizar la aplicación en app, core, shared y features modules.
-- [x] Utilizar la navegación de rutas desde el menú lateral.
-
-
-
-
-### Comandos aplicados:
+ 
+## En otra terminal:
+ 
 ```bash
-ng g m modules/dashboard/pages/teachers
-
-ng g m core
-
-ng g c modules/dashboard/pages/courses --skip-tests --no-standalone
-
-ng g c modules/dashboard/pages/courses/components/courses-table --skip-tests --no-standalone
-
-ng g service core/courses --skip-tests
-
-ng g c modules/dashboard/pages/courses/components/course-form-dialog --skip-tests --no-standalone
+nvm use  22.13.0
+cd preentrega_3
+npx json-server courses_db.json --port 3001
 ```
+ 
+## Usuarios de prueba:
+ 
+|            | Admin | Empleado |
+| ---------- | ----- | -------- |
+| Usuario    | a     | e        |
+| Contraseña | 1     | 1        |
+ 
+### 📚Consigna
+ 
+Generar un proyecto Angular que contemple la administración de alumnos, clases y cursos, utilizando Angular Material. Ten en cuenta los aspectos técnicos y aspectos funcionales claves para que tu proyecto cumpla con los objetivos.
+ 
+### 💭 Objetivos generales
+ 
+Optimizar tu proyecto frontend basado en Angular, integrando lo trabajado en clases hasta el momento y respetando los aspectos técnicos y funcionales esenciales.
+ 
+### 🎯 Objetivos específicos
+ 
+- [ ] Usar correctamente los métodos de la API.
+- [ ] Generar, al menos, un archivo de test que testee un servicio y otro que testee un componente.
+- [ ] Crear rutas para la aplicación.
+- [ ] Uso de angular material.
+ 
+### 🎯 Se debe entregar
+ 
+- [ ] Lazy Loading y Rutas child.
+- [ ] Guards y Autenticación de usuarios.
+- [ ] API Rest.
+- [ ] Unit Testing: Test unitarios de componentes y servicios.
+
+### A realizar
+- [x] dividir en columnas las acciones
+- [ ] manejar los errores de alguna manera. Redireccion pantalla de errores algo.
+- [ ] boton de cancelar me deja pensando la pág
+- [x] hacer que no entre al detalle si no hay nada que mostrar
+- [x] mostrar en toolbar algo respecto al rol
+- [ ] Pop up, sweet alert para los mensaje en vez de alert

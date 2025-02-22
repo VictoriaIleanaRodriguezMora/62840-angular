@@ -1,0 +1,20 @@
+<!-- TOOLBAR - INICIO -->
+<mat-toolbar>
+  <button
+    (click)="myDrawerToggle.emit()"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div class="d-flex justify-content-between w-100">
+    <span>My App</span>
+    <span>Entorno: {{ baseApiUrl }} </span>
+    <!-- <span *ngIf="(isAuthenticatedToolbar$ | async)">Usuario autenticado</span> -->
+    <div *ngIf="userRole$ | async as myRole">
+      <span>Rol: {{ myRole }}</span>
+    </div>
+  </div>
+</mat-toolbar>
+<!-- TOOLBAR - FIN -->
