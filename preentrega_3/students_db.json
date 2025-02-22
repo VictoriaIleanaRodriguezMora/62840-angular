@@ -1,43 +1,9 @@
 {
-  "courses": [
+  "students": [
     {
-      "id": "Course1",
-      "name": "Desarrollo Web edDFSSDFDSF"
-    },
-    {
-      "id": "Course2",
-      "name": "Javascript"
-    },
-    {
-      "id": "Course3",
-      "name": "Javascript"
-    },
-    {
-      "id": "Course4",
-      "name": "Javascript"
-    },
-    {
-      "id": "Course5",
-      "name": "Javascript"
-    },
-    {
-      "id": "Course6",
-      "name": "Javascript"
-    },
-    {
-      "id": "Course7",
-      "name": "Javascript"
-    },
-    {
-      "id": "5174",
-      "name": "yfgdshjtdysj"
-    }
-  ],
-  "professors": [
-    {
-      "id": "professor1",
-      "name": "Logan",
-      "courseId": "Course1"
+      "id": "3",
+      "name": "Tiziana",
+      "lastName": "Rodriguez"
     }
   ]
 }

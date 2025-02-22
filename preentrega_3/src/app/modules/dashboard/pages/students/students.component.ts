@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../../../interfaces/students';
-import { randomString } from '../../../../shared/randomString';
 import { StudentsService } from '../../../../core/services/students.service';
 
 @Component({
@@ -10,15 +9,13 @@ import { StudentsService } from '../../../../core/services/students.service';
   templateUrl: './students.component.html',
   styleUrl: './students.component.scss',
 })
-
 export class StudentsComponent implements OnInit {
   studentForm: FormGroup;
-  students: any[] = [];
-  selectedStudent: any;
-
-  displayedColumns: string[] = ['id', 'name', 'lastName', 'action']
-
+  students: Student[] = [];
+  selectedStudent: Student | null = null;
   editingStudentId: string | null = null;
+
+  displayedColumns: string[] = ['id', 'name', 'lastName', 'delete', 'edit', 'detail'];
 
   constructor(
     private fb: FormBuilder,
@@ -27,67 +24,62 @@ export class StudentsComponent implements OnInit {
     this.studentForm = this.fb.group({
       name: [null, [Validators.required]],
       lastName: [null, [Validators.required]]
-    })
+    });
   }
 
   ngOnInit(): void {
+    this.loadStudents();
+  }
+
+  private loadStudents() {
     this.myStudentService.getStudents().subscribe((data) => {
-      return this.students = data;
-    })
+      this.students = data;
+    });
   }
 
   getStudentDetails(id: string) {
-    this.myStudentService
-      .getStudentsById(id)
-      .subscribe(student => {
-        return this.selectedStudent = student;
-      })
+    this.myStudentService.getStudentDetail(id).subscribe(student => {
+      this.selectedStudent = student;
+    });
   }
 
   onSubmit() {
     if (this.studentForm.invalid) {
-      this.studentForm.markAllAsTouched()
-    } else {
-      console.log(this.studentForm.value);
-      const { name, lastName } = this.studentForm.value
-      const id = randomString(8)
-      if (this.editingStudentId != null) {
-        this.students = this.students.map((estudiante) => {
-          if (estudiante.id === this.editingStudentId) {
-            return { ...estudiante, ...this.studentForm.value }
-          } else {
-            return estudiante
-          }
-        })
+      this.studentForm.markAllAsTouched();
+      return;
+    }
 
-        this.editingStudentId = null
-      } else {
-        this.students = [
-          ...this.students,
-          { id: randomString(8), name, lastName }
-        ]
-        console.log(this.students);
-      }
-      this.studentForm.reset()
+    const { name, lastName } = this.studentForm.value;
+
+    if (this.editingStudentId) {
+      // Edito estudiante existente
+      this.myStudentService.updateStudentById(this.editingStudentId, { name, lastName })
+        .subscribe((updatedStudents) => {
+          this.students = updatedStudents;
+          this.editingStudentId = null;
+          this.studentForm.reset();
+        });
+    } else {
+      // Creo nuevo estudiante
+      this.myStudentService.createStudent({ name, lastName })
+        .subscribe((updatedStudents) => {
+          this.students = updatedStudents;
+          this.studentForm.reset();
+        });
     }
   }
 
   onDelete(id: string) {
-    this.students = this.students.filter((e) => e.id != id)
-  }
-
-  onColorUpdated() {
-
+    this.myStudentService.deleteStudentById(id).subscribe((updatedStudents) => {
+      this.students = updatedStudents;
+    });
   }
 
   onEdit(student: Student) {
-    console.log("Se va a editar el estudiante: ", student);
-    this.editingStudentId = student.id
-
+    this.editingStudentId = student.id;
     this.studentForm.patchValue({
       name: student.name,
       lastName: student.lastName,
-    })
+    });
   }
-
 }
