@@ -23,6 +23,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   providers: [
     provideAnimationsAsync(),
     provideHttpClient(withFetch())
+
+    
   ],
   bootstrap: [AppComponent]
 })

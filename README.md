@@ -4,7 +4,7 @@ cd clase16
 npm i
 ng serve
 ```
-Redux es un patrón de diseño que no e exlusivo a Angular 
+Redux es un patrón de diseño que no es exlusivo a Angular, sino que es posible usarse en React.js, etc 
 
 
 Patron Redux con:
@@ -171,5 +171,13 @@ Son funciones puras que se utilizan para que se utilizan para obtener parte del 
 Las distintas suscripciones que  estoy manejando en `counter.compnent.ts`, necesitarian un onDestroy, almacenar el valor en una variable, etc. Mucho trabajo. 
 
 El pipe async no funciona 
+
+
+`auth.service.ts`
+Tiene una base de datos con usuarios falsos, y el método login consultaba esa bdd buscando alguna coincidencia donde el email que se recibe del form sea === a uno de los usuarios almacenados, lo mismo con la password 
+Si el login era correcto almacenaba un token en el local sotrage
+
+
+
 
 01:02:00
