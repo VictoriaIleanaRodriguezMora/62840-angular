@@ -20,6 +20,12 @@ const routes: Routes = [
     canActivate: [adminGuard],
     loadChildren: () => import('./pages/users/users.module').then((userMod) => userMod.UsersModule)
   }
+  ,
+  {
+    path: 'counter',
+    canActivate: [adminGuard],
+    loadChildren: () => import('./pages/counter/counter-routing.module').then((cMod) => cMod.CounterRoutingModule)
+  }
 ];
 
 @NgModule({

@@ -4,6 +4,8 @@ cd clase16
 npm i
 ng serve
 ```
+Redux es un patrón de diseño que no e exlusivo a Angular 
+
 
 Patron Redux con:
 
@@ -61,10 +63,113 @@ export const substract = createAction('[Counter] Substract')
 
 Las acciones no basta con crearlas,tengo que hacer una implementación que me permite hacer una suma o resta. Las acciones se controlan por medio de una funcion reductora o reducer :
 
-`store/counter.reducer.ts`
+```bash
+store/counter.reducer.ts
+```
 Acá defino que datos voy a alojar en el estado de mi aplicacion.
 
+Defino acciones, y con el reducer defino que hacer con las acciones de la app
 
+Hay que conectar el `reducer` con el `rootReducer`
 
+```ts
+// Estado del contador
+import { createReducer, on } from "@ngrx/store";
+import { add, substract } from "./counter.actions";
 
-00:22:00
+// va a ser una clave con la que mas adelante vamos a referenciar al counterState 
+export const counterFeatureKey = 'counter' // el nombre tiene que ser representativo al un conjunto de acciones y el estado que estamos almacenando
+
+// Interfaz del estado
+export interface CounterState {
+    value: number;
+}
+// Estado inicial
+const initialState: CounterState = {
+    value: 0
+}
+
+// Funcion reductora 
+export const counterReducer = createReducer(
+    // Estado inicial
+    initialState,
+    // Atrapar las acciones
+    // Cuando la accion sea agregar, va a ejecutar ese callback
+    on(add, (ogState) => {
+        // retorno un nuevo estado
+        return {
+            ...ogState,
+            value: ogState.value + 1
+        }
+    }), // on recibe como primer argumento una accion, el 2° es un callback
+    on(substract, (ogState) => {
+        // retorno un nuevo estado
+        return {
+            ...ogState,
+            value: ogState.value - 1
+        }
+    }) 
+)
+```
+
+```bash
+index.ts
+```
+
+```ts
+import { counterFeatureKey, counterReducer, CounterState } from "./counter.reducer";
+
+export interface RootState {
+    [counterFeatureKey]: CounterState // Estoy definiendo la interfaz
+}
+
+export const rootReducer: ActionReducerMap<RootState> = {
+    [counterFeatureKey]: counterReducer// Estoy definiendo el valor
+}
+```
+
+Instalar devtool de redux para hacer debug
+https://chromewebstore.google.com/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=es
+agrega un panel en la consola del navegador llamado redux
+
+Agrega configuracion en `app.mopdule.ts`, que se puede personalizar. 
+```bash
+ng add @ngrx/store-devtools
+```
+
+Si puedo ver esto en la consola de redux, siginifica que la configuracion inicial está hecha
+![alt text](image.png)
+
+Hay que empezar a testear el contador 
+
+```bash
+ng g m modules/dashboard/pages/counter --routing
+ng g c modules/dashboard/pages/counter --skip-tests --no-standalone
+```
+¿Cómo hago para disparar acciones desde un componente?
+Cada vez que yo quiera modificar el estado de mi aplicación, según Redux tengo que ahcerlo mediante acciones. 
+
+Mapa de flujo de datos de REDUX
+![Mapa de flujo de datos de REDUX](image-1.png)
+
+Todo comienza a partir del Componente dispara una accion ej: sumar, luego el reducer filtra el tipo de accion y genera un nuevo estado, luego ese estado lo vuelve a almacenar en lo que se conoce como store o tienda. ¿Que es eso? Es un espacio en memoria que está alojado a nivel global en la aplicación, al cúal yo le puedo consultar luego la info, se guarda la info que modifica el reducer, el estado del contador y todo lo que se cargue.  Luego mediante un selector podemos consultar esa info desde el componente 
+
+A la parte de los efecto por ahora no se mira
+
+![alt text](image-2.png)
+
+¿Cómo consulto el dato que se está modificando?
+
+El store de Redux usa rxjs, la liberia que usamos para los observables
+
+No es recomendable suscribirse al store, porque actualmente solo tengo los datos del contacdor. Pero yo puedo tener almacenado el login del usuario, una lista de usuarios, un listado de paises, cualquier cosa.
+Entonces si hubiera un cambio en alguna lista, estaría disparandose una emisión en el contador, y al contador que sólo renderiza un nro, no le interesa lalista de estudiantes 
+
+Para eso existen los `selectores`
+Son funciones puras que se utilizan para que se utilizan para obtener parte del store que está alojado en la tienda. Permite recortar lo que me interese pereguntar 
+
+Las distintas suscripciones que  estoy manejando en `counter.compnent.ts`, necesitarian un onDestroy, almacenar el valor en una variable, etc. Mucho trabajo. 
+
+El pipe async no funciona 
+
+01:02:00

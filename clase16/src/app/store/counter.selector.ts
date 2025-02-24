@@ -1,35 +1,7 @@
-// Estado del contador
+import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { counterFeatureKey, CounterState } from "./counter.reducer";
 
-import { createReducer, on } from "@ngrx/store";
-import { add, substract } from "./counter.actions";
+// Recorta del estado, sólo la parte que le paso entre (), que es el nombre 'counterFK'
+export const selectCounterState = createFeatureSelector<CounterState>(counterFeatureKey) // tiparlo es opcional pero ultra recomendado
 
-// Interfaz del estado
-export interface CounterState {
-    value: number;
-}
-// Estado inicial
-const initialState: CounterState = {
-    value: 0
-}
-
-// Funcion reductora 
-export const counterReducer = createReducer(
-    // Estado inicial
-    initialState,
-    // Atrapar las acciones
-    // Cuando la accion sea agregar, va a ejecutar ese callback
-    on(add, (ogState) => {
-        // retorno un nuevo estado
-        return {
-            ...ogState,
-            value: ogState.value + 1
-        }
-    }), // on recibe como primer argumento una accion, el 2° es un callback
-    on(substract, (ogState) => {
-        // retorno un nuevo estado
-        return {
-            ...ogState,
-            value: ogState.value - 1
-        }
-    }) 
-)
+export const selectCounterValue = createSelector(selectCounterState, (state => state.value)) // para seleccionar directamente el valor de value: 0
