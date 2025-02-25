@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { addAction, substractAction } from '../../../../store/counter.actions';
+// import { addAction, substractAction } from '../../../../store/counter.actions';
+import { addAction, substractAction } from '../../../../store/counter/counter.actions';
 import { RootState } from '../../../../store';
-import { selectCounterState, selectCounterValue } from '../../../../store/counter.selector';
+import { selectCounterValue } from '../../../../store/counter/counter.selector';
 import { Observable, of } from 'rxjs';
 
 @Component({

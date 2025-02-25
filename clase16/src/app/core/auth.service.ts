@@ -4,6 +4,8 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { randomString } from '../shared/randomString';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AuthActions } from '../store/auth/auth.action';
 
 const FAKE_USERS_DB: User[] = [
   {
@@ -33,7 +35,7 @@ export class AuthService {
   authUser$ = this._authUser$.asObservable();
 
   // isAdmin$: Observable<boolean>;
-  constructor(private router: Router) {
+  constructor(private router: Router, private store: Store) {
     // this.isAdmin$ = this.authUser$.pipe(
     //   map((x) => x?.role === "ADMIN")
     // );
@@ -49,7 +51,7 @@ export class AuthService {
       })
     );
   }
-  
+
 
   login(payload: LoginPayload): void {
     console.log("payload", payload);
@@ -69,6 +71,9 @@ export class AuthService {
 
     console.log("loginResult antes de guardar:", loginResult);
     localStorage.setItem("access_token", loginResult.accessToken);
+
+    this.store.dispatch(AuthActions())
+
     this._authUser$.next(loginResult);
     console.log("Estado actual de _authUser$:", this._authUser$.value); // Verificar qué usuario se guardó
 
@@ -85,15 +90,15 @@ export class AuthService {
   isAuthenticated(): Observable<boolean> {
     const accessToken = localStorage.getItem("access_token");
     const storageUser = FAKE_USERS_DB.find(user => user.accessToken === accessToken);
-  
+
     console.log("Usuario obtenido desde localStorage:", storageUser);
-  
+
     if (storageUser) {
       this._authUser$.next(storageUser);
     } else {
       this._authUser$.next(null);
     }
-  
+
     return this.authUser$.pipe(map(user => {
       console.log("Usuario en authUser$ dentro de isAuthenticated:", user);
       return !!user;

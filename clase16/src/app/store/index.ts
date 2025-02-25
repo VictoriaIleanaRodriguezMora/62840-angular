@@ -1,5 +1,5 @@
 import { ActionReducerMap } from "@ngrx/store";
-import { counterFeatureKey, counterReducer, CounterState } from "./counter.reducer";
+import { counterFeatureKey, counterReducer, CounterState } from "./counter/counter.reducer";
 
 export interface RootState {
     [counterFeatureKey]: CounterState // Estoy definiendo la interfaz
