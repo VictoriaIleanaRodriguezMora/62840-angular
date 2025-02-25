@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../../../interfaces/students';
 import { randomString } from '../../../../shared/randomString';
-import { StudentsService } from '../../../../core/students.service';
+import { StudentsService } from '../../../../core/services/students.service';
 
 @Component({
   selector: 'app-students',

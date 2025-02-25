@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CoursesService } from '../../../../core/courses.service';
+import { CoursesService } from '../../../../core/services/courses.service';
 import { Course } from '../../../../interfaces/courses';
 import { MatDialog } from "@angular/material/dialog"
 import { CourseFormDialogComponent } from './components/course-form-dialog/course-form-dialog.component';
-import { AuthService } from '../../../../core/auth.service';
+import { AuthService } from '../../../../core/services/auth.service';
 import { Observable } from 'rxjs';
 
 @Component({

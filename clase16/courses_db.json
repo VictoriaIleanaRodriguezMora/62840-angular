@@ -1,4 +1,22 @@
 {
+  "users": [
+    {
+      "id": "fdsjhd",
+      "email": "a",
+      "password": "1",
+      "name": "Administador",
+      "accessToken": "qwerty123",
+      "role": "ADMIN"
+    },
+    {
+      "id": "wergtgh",
+      "email": "e",
+      "password": "1",
+      "name": "Empleado",
+      "accessToken": "123qwerty",
+      "role": "EMPLOYEE"
+    }
+  ],
   "courses": [
     {
       "id": "Course1",
@@ -34,6 +52,10 @@
       "id": "Course7",
       "name": "Javascript",
       "price": "700"
+    },
+    {
+      "id": "5174",
+      "name": "yfgdshjtdysj"
     }
   ],
   "professors": [
