@@ -35,7 +35,7 @@ import { selectAuthUser } from '../../store/auth/auth.selector';
 
 export class AuthService {
   // private _authUser$ = new BehaviorSubject<null | User>(null);
-  authUser$ : Observable<User | null>
+  authUser$: Observable<User | null>
 
   constructor(private httpClient: HttpClient, private router: Router, private store: Store) {
     this.authUser$ = this.store.select(selectAuthUser);
@@ -49,7 +49,7 @@ export class AuthService {
     );
   }
 
-  login(payload: LoginPayload): void {
+  login(payload: LoginPayload, next?: () => void): void {
     console.log("payload", payload);
 
     this.httpClient.get<User[]>(`${environment.baseApiUrl}/users?email=${payload.email}&password=${payload.password}`)
@@ -64,6 +64,9 @@ export class AuthService {
             this.store.dispatch(AuthActions.setAuthUser({ user: userResult[0] }))
             this.router.navigate(["dashboard", "home"]);
           }
+          if (!!next) {
+            next()
+          }
         },
         error: (error) => {
           if (error instanceof HttpErrorResponse) {
@@ -72,6 +75,9 @@ export class AuthService {
             }
           }
         }
+
+
+
       })
     //  const loginResult = FAKE_USERS_DB.find((user) => {
     //     if (user.email === payload.email && user.password === payload.password) {
