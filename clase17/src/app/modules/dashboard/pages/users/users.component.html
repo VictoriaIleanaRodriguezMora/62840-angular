@@ -1,1 +1,50 @@
-<p>users works!</p>
+<!-- profe dijo que hagamos una tabla -->
+<pre> {{user$ | async | json}} </pre>
+<div class="container">
+    <table mat-table [dataSource]="displayedColumns" class="mat-elevation-z8">
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+  
+      <!-- <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            *ngIf="isAdmin$ | async"
+            (click)="toEdit.emit(element)"
+            mat-button
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container> -->
+  
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let element">
+          <!-- <button
+            *ngIf="isAdmin$ | async"
+            (click)="toDelete.emit(element.id)"
+            mat-button
+          >
+            <mat-icon>delete</mat-icon>
+          </button> -->
+        </td>
+      </ng-container>
+  
+      <!-- <ng-container matColumnDef="detail">
+        <th mat-header-cell *matHeaderCellDef>Detalle</th>
+        <td mat-cell *matCellDef="let element">
+          <button [routerLink]="element.id" mat-button>
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+   -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+  
