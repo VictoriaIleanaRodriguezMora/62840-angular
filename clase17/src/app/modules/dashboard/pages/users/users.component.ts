@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { UsersService } from '../../../../core/services/users.service';
 import { Store } from '@ngrx/store';
@@ -12,13 +12,16 @@ import { User } from '../../../../interfaces/user';
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
   displayedColumns = ["name", "delete"];
   user$: Observable<User[]>;
   dataTableUsers: User[] = []; // Aquí guardaremos los usuarios
 
   constructor(private usersService: UsersService, private store: Store) {
     this.user$ = this.store.select(selectUsers);
+  }
+  ngOnDestroy(): void {
+    this.usersService.resetUserState()
   }
 
   ngOnInit(): void {
@@ -29,7 +32,7 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  deleteUserById(id: string){
+  deleteUserById(id: string) {
     this.usersService.deleteUserById(id)
   }
 
