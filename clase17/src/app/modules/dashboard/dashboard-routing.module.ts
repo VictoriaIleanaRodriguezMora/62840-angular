@@ -22,8 +22,11 @@ const routes: Routes = [
   },
   {
     path: 'counter',
-    canActivate: [adminGuard],
     loadChildren: () => import('./pages/counter/counter-routing.module').then((cMod) => cMod.CounterRoutingModule)
+  },
+  {
+    path: 'enrollments',
+    loadChildren: () => import('./pages/enrollments/enrollments.module').then((eMod) => eMod.EnrollmentsModule)
   }
 ];
 

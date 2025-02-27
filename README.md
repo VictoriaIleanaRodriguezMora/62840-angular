@@ -41,14 +41,18 @@ users.module.ts
   ]
 ```
 
+```bash
+ng g c modules/dashboard/pages/enrollments --skip-tests
+```
+
+```bash
+ng g feature modules/dashboard/pages/enrollments/store/enrollment --skip-tests
+```
+
+Relacionar un estudiante a un curso, es el enrollment, la inscripcion
 
 
 
 
 
-
-
-
-
-
-00:40:00
+01:20:00
