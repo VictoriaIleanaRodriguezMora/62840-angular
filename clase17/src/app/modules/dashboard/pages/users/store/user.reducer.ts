@@ -36,7 +36,15 @@ export const reducer = createReducer(
         },
       ],
     };
-  })
+  }),
+  on(UserActions.deleteUserById, (state, action) => {
+    return {
+      // Un nuevo estado en el cual debemos eliminar el usuario con id que recibimos en la accion
+      ...state,
+      users: state.users.filter((user) => user.id !== action.id),
+    };
+  }),
+  on(UserActions.resetState, () => initialState)
 );
 
 
