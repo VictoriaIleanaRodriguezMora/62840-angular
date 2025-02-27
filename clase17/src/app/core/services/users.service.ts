@@ -14,9 +14,9 @@ export class UsersService {
     this.store.dispatch(UserActions.loadUsers());
   }
 
-//   deleteUserById(id: string) {
-//     this.store.dispatch(UserActions.deleteUserById({ id }));
-//   }
+  deleteUserById(id: string) {
+    this.store.dispatch(UserActions.deleteUserById({ id }));
+  }
 
 //   resetUserState(): void {
 //     this.store.dispatch(UserActions.resetState());

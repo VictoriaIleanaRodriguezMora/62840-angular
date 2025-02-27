@@ -28,5 +28,11 @@ export class UsersComponent implements OnInit {
       this.dataTableUsers = users ?? []; // Asigna los datos y evita null
     });
   }
+
+  deleteUserById(id: string){
+    this.usersService.deleteUserById(id)
+  }
+
+
 }
 
