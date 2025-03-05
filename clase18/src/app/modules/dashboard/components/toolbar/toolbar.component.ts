@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
 import { AuthService } from '../../../../core/services/auth.service';
 import { map, Observable } from 'rxjs';
@@ -11,17 +11,23 @@ import { map, Observable } from 'rxjs';
   styleUrl: './toolbar.component.scss'
 })
 export class ToolbarComponent implements OnInit {
+  @Input() title: string = '';
 
   @Output() myDrawerToggle = new EventEmitter();
   baseApiUrl = environment.baseApiUrl
   userRole$!: Observable<string | null>;
+  userName$!: Observable<string | null>;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.userRole$ = this.authService.authUser$.pipe(
-      map(user => user ? user.role : null)
-    );
+    this.userRole$ = this.authService.authUser$
+      .pipe(map(user => user ? user.role : null));
+
+    this.userName$ = this.authService.authUser$
+      .pipe(map(user => user ? user.name : null));
+
+
   }
 
 }

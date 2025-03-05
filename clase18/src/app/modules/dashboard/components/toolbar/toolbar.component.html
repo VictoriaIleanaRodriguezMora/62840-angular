@@ -10,10 +10,13 @@
   </button>
   <div class="d-flex justify-content-between w-100">
     <span>My App</span>
-    <span>Entorno: {{ baseApiUrl }} </span>
-    <!-- <span *ngIf="(isAuthenticatedToolbar$ | async)">Usuario autenticado</span> -->
+
+    <span>{{ title }}</span>
     <div *ngIf="userRole$ | async as myRole">
       <span>Rol: {{ myRole }}</span>
+    </div>
+    <div *ngIf="userName$ | async as userName">
+      Bienvenido, {{ userName }}
     </div>
   </div>
 </mat-toolbar>

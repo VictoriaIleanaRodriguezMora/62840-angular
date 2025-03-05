@@ -23,4 +23,4 @@ el access token solo lo crea cuando son correctos, pero aun asi pasa
 
 el boton de guardar de insciprciones me genera 4 letras de id, pero el boton de crear inscripcion 6
 
-01:06:00
+agregar   { path: '**', redirectTo: 'home' },

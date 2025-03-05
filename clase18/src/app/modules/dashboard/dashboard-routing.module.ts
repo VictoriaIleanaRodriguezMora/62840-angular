@@ -6,23 +6,28 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then((homeMod) => homeMod.HomeModule),
+    data: { title: "Inicio" }
   },
   {
     path: 'students',
     loadChildren: () => import('./pages/students/students.module').then((studMod) => studMod.StudentsModule),
+    data: { title: "Estudiantes" }
   },
   {
     path: 'courses',
-    loadChildren: () => import('./pages/courses/courses.module').then((courseMod) => courseMod.CoursesModule)
+    loadChildren: () => import('./pages/courses/courses.module').then((courseMod) => courseMod.CoursesModule),
+    data: { title: "Cursos" }
   },
   {
     path: 'users',
     canActivate: [adminGuard],
-    loadChildren: () => import('./pages/users/users.module').then((userMod) => userMod.UsersModule)
+    loadChildren: () => import('./pages/users/users.module').then((userMod) => userMod.UsersModule),
+    data: { title: "Usuarios" }
   },
   {
     path: 'enrollments',
-    loadChildren: () => import('./pages/enrollments/enrollments.module').then((eMod) => eMod.EnrollmentsModule)
+    loadChildren: () => import('./pages/enrollments/enrollments.module').then((eMod) => eMod.EnrollmentsModule),
+    data: { title: "Inscripciones" }
   }
 ];
 

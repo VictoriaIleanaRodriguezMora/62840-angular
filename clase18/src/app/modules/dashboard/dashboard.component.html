@@ -10,7 +10,7 @@
 
   <!-- AREA CONTENIDO - INICIO -->
   <div class="example-sidenav-content">
-    <app-toolbar (myDrawerToggle)="drawer.toggle()" />
+    <app-toolbar [title]="title" (myDrawerToggle)="drawer.toggle()" />
     <!-- SIDENAV -->
 
     <router-outlet />
