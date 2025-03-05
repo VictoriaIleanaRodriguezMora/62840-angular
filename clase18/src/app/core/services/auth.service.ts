@@ -29,9 +29,7 @@ import { selectAuthUser } from '../../store/auth/auth.selector';
 //   }
 // ]
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 
 export class AuthService {
   // private _authUser$ = new BehaviorSubject<null | User>(null);

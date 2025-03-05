@@ -21,10 +21,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/users/users.module').then((userMod) => userMod.UsersModule)
   },
   {
-    path: 'counter',
-    loadChildren: () => import('./pages/counter/counter-routing.module').then((cMod) => cMod.CounterRoutingModule)
-  },
-  {
     path: 'enrollments',
     loadChildren: () => import('./pages/enrollments/enrollments.module').then((eMod) => eMod.EnrollmentsModule)
   }

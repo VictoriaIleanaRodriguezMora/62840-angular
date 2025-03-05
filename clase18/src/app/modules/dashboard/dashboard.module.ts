@@ -12,7 +12,6 @@ import { StudentsModule } from './pages/students/students.module';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../../shared/shared.module';
-import { CounterModule } from './pages/counter/counter.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { CounterModule } from './pages/counter/counter.module';
     StudentsModule,
     MatListModule,
     SharedModule,
-    CounterModule
 
   ],
   exports: [DashboardComponent]

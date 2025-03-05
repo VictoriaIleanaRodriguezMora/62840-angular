@@ -7,9 +7,7 @@ import { environment } from '../../../environments/environment';
 
 // ya no se usa
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 
 export class CoursesService {
 
@@ -37,7 +35,7 @@ export class CoursesService {
 
     return this.httpClient.get<Course[]>(`${environment.baseApiUrl}/courses`, {
       headers: myHeaders
-    }) 
+    })
   }
 
   deleteCourseById(id: string): Observable<Course[]> {

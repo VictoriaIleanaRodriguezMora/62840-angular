@@ -18,5 +18,6 @@ export class UserEffects {
     );
   });
 
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions) // son de tipo observable
+  {}
 }

@@ -33,11 +33,13 @@ export class NavMenuComponent {
       label: "Usuarios",
       routerLink: "users",
     },
+    {
+      label: "Inscripciones",
+      routerLink: "enrollments",
+    }
   ];
 
   logout(): void {
-    // localStorage.removeItem('token');
-    // this.router.navigate(['auth', 'login']);
     this.authService.logout()
   }
 }

@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MyAlertComponent } from './my-alert/my-alert.component';
+import { MatSelectModule } from '@angular/material/select';
 
 // Para usar el FullNamePipe en otro módulo:
 // 1° Exportarlo
@@ -48,7 +49,8 @@ import { MyAlertComponent } from './my-alert/my-alert.component';
     ReactiveFormsModule,
     MatCardModule,
     MyAlertComponent,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
   ]
 })
   export class SharedModule { }

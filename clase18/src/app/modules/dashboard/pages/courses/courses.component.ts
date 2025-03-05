@@ -78,7 +78,7 @@ export class CoursesComponent implements OnInit {
     this.courseService.getCourses()
       .subscribe({
         next: (cursos) => {
-          console.log("Recbo datos de getCourses: ", cursos);
+          console.log("Recibo datos de getCourses: ", cursos);
           this.handleCoursesUpdate(cursos)
         },
         error: () => {

@@ -1,2 +1,43 @@
-<button (click)="createEnrollment()" >Crear inscripcion </button>
-<pre>  {{ enrollments$ | async | json}} </pre>
+<mat-spinner *ngIf="isLoading$ | async; else notLoadingTemplate" />
+
+<ng-template #notLoadingTemplate>
+  <ng-container *ngIf="error$ | async; else successTemplate">
+    <p>Ocurrio un error inesperado</p>
+  </ng-container>
+</ng-template>
+
+<ng-template #successTemplate>
+  <div class="container">
+    <form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="w-full">
+            <mat-label>Estudiante</mat-label>
+            <mat-select formControlName="studentId">
+              <mat-option [value]="student.id" *ngFor="let student of students">
+                {{ student.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="w-full">
+            <mat-label>Curso</mat-label>
+            <mat-select formControlName="courseId">
+              <mat-option [value]="course.id" *ngFor="let course of courses">
+                {{ course.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-10 ">
+          <button type="submit" mat-flat-button>Guardar</button>
+        </div>
+      </div>
+    </form>
+    <div class="col">
+      <button (click)="createEnrollment()">Crear inscripcion</button>
+      <pre>{{ enrollments$ | async | json }}</pre>
+    </div>
+  </div>
+</ng-template>

@@ -10,6 +10,12 @@ import { User } from '../../interfaces/user';
 export class UsersService {
   constructor(private httpClient: HttpClient, private store: Store) {}
 
+  getStudentUsers(): Observable<User[]> {
+    return this.httpClient.get<User[]>(
+      `${environment.baseApiUrl}/users?role=STUDENT`
+    );
+  }
+
   loadUsers(): void {
     this.store.dispatch(UserActions.loadUsers());
   }

@@ -47,10 +47,7 @@ export const reducer = createReducer(
   on(EnrollmentActions.createEnrollment, (state, action) => {
     return {
       ...state,
-      enrollments:[
-        ...state.enrollments,
-        {id: randomString(6), ...action.data}
-      ]
+      isLoading: true,
     };
   }),
   on(EnrollmentActions.createEnrollmentSuccess, (state, action) => {

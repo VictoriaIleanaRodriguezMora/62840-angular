@@ -4,34 +4,38 @@ import { of, Observable, delay, concatMap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class StudentsService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getStudentDetail(id: string): Observable<Student> {
-    return this.httpClient.get<Student>(`${environment.API_URL_STUDENTS}/students/${id}`);
+    return this.httpClient.get<Student>(`${environment.baseApiUrl}/students/${id}`);
   }
 
   updateStudentById(id: string, data: { name: string; lastName: string }): Observable<Student[]> {
-    return this.httpClient.patch<Student>(`${environment.API_URL_STUDENTS}/students/${id}`, data)
+    return this.httpClient.patch<Student>(`${environment.baseApiUrl}/students/${id}`, data)
       .pipe(concatMap(() => this.getStudents()));
   }
 
   createStudent(payload: { name: string; lastName: string }): Observable<Student[]> {
-    return this.httpClient.post<Student>(`${environment.API_URL_STUDENTS}/students`, payload)
+    return this.httpClient.post<Student>(`${environment.baseApiUrl}/students`, payload)
       .pipe(concatMap(() => this.getStudents()));
   }
 
   getStudents(): Observable<Student[]> {
-    console.log("environment.API_URL_STUDENTS", environment.API_URL_STUDENTS);
+    console.log("environment.baseApiUrl", environment.baseApiUrl);
     const myHeaders = new HttpHeaders().append('Authorization', localStorage.getItem('access_token') || '');
-    return this.httpClient.get<Student[]>(`${environment.API_URL_STUDENTS}/students`, { headers: myHeaders });
+    return this.httpClient.get<Student[]>(`${environment.baseApiUrl}/students`, { headers: myHeaders });
   }
 
+  //  getStudentUsers(): Observable<User[]> {
+  //     return this.httpClient.get<User[]>(
+  //       `${environment.baseApiUrl}/users?role=STUDENT`
+  //     );
+  //   }
+
   deleteStudentById(id: string): Observable<Student[]> {
-    return this.httpClient.delete<Student>(`${environment.API_URL_STUDENTS}/students/${id}`)
+    return this.httpClient.delete<Student>(`${environment.baseApiUrl}/students/${id}`)
       .pipe(concatMap(() => this.getStudents()));
   }
 }
