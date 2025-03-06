@@ -1,6 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { UserActions } from './user.actions';
 import { User } from '../../../../../interfaces/user';
+import { environment } from '../../../../../../environments/environment';
 
 export const userFeatureKey = 'user';
 
@@ -14,39 +15,34 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-  on(UserActions.loadUsers, (state) => {
+  on(UserActions.loadUsers, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(UserActions.loadUsersSuccess, (state, action) => {
+    console.log('🟢 Reducer loadUsersSuccess:', action.data); // <-- VER SI LOS USUARIOS LLEGAN
     return {
       ...state,
-      users: [
-        {
-          id: 'asdas',
-          name: 'asdas',
-          accessToken: 'asdasdas',
-          email: 'email@mail.com',
-          password: '123456',
-          role: 'ADMIN' as const, // al profe tmb led aba error
-        },
-        {
-          id: 'asda2s',
-          name: 'asda23s',
-          accessToken: 'asdasdas',
-          email: 'email2@mail.com',
-          password: '123456',
-          role: 'ADMIN' as const, 
-        },
-      ],
+      users: action.data,
+      isLoading: false,
+      error: null,
     };
   }),
-  on(UserActions.deleteUserById, (state, action) => {
-    return {
-      // Un nuevo estado en el cual debemos eliminar el usuario con id que recibimos en la accion
-      ...state,
-      users: state.users.filter((user) => user.id !== action.id),
-    };
-  }),
-  on(UserActions.resetState, () => initialState)
+  on(UserActions.loadUsersFailure, (state, action) => ({
+    ...state,
+    isLoading: false,
+    error: action.error,
+  })),
+    on(UserActions.deleteUserById, (state, action) => {
+      return {
+        // Un nuevo estado en el cual debemos eliminar el usuario con id que recibimos en la accion
+        ...state,
+        users: state.users.filter((user) => user.id !== action.id),
+      };
+    }),
+    on(UserActions.resetState, () => initialState)
 );
-
+ 
 
 export const userFeature = createFeature({
   name: userFeatureKey,

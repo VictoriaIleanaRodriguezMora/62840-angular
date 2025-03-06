@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-
-import { concatMap } from 'rxjs/operators';
-import { Observable, EMPTY } from 'rxjs';
 import { UserActions } from './user.actions';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../../../../../interfaces/user';
+import { environment } from '../../../../../../environments/environment';
 
 @Injectable()
 export class UserEffects {
 
 
-  loadUsers$ = createEffect(() => {
-    return this.actions$.pipe(
-
+  loadUsers$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(UserActions.loadUsers),
-      /** An EMPTY observable only emits completion. Replace with your own observable API request */
-      concatMap(() => EMPTY as Observable<{ type: string }>)
-    );
-  });
+      mergeMap(() =>
+        this.http.get<User[]>(`${environment.baseApiUrl}/users`).pipe(
+          map((users) => UserActions.loadUsersSuccess({ data: users })),
+          catchError((error) => of(UserActions.loadUsersFailure({ error })))
+        )
+      )
+    )
+  );
 
-  constructor(private actions$: Actions) // son de tipo observable
-  {}
+  constructor(
+    private actions$: Actions, // ✅ Inyectado correctamente
+    private http: HttpClient
+  ) {
+    console.log('UserEffects initialized!', this.actions$); // Debería imprimir el Observable
+  }
 }

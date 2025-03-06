@@ -8,7 +8,7 @@ export const selectUserState = createFeatureSelector<fromUser.State>(
 export const selectUsers = createSelector(
   selectUserState,
   (state) => {
-    console.log("state.users", state.users);
+    console.log('🟡 Selector users:', state.users); // <-- Agregamos log
     return state.users
   }
 );

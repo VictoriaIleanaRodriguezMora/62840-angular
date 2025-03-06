@@ -15,11 +15,10 @@ import { EffectsModule } from '@ngrx/effects';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    StoreModule.forRoot(rootReducer, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    // HttpClientModule
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    AppRoutingModule,
   ],
   providers: [
     provideAnimationsAsync(),

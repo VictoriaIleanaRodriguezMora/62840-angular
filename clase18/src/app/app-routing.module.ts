@@ -7,12 +7,12 @@ import { authGuard } from './core/guards/auth.guard';
 const routes: Routes = [
   {
     path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [authGuard], 
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then((dashMod) => dashMod.DashboardModule),
-  },
+    canActivate: [authGuard],
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) // ✅ DashboardModule lazy
+  }
+  ,
   {
-    path: 'auth', 
+    path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then((authMod) => authMod.AuthModule),
   },
   { path: '**', redirectTo: 'auth/login' },

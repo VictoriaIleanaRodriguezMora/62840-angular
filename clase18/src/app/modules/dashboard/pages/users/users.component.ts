@@ -12,10 +12,11 @@ import { User } from '../../../../interfaces/user';
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
+
 export class UsersComponent implements OnInit, OnDestroy {
   displayedColumns = ["name", "delete"];
   user$: Observable<User[]>;
-  dataTableUsers: User[] = []; // Aquí guardaremos los usuarios
+  dataTableUsers: User[] = [];
 
   constructor(private usersService: UsersService, private store: Store) {
     this.user$ = this.store.select(selectUsers);
@@ -28,7 +29,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.usersService.loadUsers();
 
     this.user$.subscribe(users => {
-      this.dataTableUsers = users ?? []; // Asigna los datos y evita null
+      this.dataTableUsers = users ?? []; 
     });
   }
 
