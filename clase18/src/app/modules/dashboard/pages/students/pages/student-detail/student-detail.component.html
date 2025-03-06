@@ -1,17 +1,13 @@
-<h2>Detalle del estudiante</h2>
+<div class="container">
+  <h2>Detalle del estudiante</h2>
 
-<p *ngIf="student">
-  <strong>ID:</strong> {{ student.id }}
-</p>
-<p *ngIf="student">
-  <strong>Nombre:</strong> {{ student.name }}
-</p>
-<p *ngIf="student">
-  <strong>Apellido:</strong> {{ student.lastName }}
-</p>
+  <p *ngIf="student"><strong>ID:</strong> {{ student.id }}</p>
+  <p *ngIf="student"><strong>Nombre:</strong> {{ student.name }}</p>
+  <p *ngIf="student"><strong>Apellido:</strong> {{ student.lastName }}</p>
 
-<a routerLink="/dashboard/students">
-  <button mat-button>
-    <mat-icon>arrow_back</mat-icon> Volver a la lista
-  </button>
-</a>
+  <a routerLink="/dashboard/students">
+    <button mat-flat-button>
+      <mat-icon>arrow_back</mat-icon> Volver a la lista
+    </button>
+  </a>
+</div>

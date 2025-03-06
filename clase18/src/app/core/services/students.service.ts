@@ -28,12 +28,6 @@ export class StudentsService {
     return this.httpClient.get<Student[]>(`${environment.baseApiUrl}/students`, { headers: myHeaders });
   }
 
-  //  getStudentUsers(): Observable<User[]> {
-  //     return this.httpClient.get<User[]>(
-  //       `${environment.baseApiUrl}/users?role=STUDENT`
-  //     );
-  //   }
-
   deleteStudentById(id: string): Observable<Student[]> {
     return this.httpClient.delete<Student>(`${environment.baseApiUrl}/students/${id}`)
       .pipe(concatMap(() => this.getStudents()));

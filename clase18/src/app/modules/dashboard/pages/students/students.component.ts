@@ -18,7 +18,6 @@ export class StudentsComponent implements OnInit {
   selectedStudent: Student | null = null;
   editingStudentId: string | null = null;
 
-  // displayedColumns: string[] = ['id', 'name', 'lastName', 'delete', 'edit', 'detail'];
   displayedColumns: string[] = [];
 
   isAdmin$: Observable<User | null>
@@ -27,8 +26,8 @@ export class StudentsComponent implements OnInit {
     private fb: FormBuilder,
     private myStudentService: StudentsService,
     private authService: AuthService,
-
     private cdr: ChangeDetectorRef
+
   ) {
     this.studentForm = this.fb.group({
       name: [null, [Validators.required]],

@@ -30,17 +30,17 @@
     },
     {
       "id": "Course4",
-      "name": "Javascript",
+      "name": "React",
       "price": "400"
     },
     {
       "id": "Course5",
-      "name": "Javascript",
+      "name": "BackEnd",
       "price": "500"
     },
     {
       "id": "Course6",
-      "name": "Javascript",
+      "name": "SQL",
       "price": "600"
     },
     {
@@ -50,7 +50,7 @@
     },
     {
       "id": "5174",
-      "name": "yfgdshjtdysj"
+      "name": "Angular"
     }
   ],
   "professors": [
@@ -62,86 +62,31 @@
   ],
   "students": [
     {
-      "id": "jhkolk",
+      "id": "aaaaaa",
       "name": "Tiziana",
       "lastName": "Rodriguez"
     },
     {
-      "id": "wqwere",
+      "id": "eeeeee",
       "name": "Leandro",
       "lastName": "Rinetti"
     },
     {
-      "id": "c941ds",
-      "name": "fdfd",
-      "lastName": "dfdf"
-    },
-    {
-      "id": "eb41",
-      "name": "fd",
-      "lastName": "df"
-    },
-    {
-      "id": "8a17",
-      "name": "fg",
-      "lastName": "fg"
+      "id": "cccccc",
+      "name": "fulano",
+      "lastName": "sultano"
     }
   ],
   "enrollments": [
     {
-      "id": "sdfgjksy",
-      "studentId": "yhgffn",
-      "courseId": "Course1"
+      "id": "bdec",
+      "studentId": "aaaaaa",
+      "courseId": "Course3"
     },
     {
-      "id": "b343",
-      "courseId": "y7hnzw",
-      "studentId": "WxCMV%"
-    },
-    {
-      "id": "f4a7",
-      "courseId": "U/sZR*",
-      "studentId": "jB-AbA"
-    },
-    {
-      "id": "b644",
-      "courseId": "gÑE4pk",
-      "studentId": "3ypTmu"
-    },
-    {
-      "id": "9758",
-      "courseId": "kFf/KZ",
-      "studentId": "B1Fu/R"
-    },
-    {
-      "id": "62cb",
-      "courseId": "3z*lto",
-      "studentId": "12/1XJ"
-    },
-    {
-      "id": "8616",
-      "studentId": "wqwere",
-      "courseId": null
-    },
-    {
-      "id": "0ef8",
-      "studentId": "wqwere",
-      "courseId": null
-    },
-    {
-      "id": "1f49",
-      "studentId": "wqwere",
-      "courseId": "Course1"
-    },
-    {
-      "id": "a7e7",
-      "courseId": "FMKN1S",
-      "studentId": "WZ5BCk"
-    },
-    {
-      "id": "9e64",
-      "studentId": "c941ds",
-      "courseId": "5174"
+      "id": "24ea",
+      "studentId": "cccccc",
+      "courseId": "Course6"
     }
   ]
 }

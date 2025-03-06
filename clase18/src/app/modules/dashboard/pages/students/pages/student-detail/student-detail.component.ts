@@ -17,12 +17,15 @@ export class StudentDetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private studentsService: StudentsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.studentId = this.activatedRoute.snapshot.params['id'];
 
-    this.studentsService.getStudentDetail(this.studentId).subscribe((studentData) => {
+    this.studentsService.getStudentDetail(this.studentId)
+    .subscribe((studentData) => {
+      console.log("************* studentData", studentData);
+
       this.student = studentData;
     });
   }

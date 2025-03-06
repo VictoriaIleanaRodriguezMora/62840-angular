@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { EnrollmentActions } from './store/enrollment.actions';
 import { randomString } from '../../../../shared/randomString';
@@ -15,6 +15,7 @@ import { CoursesService } from '../../../../core/services/courses.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../../../interfaces/students';
 import { StudentsService } from '../../../../core/services/students.service';
+import { AuthService } from '../../../../core/services/auth.service';
 @Component({
   selector: 'app-enrollments',
   standalone: false,
@@ -31,11 +32,17 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
   students: Student[] = [];
 
   enrollmentForm: FormGroup;
+  displayedColumns: string[] = [];
+
+  isAdmin$: Observable<User | null>
+  enrollmentData: Enrollment[] = [];
 
   constructor(
     private store: Store,
     private coursesService: CoursesService,
     private studentsService: StudentsService,
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef,
     private fb: FormBuilder
   ) {
     this.enrollments$ = this.store.select(selectEnrollments);
@@ -45,6 +52,8 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
       studentId: [null, Validators.required],
       courseId: [null, Validators.required],
     });
+    this.isAdmin$ = this.authService.isAdmin$;
+
   }
 
   ngOnDestroy(): void {
@@ -53,6 +62,18 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.store.dispatch(EnrollmentActions.loadEnrollments());
     this.loadStudentsAndCourses();
+    this.isAdmin$.subscribe((user: User | null) => {
+      const isAdmin = user !== null;
+
+      if (isAdmin) {
+        this.displayedColumns = ['id', 'studentId', 'courseId', 'delete', 'edit', 'detail'];
+      } else {
+        this.displayedColumns = ["id", 'studentId', 'courseId', "detail"];
+      }
+
+      this.cdr.detectChanges();
+      console.log("Columnas actualizadas:", this.displayedColumns);
+    });
   }
 
   loadStudentsAndCourses(): void {
@@ -63,16 +84,20 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
       next: ([courses, students]) => {
         this.courses = courses;
         this.students = students;
+
       },
     });
   }
+
   createEnrollment(): void {
+    if (this.enrollmentForm.invalid) {
+      this.enrollmentForm.markAllAsTouched();
+      return;
+    }
+
     this.store.dispatch(
       EnrollmentActions.createEnrollment({
-        data: {
-          courseId: randomString(6),
-          studentId: randomString(6),
-        },
+        data: this.enrollmentForm.value,
       })
     );
   }
