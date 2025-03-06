@@ -15,24 +15,16 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef>Editar</th>
       <td mat-cell *matCellDef="let element">
-        <button
-          *ngIf="isAdmin$ | async"
-          (click)="toEdit.emit(element)"
-          mat-button
-        >
+        <button (click)="toEdit.emit(element)" mat-button>
           <mat-icon>edit</mat-icon>
         </button>
       </td>
     </ng-container>
-
+    
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef>Eliminar</th>
       <td mat-cell *matCellDef="let element">
-        <button
-          *ngIf="isAdmin$ | async"
-          (click)="toDelete.emit(element.id)"
-          mat-button
-        >
+        <button (click)="toDelete.emit(element.id)" mat-button>
           <mat-icon>delete</mat-icon>
         </button>
       </td>

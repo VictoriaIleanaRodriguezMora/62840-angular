@@ -20,12 +20,7 @@
   "courses": [
     {
       "id": "Course1",
-      "name": "Desarrollo Web edDFSSDFDSF",
-      "price": "100"
-    },
-    {
-      "id": "Course2",
-      "name": "Javascript",
+      "name": "Desarrollo Web edDFSSDFDSFytui",
       "price": "100"
     },
     {
@@ -126,12 +121,12 @@
     {
       "id": "8616",
       "studentId": "wqwere",
-      "courseId": "Course2"
+      "courseId": null
     },
     {
       "id": "0ef8",
       "studentId": "wqwere",
-      "courseId": "Course2"
+      "courseId": null
     },
     {
       "id": "1f49",

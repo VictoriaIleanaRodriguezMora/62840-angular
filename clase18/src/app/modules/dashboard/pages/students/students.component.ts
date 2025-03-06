@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../../../interfaces/students';
 import { StudentsService } from '../../../../core/services/students.service';
+import { Observable } from 'rxjs';
+import { User } from '../../../../interfaces/user';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-students',
@@ -15,20 +18,39 @@ export class StudentsComponent implements OnInit {
   selectedStudent: Student | null = null;
   editingStudentId: string | null = null;
 
-  displayedColumns: string[] = ['id', 'name', 'lastName', 'delete', 'edit', 'detail'];
+  // displayedColumns: string[] = ['id', 'name', 'lastName', 'delete', 'edit', 'detail'];
+  displayedColumns: string[] = [];
+
+  isAdmin$: Observable<User | null>
 
   constructor(
     private fb: FormBuilder,
-    private myStudentService: StudentsService
+    private myStudentService: StudentsService,
+    private authService: AuthService,
+
+    private cdr: ChangeDetectorRef
   ) {
     this.studentForm = this.fb.group({
       name: [null, [Validators.required]],
       lastName: [null, [Validators.required]]
     });
+    this.isAdmin$ = this.authService.isAdmin$;
   }
 
   ngOnInit(): void {
     this.loadStudents();
+    this.isAdmin$.subscribe((user: User | null) => {
+      const isAdmin = user !== null;
+
+      if (isAdmin) {
+        this.displayedColumns = ['id', 'name', 'lastName', 'delete', 'edit', 'detail'];
+      } else {
+        this.displayedColumns = ["id", "name", "detail"];
+      }
+
+      this.cdr.detectChanges();
+      console.log("Columnas actualizadas:", this.displayedColumns);
+    });
   }
 
   private loadStudents() {

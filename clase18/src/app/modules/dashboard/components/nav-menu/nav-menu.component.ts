@@ -14,14 +14,9 @@ import { User } from '../../../../interfaces/user';
 })
 export class NavMenuComponent implements OnInit {
   authUser$: Observable<User | null>;
-  role: string | null = null; // Definir la variable role
+  role: string | null = null; 
 
-  linktems = [
-    { label: 'Inicio', routerLink: 'home' },
-    { label: 'Estudiantes', routerLink: 'students' },
-    { label: 'Cursos', routerLink: 'courses' },
-    { label: 'Inscripciones', routerLink: 'enrollments' }
-  ];
+   linktems: { label: string; routerLink: string }[] = [];
 
   constructor(private authService: AuthService) {
     this.authUser$ = this.authService.authUser$;
@@ -29,7 +24,7 @@ export class NavMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.authUser$.subscribe((user: User | null) => {
-      this.role = user?.role?.toLowerCase() || null; // Convertir el rol a minúsculas
+      this.role = user?.role?.toLowerCase() || null; 
   
       this.linktems = [
         { label: 'Inicio', routerLink: 'home' },
