@@ -1,8 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { UsersService } from '../../../../core/services/users.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { selectUsers } from './store/user.selectors';
+import { Observable } from 'rxjs';
+import { selectUsers, selectLoading, selectError } from './store/user.selectors';
+import { UsersService } from '../../../../core/services/users.service';
 import { User } from '../../../../interfaces/user';
 
 @Component({
@@ -15,28 +15,30 @@ import { User } from '../../../../interfaces/user';
 
 export class UsersComponent implements OnInit, OnDestroy {
   displayedColumns = ["name", "delete"];
-  user$: Observable<User[]>;
+  users$: Observable<User[]>;
+  loading$: Observable<boolean>;
+  error$: Observable<any>;
   dataTableUsers: User[] = [];
 
-  constructor(private usersService: UsersService, private store: Store) {
-    this.user$ = this.store.select(selectUsers);
+  constructor(
+    private store: Store,
+    private usersService: UsersService
+  ) {
+    this.users$ = this.store.select(selectUsers);
+    this.loading$ = this.store.select(selectLoading);
+    this.error$ = this.store.select(selectError);
   }
+
   ngOnDestroy(): void {
     this.usersService.resetUserState()
   }
 
   ngOnInit(): void {
     this.usersService.loadUsers();
-
-    this.user$.subscribe(users => {
-      this.dataTableUsers = users ?? []; 
-    });
   }
 
   deleteUserById(id: string) {
     this.usersService.deleteUserById(id)
   }
 
-
 }
-

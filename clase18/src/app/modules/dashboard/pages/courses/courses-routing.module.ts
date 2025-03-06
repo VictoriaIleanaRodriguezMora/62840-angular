@@ -7,12 +7,10 @@ const routes: Routes = [
   {
     path: '', 
     component: CoursesComponent
-    // loadChildren: () => import('./courses.module').then((studMod) => studMod.CoursesModule), // ❌
   },
   {
     path: ':id',
     component: CourseDetailComponent
-    // loadChildren: () => import('./courses.module').then((studMod) => studMod.CoursesModule), // ❌
   }
 ];
 

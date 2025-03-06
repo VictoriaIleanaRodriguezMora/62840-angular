@@ -1,14 +1,26 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import * as fromUser from './user.reducer';
+import { UserState, userFeatureKey } from './user.reducer'; // Importar UserState y userFeatureKey
 
-export const selectUserState = createFeatureSelector<fromUser.State>(
-  fromUser.userFeatureKey
-);
+// Seleccionar el feature state
+export const selectUserState = createFeatureSelector<UserState>(userFeatureKey);
 
+// Seleccionar la lista de usuarios
 export const selectUsers = createSelector(
   selectUserState,
   (state) => {
-    console.log('🟡 Selector users:', state.users); // <-- Agregamos log
-    return state.users
+    console.log("state.users", state.users);
+    return state.users;
   }
+);
+
+// Seleccionar el estado de carga
+export const selectLoading = createSelector(
+  selectUserState,
+  (state) => state.loading
+);
+
+// Seleccionar el error
+export const selectError = createSelector(
+  selectUserState,
+  (state) => state.error
 );

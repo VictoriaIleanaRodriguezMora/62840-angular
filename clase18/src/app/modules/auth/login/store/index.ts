@@ -7,5 +7,4 @@ export interface RootState {
 
 export const rootReducer: ActionReducerMap<RootState> = {
     [authFeatureKey]: authReducer,
-
 }

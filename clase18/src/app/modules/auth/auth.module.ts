@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from '../../shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { authFeatureKey, authReducer } from './login/store/auth/auth.reducer';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature(authFeatureKey, authReducer) // <--- Aquí se registra correctamente
+
   ]
 })
 export class AuthModule { }
