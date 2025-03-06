@@ -14,7 +14,7 @@ export class UsersService {
   ) { }
 
   getStudentUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${environment.baseApiUrl}/users?role=STUDENT`);
+    return this.httpClient.get<User[]>(`${environment.baseApiUrl}/users`);
   }
 
   loadUsers(): void {
