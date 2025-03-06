@@ -9,5 +9,16 @@
   >
     {{ item.label }}
   </a>
+
+  <!-- Solo mostrar el ítem si el usuario está autenticado y su rol NO es 'employee' -->
+  <a
+    *ngIf="authUser$ | async as user;"
+    [hidden]="user.role.toLowerCase() === 'employee'"
+    mat-list-item
+    routerLink="users"
+  >
+    Usuarios
+  </a>
+
   <a mat-list-item routerLink="courses" (click)="logout()"> Cerrar sesión </a>
 </mat-nav-list>
