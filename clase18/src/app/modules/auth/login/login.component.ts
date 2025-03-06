@@ -29,7 +29,6 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched()
     } else {
-      // Login 
       this.authService.login(this.loginForm.value)
     }
   }

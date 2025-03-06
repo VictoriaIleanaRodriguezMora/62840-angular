@@ -28,7 +28,6 @@ export class DashboardComponent implements OnInit {
         })
       )
       .subscribe((title: string) => {
-        console.log('Título obtenido:', title); // 👀 Verifica en consola
         this.title = title;
       });
   }

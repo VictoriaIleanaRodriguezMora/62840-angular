@@ -1,5 +1,4 @@
 function getRandomNum(num: number): number {
-    // console.log(Math.floor(Math.random() * num));
     return Math.floor(Math.random() * num);
 }
 

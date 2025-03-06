@@ -48,7 +48,6 @@ export class StudentsComponent implements OnInit {
       }
 
       this.cdr.detectChanges();
-      console.log("Columnas actualizadas:", this.displayedColumns);
     });
   }
 
@@ -73,7 +72,6 @@ export class StudentsComponent implements OnInit {
     const { name, lastName } = this.studentForm.value;
 
     if (this.editingStudentId) {
-      // Edito estudiante existente
       this.myStudentService.updateStudentById(this.editingStudentId, { name, lastName })
         .subscribe((updatedStudents) => {
           this.students = updatedStudents;
@@ -81,7 +79,6 @@ export class StudentsComponent implements OnInit {
           this.studentForm.reset();
         });
     } else {
-      // Creo nuevo estudiante
       this.myStudentService.createStudent({ name, lastName })
         .subscribe((updatedStudents) => {
           this.students = updatedStudents;

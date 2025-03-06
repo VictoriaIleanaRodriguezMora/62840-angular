@@ -8,9 +8,8 @@ const routes: Routes = [
   {
     path: 'dashboard',
     canActivate: [authGuard],
-    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) // ✅ DashboardModule lazy
-  }
-  ,
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
   {
     path: 'auth',
     loadChildren: () => import('./modules/auth/auth.module').then((authMod) => authMod.AuthModule),

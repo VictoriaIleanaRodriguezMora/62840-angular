@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { loadUsers, loadUsersSuccess, loadUsersFailure, deleteUserById, resetState } from './user.actions'; // Importar acciones individualmente
+import { loadUsers, loadUsersSuccess, loadUsersFailure, deleteUserById, resetState } from './user.actions'; 
 import { User } from '../../../../../interfaces/user';
 
 export interface UserState {

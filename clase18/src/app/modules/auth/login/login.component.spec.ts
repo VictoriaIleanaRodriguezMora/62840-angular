@@ -20,7 +20,6 @@ describe('LoginComponent', () => {
 
   it('debe intanciar el login.component', () => {
     const fixture = TestBed.createComponent(LoginComponent);
-    // ni null, ni undefined ni 0...
     expect(fixture.componentInstance).toBeTruthy();
   });
 

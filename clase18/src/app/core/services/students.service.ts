@@ -23,7 +23,6 @@ export class StudentsService {
   }
 
   getStudents(): Observable<Student[]> {
-    console.log("environment.baseApiUrl", environment.baseApiUrl);
     const myHeaders = new HttpHeaders().append('Authorization', localStorage.getItem('access_token') || '');
     return this.httpClient.get<Student[]>(`${environment.baseApiUrl}/students`, { headers: myHeaders });
   }

@@ -17,10 +17,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MyAlertComponent } from './my-alert/my-alert.component';
 import { MatSelectModule } from '@angular/material/select';
 
-// Para usar el FullNamePipe en otro módulo:
-// 1° Exportarlo
-// 2° Importar el módulo en el módulo padre 
-
 @NgModule({
   declarations: [
     FullNamePipe,

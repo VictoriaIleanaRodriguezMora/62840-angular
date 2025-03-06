@@ -10,10 +10,4 @@ import { Router } from '@angular/router';
 })
 export class MyAlertComponent {
   @Input() contentAlert: string | null = null;
-  
-  /* constructor(private router: Router) { }
-  
-  redirect() {
-    this.router.navigate(['/dashboard/courses']); // Redirige al hacer clic
-  } */
 }

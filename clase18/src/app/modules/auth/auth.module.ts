@@ -16,7 +16,7 @@ import { authFeatureKey, authReducer } from './login/store/auth/auth.reducer';
     CommonModule,
     AuthRoutingModule,
     SharedModule,
-    StoreModule.forFeature(authFeatureKey, authReducer) // <--- Aquí se registra correctamente
+    StoreModule.forFeature(authFeatureKey, authReducer) 
 
   ]
 })

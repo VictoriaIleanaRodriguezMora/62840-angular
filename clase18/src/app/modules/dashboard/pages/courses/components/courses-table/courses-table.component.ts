@@ -39,7 +39,6 @@ export class CoursesTableComponent implements OnInit {
       }
 
       this.cdr.detectChanges();
-      console.log("Columnas actualizadas:", this.displayedColumns);
     });
   }
 

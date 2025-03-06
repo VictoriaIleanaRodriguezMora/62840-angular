@@ -11,16 +11,12 @@ export class EnrollmentEffects {
 
   loadEnrollments$ = createEffect(() => {
     return this.actions$.pipe(
-      // Quiero escuchar solamente las acciones de tipo:
       ofType(EnrollmentActions.loadEnrollments),
-      // Y luego quiero ir a buscar las enrollments a mi base de datos
       concatMap(() =>
         this.enrollmentsService.getEnrollments().pipe(
-          // Si el servicio responde OK
           map((enrollments) =>
             EnrollmentActions.loadEnrollmentsSuccess({ data: enrollments })
           ),
-          // Si el servicio desponde ERROR
           catchError((error) =>
             of(EnrollmentActions.loadEnrollmentsFailure({ error }))
           )
@@ -31,16 +27,12 @@ export class EnrollmentEffects {
 
   createEnrollments$ = createEffect(() => {
     return this.actions$.pipe(
-      // Quiero escuchar solamente las acciones de tipo:
       ofType(EnrollmentActions.createEnrollment),
-      // Y luego quiero ir a buscar las enrollments a mi base de datos
       concatMap((action) =>
         this.enrollmentsService.createEnrollment(action.data).pipe(
-          // Si el servicio responde OK
           map((enrollment) =>
             EnrollmentActions.createEnrollmentSuccess({ data: enrollment })
           ),
-          // Si el servicio desponde ERROR
           catchError((error) =>
             of(EnrollmentActions.createEnrollmentFailure({ error }))
           )

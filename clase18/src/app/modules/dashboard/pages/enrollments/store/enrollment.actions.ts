@@ -4,11 +4,8 @@ import { Enrollment } from '../../../../../interfaces/enrollment';
 export const EnrollmentActions = createActionGroup({
   source: 'Enrollment',
   events: {
-    // Va a ser el disparador de una secuencia de acciones
     'Load Enrollments': emptyProps(),
-    // Resultado OK
     'Load Enrollments Success': props<{ data: Enrollment[] }>(),
-    // Resultado Fail
     'Load Enrollments Failure': props<{ error: unknown }>(),
 
     'Create Enrollment': props<{ data: Omit<Enrollment, 'id'> }>(),

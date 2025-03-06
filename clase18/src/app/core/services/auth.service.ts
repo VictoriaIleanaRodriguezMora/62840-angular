@@ -28,7 +28,6 @@ export class AuthService {
   }
 
   login(payload: LoginPayload, next?: () => void): void {
-    console.log("payload", payload);
 
     this.httpClient.get<User[]>(`${environment.baseApiUrl}/users?email=${payload.email}&password=${payload.password}`)
       .subscribe({
@@ -37,7 +36,6 @@ export class AuthService {
             alert("email o password invalidos");
             return;
           } else {
-            // Si login es satisfactorio
             localStorage.setItem("access_token", userResult[0].accessToken);
             this.store.dispatch(AuthActions.setAuthUser({ user: userResult[0] }))
             this.router.navigate(["dashboard", "home"]);

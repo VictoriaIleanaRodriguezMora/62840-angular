@@ -72,7 +72,6 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
       }
 
       this.cdr.detectChanges();
-      console.log("Columnas actualizadas:", this.displayedColumns);
     });
   }
 

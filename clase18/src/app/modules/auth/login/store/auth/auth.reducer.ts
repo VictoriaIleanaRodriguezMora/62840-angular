@@ -13,9 +13,7 @@ const initialState: AuthState = {
 };
 
 export const authReducer = createReducer(
-    // Estado inicial
     initialState,
-    // Atrapar las acciones
     on(AuthActions.setAuthUser, (state, action) => {
         return {
             ...state,

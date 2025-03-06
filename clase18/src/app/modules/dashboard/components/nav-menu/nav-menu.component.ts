@@ -37,7 +37,6 @@ export class NavMenuComponent implements OnInit {
         this.linktems.push({ label: 'Usuarios', routerLink: 'users' });
       }
   
-      console.log("Rol del usuario:", this.role); // Verificar en consola
     });
   }
   

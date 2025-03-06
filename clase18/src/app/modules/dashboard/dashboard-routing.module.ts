@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent, // Contiene el toolbar
+    component: DashboardComponent, 
     children: [
       {
         path: 'home',

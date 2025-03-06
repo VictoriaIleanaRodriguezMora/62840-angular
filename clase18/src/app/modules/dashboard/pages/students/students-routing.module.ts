@@ -11,7 +11,6 @@ const routes: Routes = [{
 },
 {
   path: ":id", 
-  // loadChildren: () => import('./students.module').then((studMod) => studMod.StudentsModule),
   component: StudentDetailComponent
 }
 ];

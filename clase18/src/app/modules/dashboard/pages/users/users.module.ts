@@ -15,11 +15,7 @@ import { userFeatureKey } from './store/user.reducer';
     CommonModule,
     UsersRoutingModule,
     SharedModule,
-    StoreModule.forFeature(userFeatureKey, userReducer), // Asegúrate de que el reducer esté bien configurado
+    StoreModule.forFeature(userFeatureKey, userReducer), 
   ]
 })
-export class UsersModule {
-  constructor() {
-    console.log('UsersModule cargado'); // Verifica si el mensaje aparece en la consola
-  }
-}
+export class UsersModule {}

@@ -9,26 +9,20 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   return authService.isAuthenticated().pipe(
     switchMap(isAuthenticated => {
-      console.log("¿Está autenticado?", isAuthenticated);
-
       if (!isAuthenticated) {
         return of(router.createUrlTree(["auth", "login"]));
       }
 
-      // Combinar con el usuario actual del store
       return combineLatest([
         of(isAuthenticated),
         authService.authUser$.pipe(
-          filter(user => !!user), // Esperar hasta que haya usuario
+          filter(user => !!user),
           take(1)
         )
       ]).pipe(
         map(([isAuth, user]) => {
           const storedToken = localStorage.getItem('access_token');
-          console.log("Token almacenado:", storedToken);
-          console.log("Usuario del store:", user);
 
-          // Validar consistencia token/usuario
           if (user?.accessToken !== storedToken) {
             authService.logout();
             return router.createUrlTree(["auth", "login"]);

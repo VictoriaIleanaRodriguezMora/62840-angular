@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { loadUsersSuccess, loadUsersFailure, deleteUserById, resetState } from '../../modules/dashboard/pages/users/store/user.actions'; // Importar las acciones individualmente
+import { loadUsersSuccess, loadUsersFailure, deleteUserById, resetState } from '../../modules/dashboard/pages/users/store/user.actions'; 
 import { environment } from '../../../environments/environment';
 import { User } from '../../interfaces/user';
 
@@ -20,7 +20,6 @@ export class UsersService {
   loadUsers(): void {
     this.getStudentUsers().subscribe({
       next: (users) => {
-        console.log('✅ Usuarios cargados:', users);
         this.store.dispatch(loadUsersSuccess({ data: users }));
       },
       error: (error) => {

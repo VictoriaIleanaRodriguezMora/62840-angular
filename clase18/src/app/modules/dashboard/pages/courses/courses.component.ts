@@ -34,7 +34,6 @@ export class CoursesComponent implements OnInit {
 
   openFormDialog(editingCourse?: Course) {
     if (editingCourse) {
-      console.log("Se va a editar el curso: ", editingCourse);
     }
     this.matDialog
       .open(CourseFormDialogComponent, { data: { editingCourse } })
@@ -79,7 +78,6 @@ export class CoursesComponent implements OnInit {
     this.courseService.getCourses()
       .subscribe({
         next: (cursos) => {
-          console.log("Recibo datos de getCourses: ", cursos);
           this.handleCoursesUpdate(cursos)
         },
         error: () => {
@@ -97,7 +95,6 @@ export class CoursesComponent implements OnInit {
       this.courseService.deleteCourseById(idFn)
         .subscribe({
           next: (cursos) => {
-            console.log("cursos ACTUALIZADA", cursos);
             this.handleCoursesUpdate(cursos)
           },
           error: () => {
