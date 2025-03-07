@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Student } from '../../interfaces/students';
-import { of, Observable, delay, concatMap } from 'rxjs';
+import { of, Observable, delay, concatMap, forkJoin, map, switchMap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { Course } from '../../interfaces/courses';
+import { Enrollment } from '../../interfaces/enrollment';
 
 @Injectable({ providedIn: 'root' })
 export class StudentsService {
@@ -31,4 +33,26 @@ export class StudentsService {
     return this.httpClient.delete<Student>(`${environment.baseApiUrl}/students/${id}`)
       .pipe(concatMap(() => this.getStudents()));
   }
+
+  getStudentCourses(studentId: string): Observable<Course[]> {
+    return this.httpClient.get<Enrollment[]>(`${environment.baseApiUrl}/enrollments?studentId=${studentId}`).pipe(
+      map((enrollments) => enrollments.map((enrollment) => enrollment.courseId)),
+      switchMap((courseIds) =>
+        forkJoin(courseIds.map((id) => this.httpClient.get<Course>(`${environment.baseApiUrl}/courses/${id}`)))
+      )
+    );
+  }
+  
+  deleteEnrollment(studentId: string, courseId: string): Observable<void> {
+    return this.httpClient.get<Enrollment[]>(`${environment.baseApiUrl}/enrollments?studentId=${studentId}&courseId=${courseId}`).pipe(
+      switchMap((enrollments) => {
+        if (enrollments.length === 0) {
+          throw new Error('No se encontró la inscripción');
+        }
+        const enrollmentId = enrollments[0].id; // Tomamos el ID de la inscripción
+        return this.httpClient.delete<void>(`${environment.baseApiUrl}/enrollments/${enrollmentId}`);
+      })
+    );
+  }
+  
 }
