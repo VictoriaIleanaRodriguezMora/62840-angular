@@ -1,4 +1,5 @@
 ```bash
+nvm i 22.13.0
 nvm use  22.13.0
 cd clase18
 npm i

@@ -80,11 +80,6 @@
   ],
   "enrollments": [
     {
-      "id": "24ea",
-      "studentId": "cccccc",
-      "courseId": "Course6"
-    },
-    {
       "id": "599f",
       "studentId": "aaaaaa",
       "courseId": "Course3"

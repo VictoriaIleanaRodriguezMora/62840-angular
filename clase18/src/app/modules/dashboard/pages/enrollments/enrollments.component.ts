@@ -16,6 +16,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from '../../../../interfaces/students';
 import { StudentsService } from '../../../../core/services/students.service';
 import { AuthService } from '../../../../core/services/auth.service';
+import { EnrollmentsService } from '../../../../core/services/enrollments.service';
 @Component({
   selector: 'app-enrollments',
   standalone: false,
@@ -41,6 +42,8 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
     private store: Store,
     private coursesService: CoursesService,
     private studentsService: StudentsService,
+    private enrollmentsService: EnrollmentsService,
+  
     private authService: AuthService,
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder
@@ -125,9 +128,14 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
   }
 
   deleteEnrollment(id: string): void {
-    if (confirm('¿Estás seguro de eliminar esta inscripción?')) {
-      this.store.dispatch(EnrollmentActions.deleteEnrollment({ id }));
-    }
+    this.enrollmentsService.deleteEnrollment(id).subscribe({
+      next: () => {
+        this.store.dispatch(EnrollmentActions.deleteEnrollmentSuccess({ id }));
+      },
+      error: (error) => {
+        this.store.dispatch(EnrollmentActions.deleteEnrollmentFailure({ error }));
+      }
+    });
   }
 
 
