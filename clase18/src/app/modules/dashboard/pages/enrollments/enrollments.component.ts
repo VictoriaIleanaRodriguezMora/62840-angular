@@ -83,7 +83,6 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
       next: ([courses, students]) => {
         this.courses = courses;
         this.students = students;
-
       },
     });
   }
@@ -110,5 +109,26 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
       );
     }
   }
+
+  editEnrollment(enrollment: Enrollment): void {
+    this.enrollmentForm.patchValue({
+      studentId: enrollment.studentId,
+      courseId: enrollment.courseId,
+    });
+
+    this.store.dispatch(
+      EnrollmentActions.updateEnrollment({
+        id: enrollment.id,
+        data: this.enrollmentForm.value,
+      })
+    );
+  }
+
+  deleteEnrollment(id: string): void {
+    if (confirm('¿Estás seguro de eliminar esta inscripción?')) {
+      this.store.dispatch(EnrollmentActions.deleteEnrollment({ id }));
+    }
+  }
+
 
 }

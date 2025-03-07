@@ -20,7 +20,7 @@
   "courses": [
     {
       "id": "Course1",
-      "name": "Desarrollo Web edDFSSDFDSFytui",
+      "name": "Desarrollo Web",
       "price": "100"
     },
     {
@@ -47,10 +47,6 @@
       "id": "Course7",
       "name": "Javascript",
       "price": "700"
-    },
-    {
-      "id": "5174",
-      "name": "Angular"
     }
   ],
   "professors": [
@@ -58,6 +54,11 @@
       "id": "professor1",
       "name": "Logan",
       "courseId": "Course1"
+    },
+    {
+      "id": "professor2",
+      "name": "Wolverine",
+      "courseId": "Course3"
     }
   ],
   "students": [
@@ -85,6 +86,11 @@
     },
     {
       "id": "599f",
+      "studentId": "aaaaaa",
+      "courseId": "Course3"
+    },
+    {
+      "id": "d06c",
       "studentId": "aaaaaa",
       "courseId": "Course3"
     }

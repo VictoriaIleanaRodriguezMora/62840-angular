@@ -20,54 +20,52 @@ export const initialState: State = {
 export const reducer = createReducer(
   initialState,
 
-  on(EnrollmentActions.loadEnrollments, (state) => {
-    return {
-      ...state,
-      isLoading: true,
-    };
-  }),
-  on(EnrollmentActions.loadEnrollmentsSuccess, (state, action) => {
-    return {
-      ...state,
-      enrollments: action.data,
-      isLoading: false,
-      error: null,
-    };
-  }),
-  on(EnrollmentActions.loadEnrollmentsFailure, (state, action) => {
-    return {
-      ...state,
-      isLoading: false,
-      error: action.error,
-    };
-  }),
+  on(EnrollmentActions.loadEnrollments, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(EnrollmentActions.loadEnrollmentsSuccess, (state, action) => ({
+    ...state,
+    enrollments: action.data,
+    isLoading: false,
+    error: null,
+  })),
+  on(EnrollmentActions.loadEnrollmentsFailure, (state, action) => ({
+    ...state,
+    isLoading: false,
+    error: action.error,
+  })),
 
-  on(EnrollmentActions.createEnrollment, (state, action) => {
-    return {
-      ...state,
-      isLoading: true,
-    };
-  }),
-  on(EnrollmentActions.createEnrollmentSuccess, (state, action) => {
-    return {
-      ...state,
-      isLoading: false,
-      error: null,
-      enrollments: [...state.enrollments, action.data],
-    };
-  }),
-  on(EnrollmentActions.createEnrollmentFailure, (state, action) => {
-    return {
-      ...state,
-      isLoading: false,
-      error: action.error,
-    };
-  }),
+  on(EnrollmentActions.createEnrollmentSuccess, (state, action) => ({
+    ...state,
+    enrollments: [...state.enrollments, action.data],
+    isLoading: false,
+  })),
 
-  on(EnrollmentActions.resetState, () => initialState),
+  on(EnrollmentActions.updateEnrollmentSuccess, (state, action) => ({
+    ...state,
+    enrollments: state.enrollments.map((enrollment) =>
+      enrollment.id === action.data.id ? action.data : enrollment
+    ),
+  })),
 
-  on(EnrollmentActions.loadEnrollmentsSuccess, (state, action) => state),
-  on(EnrollmentActions.loadEnrollmentsFailure, (state, action) => state)
+  on(EnrollmentActions.deleteEnrollment, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(EnrollmentActions.deleteEnrollmentSuccess, (state, action) => ({
+    ...state,
+    isLoading: false,
+    error: null,
+    enrollments: state.enrollments.filter(enrollment => enrollment.id !== action.id),
+  })),
+  on(EnrollmentActions.deleteEnrollmentFailure, (state, action) => ({
+    ...state,
+    isLoading: false,
+    error: action.error,
+  })),
+
+  on(EnrollmentActions.resetState, () => initialState)
 );
 
 export const enrollmentFeature = createFeature({

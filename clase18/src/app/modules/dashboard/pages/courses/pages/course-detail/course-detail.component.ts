@@ -24,15 +24,18 @@ export class CourseDetailComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     this.isLoading = true;
-    this.coursesService.getCourseDetail(this.activatedRoute.snapshot.params['id']) 
+    this.coursesService.getCourseDetail(this.activatedRoute.snapshot.params['id'])
       .subscribe({
         next: (c) => {
-          
-          if (!c.professors || c.professors.length === 0) {
-          alert("Este curso no tiene profesores asignados.");
-          this.router.navigate(['/dashboard/courses']);
+          console.log("cursos", c);
+
+          if (!c.professors || Object.keys(c.professors).length === 0) {
+            alert("Este curso no tiene profesores asignados.");
+            this.router.navigate(['/dashboard/courses']);
           }
           this.course = c
+          console.log("this.course", this.course);
+          
         },
         complete: () => {
           this.isLoading = false;

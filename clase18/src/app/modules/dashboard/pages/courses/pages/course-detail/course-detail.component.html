@@ -4,17 +4,26 @@
 
 <ng-template #checkError>
   <ng-container *ngIf="errorMessage; else coursesTable">
-    <app-my-alert [contentAlert]="alertMessage|| ''"></app-my-alert>
+    <app-my-alert [contentAlert]="alertMessage || ''"></app-my-alert>
   </ng-container>
 </ng-template>
 
 <ng-template #coursesTable>
-  <h2>{{ course?.name }}</h2>
-  <h4>Profesores:</h4>
-  <!-- Tabla para editar, crear, eliminar -->
-  <mat-list>
-    <mat-list-item *ngFor="let professor of course?.professors">
-      {{ professor.name }}
-    </mat-list-item>
-  </mat-list>
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ course?.name }}</h5>
+        <h6 class="card-subtitle">Profesores:</h6>
+        <p class="card-text">
+          {{ course?.professors?.[0]?.name || '' }}
+        </p>
+      </div>
+    </div>
+    <a routerLink="/dashboard/courses">
+      <button mat-flat-button>
+        <mat-icon>arrow_back</mat-icon>
+        Volver a la lista de cursos
+      </button>
+    </a>
+  </div>
 </ng-template>

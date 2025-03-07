@@ -8,9 +8,9 @@
 
 <ng-template #successTemplate>
   <div class="container">
-    <form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()" class="" >
+    <form [formGroup]="enrollmentForm" (ngSubmit)="onSubmit()" class="">
       <div class="row border-danger p-3">
-        <div class="col-6 ">
+        <div class="col-6">
           <mat-form-field>
             <mat-label>Estudiante</mat-label>
             <mat-select formControlName="studentId">
@@ -56,21 +56,23 @@
           <td mat-cell *matCellDef="let element">{{ element.courseId }}</td>
         </ng-container>
 
+        <!-- editar    -->
         <ng-container matColumnDef="edit">
           <th mat-header-cell *matHeaderCellDef>Editar</th>
           <td mat-cell *matCellDef="let element">
-            <!-- <button (click)="toEdit.emit(element)" mat-button> -->
-            <mat-icon>edit</mat-icon>
-            <!-- </button> -->
+            <button (click)="editEnrollment(element)" mat-button>
+              <mat-icon>edit</mat-icon>
+            </button>
           </td>
         </ng-container>
 
+        <!-- eliminar -->
         <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef>Eliminar</th>
           <td mat-cell *matCellDef="let element">
-            <!-- <button (click)="toDelete.emit(element.id)" mat-button> -->
-            <mat-icon>delete</mat-icon>
-            <!-- </button> -->
+            <button (click)="deleteEnrollment(element.id)" mat-button>
+              <mat-icon>delete</mat-icon>
+            </button>
           </td>
         </ng-container>
 

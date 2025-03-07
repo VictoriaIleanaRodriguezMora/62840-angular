@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { rootReducer } from './modules/auth/login/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthModule } from './modules/auth/auth.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { EffectsModule } from '@ngrx/effects';
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     AppRoutingModule,
+    AuthModule
   ],
   providers: [
     provideAnimationsAsync(),
