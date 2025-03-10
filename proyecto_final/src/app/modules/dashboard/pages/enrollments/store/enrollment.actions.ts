@@ -23,7 +23,7 @@ export const EnrollmentActions = createActionGroup({
     'Load Enrollment Detail': props<{ id: string }>(),
     'Load Enrollment Detail Success': props<{ data: Enrollment }>(),
     'Load Enrollment Detail Failure': props<{ error: unknown }>(),
-    'Clear Enrollment Detail': emptyProps(), // ✅ Agregar esta acción
+    'Clear Enrollment Detail': emptyProps(), 
 
     'Reset State': emptyProps(),
   },

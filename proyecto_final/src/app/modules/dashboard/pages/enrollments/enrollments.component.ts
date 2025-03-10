@@ -39,7 +39,7 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
   isAdmin$: Observable<User | null>
   enrollmentData: Enrollment[] = [];
 
-  enrollmentDetail$: Observable<Enrollment | null>; // 👈 Agregar esta línea
+  enrollmentDetail$: Observable<Enrollment | null>; 
 
   constructor(
     private store: Store,
@@ -152,6 +152,6 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
   }
 
   clearEnrollmentDetail(): void {
-    this.store.dispatch(EnrollmentActions.clearEnrollmentDetail()); // ✅ Asegurar que se usa correctamente
+    this.store.dispatch(EnrollmentActions.clearEnrollmentDetail()); 
   }
 }

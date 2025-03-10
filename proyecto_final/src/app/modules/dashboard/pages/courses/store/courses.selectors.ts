@@ -1,4 +1,3 @@
-// courses.selectors.ts
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { CoursesState } from './courses.reducer';
 import { Course } from '../../../../../interfaces/courses';

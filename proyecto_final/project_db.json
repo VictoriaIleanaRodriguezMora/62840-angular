@@ -84,11 +84,6 @@
       "courseId": "Course1"
     },
     {
-      "id": "2e48",
-      "studentId": "aaaaaa",
-      "courseId": "Course3"
-    },
-    {
       "id": "08bf",
       "studentId": "aaaaaa",
       "courseId": "Course4"
@@ -107,6 +102,11 @@
       "id": "0a18",
       "studentId": "cccccc",
       "courseId": "Course4"
+    },
+    {
+      "id": "b735",
+      "studentId": "cccccc",
+      "courseId": "Course3"
     }
   ]
 }

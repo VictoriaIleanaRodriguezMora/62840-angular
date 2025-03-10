@@ -9,14 +9,14 @@ export interface EnrollmentState {
   enrollments: Enrollment[];
   isLoading: boolean;
   error: unknown;
-  enrollmentDetail: Enrollment | null; // Asegurar que esta propiedad existe
+  enrollmentDetail: Enrollment | null;
 }
 
 export const initialState: EnrollmentState = {
   enrollments: [],
   isLoading: false,
   error: null,
-  enrollmentDetail: null, // Inicializar correctamente
+  enrollmentDetail: null, 
 };
 
 
@@ -86,7 +86,7 @@ export const reducer = createReducer(
 
   on(EnrollmentActions.clearEnrollmentDetail, (state) => ({
     ...state,
-    enrollmentDetail: null, // ✅ Asegurar que se limpie correctamente
+    enrollmentDetail: null, 
   }))
   
   
