@@ -1,29 +1,69 @@
-<ng-container *ngIf="isLoading; else checkError">
-  <mat-spinner></mat-spinner>
-</ng-container>
-
-<ng-template #checkError>
-  <ng-container *ngIf="errorMessage; else coursesTable">
-    <app-my-alert [contentAlert]="alertMessage || ''"></app-my-alert>
+<!-- course-detail.component.html -->
+<div class="container">
+  <ng-container *ngIf="isLoading; else content">
+    <mat-spinner class="mt-4"></mat-spinner>
   </ng-container>
-</ng-template>
 
-<ng-template #coursesTable>
-  <div class="container">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ course?.name }}</h5>
-        <h6 class="card-subtitle">Profesores:</h6>
-        <p class="card-text">
-          {{ course?.professors?.[0]?.name || '' }}
-        </p>
-      </div>
+  <ng-template #content>
+    <div *ngIf="errorMessage; else courseData">
+      <app-my-alert [contentAlert]="errorMessage"></app-my-alert>
     </div>
-    <a routerLink="/dashboard/courses">
-      <button mat-flat-button>
-        <mat-icon>arrow_back</mat-icon>
-        Volver a la lista de cursos
+
+    <ng-template #courseData>
+      <div class="card mt-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ course?.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Profesor:</h6>
+          <p class="card-text">
+            {{ course?.professors?.[0]?.name || 'Sin profesor asignado' }}
+          </p>
+        </div>
+      </div>
+
+      <h4 class="mt-4">Alumnos Inscriptos</h4>
+      <div *ngIf="enrollments.length === 0" class="mt-2">
+        <p>No hay alumnos registrados en este curso</p>
+      </div>
+
+      <table mat-table [dataSource]="enrollments" class="mat-elevation-z8">
+        <!-- Columna Nombre del Alumno -->
+        <ng-container matColumnDef="idS">
+          <th mat-header-cell *matHeaderCellDef>ID Alumno</th>
+          <td mat-cell *matCellDef="let enrollment">
+            {{ enrollment.id || "Nombre no disponible" }}
+          </td>
+          
+        </ng-container>
+
+        <!-- Columna Acciones -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let enrollment">
+            <button
+              *ngIf="isAdmin$ | async"
+              mat-button
+              (click)="onUnenroll(enrollment.id)"
+            >
+              <mat-icon>delete</mat-icon> Desinscribir
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Fila de encabezado -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+        <!-- Fila de datos -->
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="mt-3"
+        routerLink="/dashboard/courses"
+      >
+        <mat-icon>arrow_back</mat-icon> Volver
       </button>
-    </a>
-  </div>
-</ng-template>
+    </ng-template>
+  </ng-template>
+</div>

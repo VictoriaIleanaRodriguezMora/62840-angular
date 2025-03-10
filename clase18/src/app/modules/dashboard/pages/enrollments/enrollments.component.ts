@@ -5,6 +5,7 @@ import { randomString } from '../../../../shared/randomString';
 import { forkJoin, Observable } from 'rxjs';
 import { Enrollment } from '../../../../interfaces/enrollment';
 import {
+  selectEnrollmentDetail,
   selectEnrollments,
   selectEnrollmentsError,
   selectIsLoadingEnrollments,
@@ -38,12 +39,14 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
   isAdmin$: Observable<User | null>
   enrollmentData: Enrollment[] = [];
 
+  enrollmentDetail$: Observable<Enrollment | null>; // 👈 Agregar esta línea
+
   constructor(
     private store: Store,
     private coursesService: CoursesService,
     private studentsService: StudentsService,
     private enrollmentsService: EnrollmentsService,
-  
+
     private authService: AuthService,
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder
@@ -56,6 +59,7 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
       courseId: [null, Validators.required],
     });
     this.isAdmin$ = this.authService.isAdmin$;
+    this.enrollmentDetail$ = this.store.select(selectEnrollmentDetail);
 
   }
 
@@ -127,6 +131,7 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
     );
   }
 
+
   deleteEnrollment(id: string): void {
     this.enrollmentsService.deleteEnrollment(id).subscribe({
       next: () => {
@@ -138,5 +143,15 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
     });
   }
 
+  viewEnrollmentDetail(id: string): void {
+    this.store.dispatch(EnrollmentActions.loadEnrollmentDetail({ id }));
+  }
 
+  loadEnrollmentDetail(id: string): void {
+    this.store.dispatch(EnrollmentActions.loadEnrollmentDetail({ id }));
+  }
+
+  clearEnrollmentDetail(): void {
+    this.store.dispatch(EnrollmentActions.clearEnrollmentDetail()); // ✅ Asegurar que se usa correctamente
+  }
 }

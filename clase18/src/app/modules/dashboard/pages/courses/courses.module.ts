@@ -8,6 +8,8 @@ import { CoursesTableComponent } from './components/courses-table/courses-table.
 import { SharedModule } from '../../../../shared/shared.module';
 import { CourseFormDialogComponent } from './components/course-form-dialog/course-form-dialog.component';
 import { CourseDetailComponent } from './pages/course-detail/course-detail.component';
+import { coursesReducer } from './store/courses.reducer';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { CourseDetailComponent } from './pages/course-detail/course-detail.compo
   imports: [
     CommonModule,
     CoursesRoutingModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('dashboardFeature', coursesReducer), // ✅
+
   ]
 })
 export class CoursesModule { }

@@ -1,0 +1,9 @@
+// course-detail.component.scss
+.container {
+    border: 2px solid red; // Para verificar si el contenedor se renderiza
+    padding: 20px;
+  }
+  
+  mat-spinner {
+    margin: 20px auto;
+  }

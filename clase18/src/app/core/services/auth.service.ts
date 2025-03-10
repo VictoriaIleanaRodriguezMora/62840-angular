@@ -15,7 +15,11 @@ import { selectAuthUser } from '../../modules/auth/login/store/auth/auth.selecto
 export class AuthService {
   authUser$: Observable<User | null>
 
-  constructor(private httpClient: HttpClient, private router: Router, private store: Store) {
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router, 
+    private store: Store
+  ) {
     this.authUser$ = this.store.select(selectAuthUser);
   }
 

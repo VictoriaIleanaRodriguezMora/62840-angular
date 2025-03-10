@@ -4,6 +4,7 @@ import { of, Observable, delay, concatMap } from 'rxjs';
 import { randomString } from '../../shared/randomString';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { EnrollmentDetail } from '../../interfaces/enrollment-detail';
 
 @Injectable({ providedIn: 'root' })
 
@@ -12,7 +13,7 @@ export class CoursesService {
   constructor(private httpClient: HttpClient) { }
 
   getCourseDetail(id: string): Observable<Course> {
-    return this.httpClient.get<Course>(`${environment.baseApiUrl}/courses/${id}?_embed=professors`) 
+    return this.httpClient.get<Course>(`${environment.baseApiUrl}/courses/${id}?_embed=professors`)
   }
 
   updateCourseById(id: string, data: { name: string }): Observable<Course[]> {
@@ -38,6 +39,14 @@ export class CoursesService {
   deleteCourseById(id: string): Observable<Course[]> {
     return this.httpClient.delete<Course>(`${environment.baseApiUrl}/courses/${id}`)
       .pipe(concatMap(() => this.getCourses()))
+  }
+
+  getEnrollmentsByCourse(courseId: string): Observable<EnrollmentDetail[]> {
+    return this.httpClient.get<EnrollmentDetail[]>(`${environment.baseApiUrl}/enrollments?courseId=${courseId}&_expand=student`);
+  }
+
+  deleteEnrollment(enrollmentId: string): Observable<void> {
+    return this.httpClient.delete<void>(`${environment.baseApiUrl}/enrollments/${enrollmentId}`);
   }
 
 }

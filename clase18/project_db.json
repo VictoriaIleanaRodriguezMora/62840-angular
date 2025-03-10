@@ -44,9 +44,8 @@
       "price": "600"
     },
     {
-      "id": "Course7",
-      "name": "Javascript",
-      "price": "700"
+      "id": "9ac9",
+      "name": "Figma"
     }
   ],
   "professors": [
@@ -80,14 +79,34 @@
   ],
   "enrollments": [
     {
-      "id": "599f",
+      "id": "68fc",
+      "studentId": "aaaaaa",
+      "courseId": "Course1"
+    },
+    {
+      "id": "2e48",
       "studentId": "aaaaaa",
       "courseId": "Course3"
     },
     {
-      "id": "d06c",
+      "id": "08bf",
       "studentId": "aaaaaa",
-      "courseId": "Course3"
+      "courseId": "Course4"
+    },
+    {
+      "id": "ef46",
+      "studentId": "eeeeee",
+      "courseId": "Course5"
+    },
+    {
+      "id": "5ab3",
+      "studentId": "eeeeee",
+      "courseId": "Course6"
+    },
+    {
+      "id": "0a18",
+      "studentId": "cccccc",
+      "courseId": "Course4"
     }
   ]
 }

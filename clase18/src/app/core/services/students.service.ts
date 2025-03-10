@@ -10,7 +10,13 @@ import { Enrollment } from '../../interfaces/enrollment';
 export class StudentsService {
   constructor(private httpClient: HttpClient) { }
 
+  getStudentById(id: string): Observable<Student> {
+    return this.httpClient.get<Student>(`${environment.baseApiUrl}/students/${id}`);
+  }
+
   getStudentDetail(id: string): Observable<Student> {
+    console.log(("getStudentDetail SERVICIO: " + id));
+
     return this.httpClient.get<Student>(`${environment.baseApiUrl}/students/${id}`);
   }
 
@@ -42,7 +48,7 @@ export class StudentsService {
       )
     );
   }
-  
+
   deleteEnrollment(studentId: string, courseId: string): Observable<void> {
     return this.httpClient.get<Enrollment[]>(`${environment.baseApiUrl}/enrollments?studentId=${studentId}&courseId=${courseId}`).pipe(
       switchMap((enrollments) => {
@@ -54,5 +60,6 @@ export class StudentsService {
       })
     );
   }
-  
+
+
 }

@@ -41,6 +41,23 @@ export class EnrollmentEffects {
     );
   });
 
+  loadEnrollmentDetail$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(EnrollmentActions.loadEnrollmentDetail),
+      concatMap((action) =>
+        this.enrollmentsService.getEnrollmentById(action.id).pipe(
+          map((enrollment) =>
+            EnrollmentActions.loadEnrollmentDetailSuccess({ data: enrollment })
+          ),
+          catchError((error) =>
+            of(EnrollmentActions.loadEnrollmentDetailFailure({ error }))
+          )
+        )
+      )
+    );
+  });
+  
 
-  constructor(private enrollmentsService: EnrollmentsService) {}
+
+  constructor(private enrollmentsService: EnrollmentsService) { }
 }

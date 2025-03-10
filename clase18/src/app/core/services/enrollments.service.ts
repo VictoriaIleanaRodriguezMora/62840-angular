@@ -31,4 +31,10 @@ export class EnrollmentsService {
   deleteEnrollment(id: string): Observable<void> {
     return this.httpClient.delete<void>(`${environment.baseApiUrl}/enrollments/${id}`);
   }
+
+  getEnrollmentById(id: string): Observable<Enrollment> {
+    return this.httpClient.get<Enrollment>(`${environment.baseApiUrl}/enrollments/${id}`);
+  }
+  
+  
 }

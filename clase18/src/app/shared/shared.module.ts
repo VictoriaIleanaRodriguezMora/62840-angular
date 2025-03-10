@@ -45,7 +45,6 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     MatCardModule,
     MyAlertComponent,
-    MatTableModule,
     MatSelectModule
   ]
 })
