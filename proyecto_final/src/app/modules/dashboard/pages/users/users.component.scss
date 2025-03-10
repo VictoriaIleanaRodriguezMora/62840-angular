@@ -1,0 +1,17 @@
+.access-denied {
+  text-align: center;
+  padding: 2rem;
+  color: #757575;
+
+  mat-icon {
+    font-size: 48px;
+    height: 48px;
+    width: 48px;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    margin: 0 0 1rem 0;
+    font-weight: 500;
+  }
+}
