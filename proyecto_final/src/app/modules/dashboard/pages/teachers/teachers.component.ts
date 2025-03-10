@@ -25,7 +25,7 @@ export class TeachersComponent implements OnInit {
   courses: Course[] = [];
   professors: Professor[] = [];
   errorMessage: string = '';
-
+  displayedColumns: string[] = ['name', 'course']
   constructor(
     private fb: FormBuilder,
     private teacherService: TeachersService,

@@ -1,39 +1,49 @@
-<form [formGroup]="profesorForm" (ngSubmit)="onSubmit()">
-    <label for="nombre">Nombre:</label>
-    <input id="nombre" formControlName="nombre" type="text" />
-    <div *ngIf="profesorForm.get('nombre')?.invalid && profesorForm.get('nombre')?.touched">
-      El nombre es obligatorio y debe tener al menos 3 caracteres.
-    </div>
+<mat-card>
+    <form [formGroup]="profesorForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput id="nombre" formControlName="nombre" type="text" />
+        <mat-error *ngIf="profesorForm.get('nombre')?.invalid && profesorForm.get('nombre')?.touched">
+          El nombre es obligatorio y debe tener al menos 3 caracteres.
+        </mat-error>
+      </mat-form-field>
   
-    <label for="curso">Curso:</label>
-    <select id="curso" formControlName="curso">
-      <option *ngFor="let curso of courses" [value]="curso.id">{{ curso.name }}</option>
-    </select>
-    <div *ngIf="profesorForm.get('curso')?.errors?.['courseAlreadyAssigned']">
-      Este curso ya tiene un profesor asignado.
-    </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Curso</mat-label>
+        <mat-select id="curso" formControlName="curso">
+          <mat-option *ngFor="let curso of courses" [value]="curso.id">{{ curso.name }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="profesorForm.get('curso')?.errors?.['courseAlreadyAssigned']">
+          Este curso ya tiene un profesor asignado.
+        </mat-error>
+      </mat-form-field>
   
-    <button type="submit" [disabled]="profesorForm.invalid">Crear Profesor</button>
-  </form>
+      <button mat-raised-button color="primary" type="submit" [disabled]="profesorForm.invalid">
+        Crear Profesor
+      </button>
+    </form>
+  </mat-card>
   
-  <div *ngIf="errorMessage" style="color: red;">
-    {{ errorMessage }}
-  </div>
-  
+  <mat-card *ngIf="errorMessage" class="error-card">
+    <p style="color: red;">{{ errorMessage }}</p>
+  </mat-card>
   
   <h2>Profesores Existentes</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Curso</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let profesor of professors">
-        <td>{{ profesor.name }}</td>
-        <td>{{ getCourseName(profesor.courseId) }}</td>
-    </tr>
-    </tbody>
+  
+  <table mat-table [dataSource]="professors" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let profesor"> {{ profesor.name }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="course">
+      <th mat-header-cell *matHeaderCellDef> Curso </th>
+      <td mat-cell *matCellDef="let profesor"> {{ getCourseName(profesor.courseId) }} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
   </table>
   
