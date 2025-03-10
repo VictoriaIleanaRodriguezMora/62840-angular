@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CoursesService } from '../../../../core/services/courses.service';
 import { TeachersService } from '../../../../core/services/teachers.service';
 
@@ -24,6 +24,7 @@ export class TeachersComponent implements OnInit {
   profesorForm: FormGroup;
   courses: Course[] = [];
   professors: Professor[] = [];
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -32,7 +33,7 @@ export class TeachersComponent implements OnInit {
   ) {
     this.profesorForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
-      curso: ['', [Validators.required]]
+      curso: ['', [Validators.required, this.courseAlreadyAssignedValidator.bind(this)]]
     });
   }
 
@@ -52,21 +53,33 @@ export class TeachersComponent implements OnInit {
       this.professors = professors;
     });
   }
+
   getCourseName(courseId: string): string {
     return this.courses.find(course => course.id === courseId)?.name || 'Curso no encontrado';
   }
+
+  courseAlreadyAssignedValidator(control: AbstractControl) {
+    const selectedCourseId = control.value;
+    const isCourseAssigned = this.professors.some(professor => professor.courseId === selectedCourseId);
+
+    return isCourseAssigned ? { courseAlreadyAssigned: true } : null;
+  }
   
   onSubmit(): void {
-    if (this.profesorForm.valid) {
-      const newProfessor: Professor = {
-        name: this.profesorForm.value.nombre,
-        courseId: this.profesorForm.value.curso
-      };
-
-      this.teacherService.createProfessor(newProfessor).subscribe(professors => {
-        this.professors = professors;
-        this.profesorForm.reset(); // Limpiar formulario tras crear
-      });
+    if (this.profesorForm.invalid) {
+      this.errorMessage = 'Por favor, corrija los errores en el formulario.';
+      return;
     }
+
+    const newProfessor: Professor = {
+      name: this.profesorForm.value.nombre,
+      courseId: this.profesorForm.value.curso
+    };
+
+    this.teacherService.createProfessor(newProfessor).subscribe(professors => {
+      this.professors = professors;
+      this.profesorForm.reset();
+      this.errorMessage = ''; // Limpiar mensaje de error tras éxito
+    });
   }
 }

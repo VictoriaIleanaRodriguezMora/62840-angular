@@ -9,12 +9,17 @@
     <select id="curso" formControlName="curso">
       <option *ngFor="let curso of courses" [value]="curso.id">{{ curso.name }}</option>
     </select>
-    <div *ngIf="profesorForm.get('curso')?.invalid && profesorForm.get('curso')?.touched">
-      Seleccione un curso.
+    <div *ngIf="profesorForm.get('curso')?.errors?.['courseAlreadyAssigned']">
+      Este curso ya tiene un profesor asignado.
     </div>
   
     <button type="submit" [disabled]="profesorForm.invalid">Crear Profesor</button>
   </form>
+  
+  <div *ngIf="errorMessage" style="color: red;">
+    {{ errorMessage }}
+  </div>
+  
   
   <h2>Profesores Existentes</h2>
   <table>
