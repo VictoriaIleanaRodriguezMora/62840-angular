@@ -62,56 +62,49 @@
   ],
   "students": [
     {
-      "id": "aaaaaa",
-      "name": "Tiziana",
-      "lastName": "Rodriguez"
+      "id": "7efb",
+      "name": "hola",
+      "lastName": "sdfsdf",
+      "age": "45"
     },
     {
-      "id": "eeeeee",
-      "name": "Leandro",
-      "lastName": "Rinetti"
+      "id": "af0b",
+      "name": "Rodriguez",
+      "lastName": "Tiziana",
+      "age": "15"
     },
     {
-      "id": "cccccc",
-      "name": "fulano",
-      "lastName": "sultano"
+      "id": "504a",
+      "name": "Fulano",
+      "lastName": "Sultano",
+      "age": "40"
     }
   ],
   "enrollments": [
     {
-      "id": "08bf",
-      "studentId": "aaaaaa",
-      "courseId": "Course4"
-    },
-    {
-      "id": "ef46",
-      "studentId": "eeeeee",
-      "courseId": "Course5"
-    },
-    {
-      "id": "5ab3",
-      "studentId": "eeeeee",
-      "courseId": "Course6"
-    },
-    {
-      "id": "0a18",
-      "studentId": "cccccc",
-      "courseId": "Course4"
-    },
-    {
-      "id": "b735",
-      "studentId": "cccccc",
-      "courseId": "Course3"
-    },
-    {
-      "id": "a16d",
-      "studentId": "aaaaaa",
+      "id": "5de3",
+      "studentId": "af0b",
       "courseId": "Course1"
     },
     {
-      "id": "bd01",
-      "studentId": "aaaaaa",
+      "id": "8c5b",
+      "studentId": "af0b",
+      "courseId": "Course4"
+    },
+    {
+      "id": "6591",
+      "studentId": "504a",
+      "courseId": "Course4"
+    },
+    {
+      "id": "8000",
+      "studentId": "504a",
       "courseId": "Course3"
+    },
+    {
+      "id": "2ee3",
+      "studentId": "504a",
+      "courseId": "Course5"
     }
   ]
 }

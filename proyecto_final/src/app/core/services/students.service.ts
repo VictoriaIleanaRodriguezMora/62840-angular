@@ -20,12 +20,12 @@ export class StudentsService {
     return this.httpClient.get<Student>(`${environment.baseApiUrl}/students/${id}`);
   }
 
-  updateStudentById(id: string, data: { name: string; lastName: string }): Observable<Student[]> {
+  updateStudentById(id: string, data: { name: string; lastName: string, age: number }): Observable<Student[]> {
     return this.httpClient.patch<Student>(`${environment.baseApiUrl}/students/${id}`, data)
       .pipe(concatMap(() => this.getStudents()));
   }
 
-  createStudent(payload: { name: string; lastName: string }): Observable<Student[]> {
+  createStudent(payload: { name: string; lastName: string, age: number }): Observable<Student[]> {
     return this.httpClient.post<Student>(`${environment.baseApiUrl}/students`, payload)
       .pipe(concatMap(() => this.getStudents()));
   }

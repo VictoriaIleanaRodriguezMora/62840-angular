@@ -31,7 +31,8 @@ export class StudentsComponent implements OnInit {
   ) {
     this.studentForm = this.fb.group({
       name: [null, [Validators.required]],
-      lastName: [null, [Validators.required]]
+      lastName: [null, [Validators.required]],
+      age: [null, [Validators.required]],
     });
     this.isAdmin$ = this.authService.isAdmin$;
   }
@@ -42,9 +43,9 @@ export class StudentsComponent implements OnInit {
       const isAdmin = user !== null;
 
       if (isAdmin) {
-        this.displayedColumns = ['id', 'name', 'lastName', 'delete', 'edit', 'detail'];
+        this.displayedColumns = ['id', 'name','age', 'lastName', 'delete', 'edit', 'detail'];
       } else {
-        this.displayedColumns = ["id", "name", "detail"];
+        this.displayedColumns = ["id", "name", 'age',"detail"];
       }
 
       this.cdr.detectChanges();
@@ -69,17 +70,17 @@ export class StudentsComponent implements OnInit {
       return;
     }
 
-    const { name, lastName } = this.studentForm.value;
+    const { name, lastName, age } = this.studentForm.value;
 
     if (this.editingStudentId) {
-      this.myStudentService.updateStudentById(this.editingStudentId, { name, lastName })
+      this.myStudentService.updateStudentById(this.editingStudentId, { name, lastName, age })
         .subscribe((updatedStudents) => {
           this.students = updatedStudents;
           this.editingStudentId = null;
           this.studentForm.reset();
         });
     } else {
-      this.myStudentService.createStudent({ name, lastName })
+      this.myStudentService.createStudent({ name, lastName, age })
         .subscribe((updatedStudents) => {
           this.students = updatedStudents;
           this.studentForm.reset();
@@ -98,6 +99,7 @@ export class StudentsComponent implements OnInit {
     this.studentForm.patchValue({
       name: student.name,
       lastName: student.lastName,
+      age: student.age, // Agregar el campo age
     });
   }
 }
