@@ -1,0 +1,34 @@
+<form [formGroup]="profesorForm" (ngSubmit)="onSubmit()">
+    <label for="nombre">Nombre:</label>
+    <input id="nombre" formControlName="nombre" type="text" />
+    <div *ngIf="profesorForm.get('nombre')?.invalid && profesorForm.get('nombre')?.touched">
+      El nombre es obligatorio y debe tener al menos 3 caracteres.
+    </div>
+  
+    <label for="curso">Curso:</label>
+    <select id="curso" formControlName="curso">
+      <option *ngFor="let curso of courses" [value]="curso.id">{{ curso.name }}</option>
+    </select>
+    <div *ngIf="profesorForm.get('curso')?.invalid && profesorForm.get('curso')?.touched">
+      Seleccione un curso.
+    </div>
+  
+    <button type="submit" [disabled]="profesorForm.invalid">Crear Profesor</button>
+  </form>
+  
+  <h2>Profesores Existentes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Curso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let profesor of professors">
+        <td>{{ profesor.name }}</td>
+        <td>{{ getCourseName(profesor.courseId) }}</td>
+    </tr>
+    </tbody>
+  </table>
+  

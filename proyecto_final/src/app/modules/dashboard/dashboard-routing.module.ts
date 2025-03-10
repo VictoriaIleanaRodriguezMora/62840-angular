@@ -33,6 +33,11 @@ const routes: Routes = [
         path: 'enrollments',
         loadChildren: () => import('./pages/enrollments/enrollments.module').then((eMod) => eMod.EnrollmentsModule),
         data: { title: "Inscripciones" }
+      },
+      {
+        path: 'teachers',
+        loadChildren: () => import('./pages/teachers/teachers.module').then((eMod) => eMod.TeachersModule),
+        data: { title: "Inscripciones" }
       }
     ]
   }

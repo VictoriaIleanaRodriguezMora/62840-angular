@@ -31,6 +31,7 @@ export class NavMenuComponent implements OnInit {
         { label: 'Estudiantes', routerLink: 'students' },
         { label: 'Cursos', routerLink: 'courses' },
         { label: 'Inscripciones', routerLink: 'enrollments' },
+        { label: 'Profesores', routerLink: 'teachers' },
       ];
   
       if (this.role !== 'employee') {

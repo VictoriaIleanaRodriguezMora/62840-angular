@@ -45,7 +45,8 @@ import { MatSelectModule } from '@angular/material/select';
     ReactiveFormsModule,
     MatCardModule,
     MyAlertComponent,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule 
   ]
 })
   export class SharedModule { }
