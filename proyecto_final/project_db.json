@@ -2,16 +2,16 @@
   "users": [
     {
       "id": "fdsjhd",
-      "email": "a",
-      "password": "1",
+      "email": "admin@email.com",
+      "password": "123abcDE$",
       "name": "Administrador nombre",
       "accessToken": "qwerty123",
       "role": "ADMIN"
     },
     {
       "id": "wergtgh",
-      "email": "e",
-      "password": "1",
+      "email": "empleado@email.com",
+      "password": "123abcDE$",
       "name": "Empleado nombre",
       "accessToken": "123qwerty",
       "role": "EMPLOYEE"

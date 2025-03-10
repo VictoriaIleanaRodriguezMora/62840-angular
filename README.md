@@ -12,7 +12,7 @@ npx json-server project_db.json --port 3001 --watch
 ```
 ## Usuarios de prueba:
  
-|            | Admin | Empleado |
-| ---------- | ----- | -------- |
-| Usuario    | a     | e        |
-| Contraseña | 1     | 1        |
+|            | Admin           | Empleado           |
+| ---------- | --------------- | ------------------ |
+| Usuario    | admin@email.com | empleado@email.com |
+| Contraseña | 123abcDE$       | 123abcDE$          |
