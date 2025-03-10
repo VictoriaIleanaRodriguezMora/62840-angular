@@ -79,11 +79,6 @@
   ],
   "enrollments": [
     {
-      "id": "68fc",
-      "studentId": "aaaaaa",
-      "courseId": "Course1"
-    },
-    {
       "id": "08bf",
       "studentId": "aaaaaa",
       "courseId": "Course4"
@@ -106,6 +101,16 @@
     {
       "id": "b735",
       "studentId": "cccccc",
+      "courseId": "Course3"
+    },
+    {
+      "id": "a16d",
+      "studentId": "aaaaaa",
+      "courseId": "Course1"
+    },
+    {
+      "id": "bd01",
+      "studentId": "aaaaaa",
       "courseId": "Course3"
     }
   ]

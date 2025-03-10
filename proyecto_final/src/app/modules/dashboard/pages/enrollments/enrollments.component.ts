@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { EnrollmentActions } from './store/enrollment.actions';
 import { randomString } from '../../../../shared/randomString';
-import { forkJoin, Observable } from 'rxjs';
+import { first, forkJoin, Observable, startWith } from 'rxjs';
 import { Enrollment } from '../../../../interfaces/enrollment';
 import {
   selectEnrollmentDetail,
@@ -39,7 +39,8 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
   isAdmin$: Observable<User | null>
   enrollmentData: Enrollment[] = [];
 
-  enrollmentDetail$: Observable<Enrollment | null>; 
+  enrollmentDetail$: Observable<Enrollment | null>;
+
 
   constructor(
     private store: Store,
@@ -60,6 +61,7 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
     });
     this.isAdmin$ = this.authService.isAdmin$;
     this.enrollmentDetail$ = this.store.select(selectEnrollmentDetail);
+    this.error$ = this.store.select(selectEnrollmentsError);
 
   }
 
@@ -67,15 +69,18 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
     this.store.dispatch(EnrollmentActions.resetState());
   }
   ngOnInit(): void {
+    this.error$ = this.store.select(selectEnrollmentsError).pipe(
+      startWith(null) // Inicializar con null para evitar undefined
+    );
     this.store.dispatch(EnrollmentActions.loadEnrollments());
     this.loadStudentsAndCourses();
     this.isAdmin$.subscribe((user: User | null) => {
       const isAdmin = user !== null;
 
       if (isAdmin) {
-        this.displayedColumns = ['id', 'studentId', 'courseId', 'delete', 'edit', 'detail'];
+        this.displayedColumns = ['id', 'studentId', 'courseId', 'delete', 'edit'];
       } else {
-        this.displayedColumns = ["id", 'studentId', 'courseId', "detail"];
+        this.displayedColumns = ["id", 'studentId', 'courseId'];
       }
 
       this.cdr.detectChanges();
@@ -100,21 +105,37 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.store.dispatch(
-      EnrollmentActions.createEnrollment({
-        data: this.enrollmentForm.value,
-      })
-    );
+    const { studentId, courseId } = this.enrollmentForm.value;
+
+    this.enrollments$.pipe(first()).subscribe((enrollments) => {
+      const alreadyEnrolled = enrollments.some(
+        (enrollment) => enrollment.studentId === studentId && enrollment.courseId === courseId
+      );
+
+      if (alreadyEnrolled) {
+        alert('Este estudiante ya está inscrito en este curso.');
+        return;
+      }
+
+      // Si la inscripción no existe, la enviamos
+      this.store.dispatch(
+        EnrollmentActions.createEnrollment({ data: { studentId, courseId } })
+      );
+    });
   }
 
   onSubmit(): void {
+    // Resetear error antes de nueva acción
+    this.store.dispatch(EnrollmentActions.createEnrollmentFailure({ error: null }));
+
     if (this.enrollmentForm.invalid) {
       this.enrollmentForm.markAllAsTouched();
-    } else {
-      this.store.dispatch(
-        EnrollmentActions.createEnrollment({ data: this.enrollmentForm.value })
-      );
+      return;
     }
+
+    this.store.dispatch(
+      EnrollmentActions.createEnrollment({ data: this.enrollmentForm.value })
+    );
   }
 
   editEnrollment(enrollment: Enrollment): void {
@@ -152,6 +173,6 @@ export class EnrollmentsComponent implements OnInit, OnDestroy {
   }
 
   clearEnrollmentDetail(): void {
-    this.store.dispatch(EnrollmentActions.clearEnrollmentDetail()); 
+    this.store.dispatch(EnrollmentActions.clearEnrollmentDetail());
   }
 }

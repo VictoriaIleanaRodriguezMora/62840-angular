@@ -39,6 +39,11 @@ export const reducer = createReducer(
     error: action.error,
   })),
 
+  on(EnrollmentActions.createEnrollment, (state) => ({
+    ...state,
+    error: null // Limpiar error al iniciar nueva acción
+  })),
+
   on(EnrollmentActions.createEnrollmentSuccess, (state, action) => ({
     ...state,
     enrollments: [...state.enrollments, action.data],
@@ -51,7 +56,11 @@ export const reducer = createReducer(
       enrollment.id === action.data.id ? action.data : enrollment
     ),
   })),
-
+  on(EnrollmentActions.createEnrollmentFailure, (state, action) => ({
+    ...state,
+    isLoading: false,
+    error: action.error, // ✅ Capturar el error específico
+  })),
   on(EnrollmentActions.deleteEnrollment, (state) => ({
     ...state,
     isLoading: true,
