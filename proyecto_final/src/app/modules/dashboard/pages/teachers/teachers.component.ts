@@ -25,7 +25,7 @@ export class TeachersComponent implements OnInit {
   courses: Course[] = [];
   professors: Professor[] = [];
   errorMessage: string = '';
-  displayedColumns: string[] = ['name', 'course']
+  displayedColumns: string[] = ['name', 'course', 'delete']
   constructor(
     private fb: FormBuilder,
     private teacherService: TeachersService,
@@ -65,6 +65,14 @@ export class TeachersComponent implements OnInit {
     return isCourseAssigned ? { courseAlreadyAssigned: true } : null;
   }
   
+  deleteProfessor(professorId: string): void {
+    if (confirm('¿Estás seguro de que quieres eliminar este profesor?')) {
+      this.teacherService.deleteProfessor(professorId).subscribe(professors => {
+        this.professors = professors;
+      });
+    }
+  }
+
   onSubmit(): void {
     if (this.profesorForm.invalid) {
       this.errorMessage = 'Por favor, corrija los errores en el formulario.';
