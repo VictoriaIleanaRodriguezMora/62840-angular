@@ -60,9 +60,14 @@
       "courseId": "Course3"
     },
     {
-      "id": "4678",
-      "name": "test",
-      "courseId": "Course3"
+      "id": "843c",
+      "name": "Laura",
+      "courseId": "Course6"
+    },
+    {
+      "id": "e574",
+      "name": "Ariel",
+      "courseId": "Course5"
     }
   ],
   "students": [
@@ -110,6 +115,11 @@
       "id": "2ee3",
       "studentId": "504a",
       "courseId": "Course5"
+    },
+    {
+      "id": "6083",
+      "studentId": "af0b",
+      "courseId": "Course3"
     }
   ]
 }
