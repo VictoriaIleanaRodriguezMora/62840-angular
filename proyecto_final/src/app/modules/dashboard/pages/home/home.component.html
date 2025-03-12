@@ -2,8 +2,13 @@
 <div class="container">
   <h3>Bienvenidx!</h3>
 
-  <div *ngIf="userRole$ | async as myRole">
-    <span>Rol: {{ myRole }}</span>
+  <div class="card-container">
+    <mat-card *ngFor="let item of linktems" class="link-card">
+      <mat-card-title>{{ item.label }}</mat-card-title>
+      <mat-card-actions>
+        <button mat-button [routerLink]="item.routerLink">Ir</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>
 <!-- FIN HOME -->

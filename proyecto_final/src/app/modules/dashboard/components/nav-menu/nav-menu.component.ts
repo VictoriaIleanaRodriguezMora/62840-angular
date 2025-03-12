@@ -36,8 +36,6 @@ export class NavMenuComponent implements OnInit {
       if (this.role !== 'employee') {
         this.linktems.push({ label: 'Usuarios', routerLink: 'users' }, 
           { label: 'Profesores', routerLink: 'teachers' });
-
-
       }
 
     });
